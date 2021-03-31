@@ -47,6 +47,9 @@
     margin-right    : 20px;
     color:black;
 }
+button:hover {
+  transform: scale(1.1,1.1);
+}
 
 .menu
 {
@@ -74,6 +77,4 @@ hr{
     color:black;
     font-weight: bolder;
     font-size: 30px;
-  
-    
 }
