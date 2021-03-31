@@ -11,15 +11,18 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  Student:boolean=false;
-   Admin:boolean=false;
 
-   StudentLogin(){
-this.Student=true;
-   }
+  Student:boolean=false;
+  Admin:boolean=false;
+
+  StudentLogin(){
+    this.Student = true;
+    this.Admin = false;
+  }
    
-   AdminLogin(){
-    this.Admin=true;
-       }
+  AdminLogin(){
+    this.Admin = true;
+    this.Student=false;
+  }
 
 }
