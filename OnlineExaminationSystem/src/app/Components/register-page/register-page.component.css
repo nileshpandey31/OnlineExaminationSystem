@@ -1,0 +1,83 @@
+.container {
+    border-style: solid;
+    border-color: black;
+    text-align: center;
+    display: block;
+    width: 800px;
+    height: 600px;
+    margin-top: 20px;
+    background-color: rgb(243, 242, 242);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    ;
+}
+
+.menulist li {
+    float: left;
+    list-style: none;
+}
+
+.menulist li a {
+    text-decoration: none;
+    margin-left: 20px;
+    color: black;
+    font-weight: bold;
+}
+
+.menubutton {
+    float: right;
+}
+
+.menubutton a {
+    text-decoration: none;
+    margin-left: 20px;
+    height: 30px;
+    width: 50px;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: grey;
+    margin-right: 20px;
+    color: black;
+}
+
+.menu {
+    margin-bottom: 30px;
+}
+
+hr {
+    margin-top: 80px;
+    width: 100%;
+    border-color: Black;
+    border-style: solid;
+}
+
+.regsec {
+    text-align: justify;
+    width: 50%;
+    margin: auto;
+}
+
+input[type=text],
+input[type=email],
+input[type=number],
+input[type=date],
+input[type=month] {
+    padding: 3px;
+    width: 169px;
+    height: 15px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.subbtn {
+    background-color: blue;
+    border-radius: 5px;
+    display: block;
+    margin: auto;
+    padding: 10px;
+}
