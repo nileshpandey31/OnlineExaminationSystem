@@ -1,0 +1,61 @@
+.container {
+    border-style: solid;
+    border-color: black;
+    text-align: center;
+    display: block;
+    width: 800px;
+    height: 600px;
+    margin-top: 20px;
+    background-color: rgb(243, 242, 242);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    ;
+}
+
+#divone {
+    margin-top: 10%;
+    width: 48%;
+    height: 60%;
+    border-style: solid;
+    float: left;
+    text-align: center;
+}
+
+
+/* #divone button {
+    position: absolute;
+    bottom: 0;
+} */
+
+#divtwo {
+    margin-top: 10%;
+    width: 48%;
+    height: 60%;
+    border-style: solid;
+    float: right;
+}
+
+#tableone {
+    margin: 75px;
+}
+
+#tableone td {
+    padding: 7px;
+}
+
+.button {
+    background-color: red;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: darkred;
+    transform: scale(1.2, 1.2);
+}
