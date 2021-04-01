@@ -11,6 +11,7 @@ import {LoginComponent} from './Components/login/login.component';
 import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
 import { ReportCardComponent } from './Components/report-card/report-card.component';
 import { ExamPageComponent } from './Components/exam-page/exam-page.component';
+import { SearchStudentsComponent } from './Components/search-students/search-students.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ExamPageComponent } from './Components/exam-page/exam-page.component';
     LoginComponent,
     ResetPasswordComponent,
     ReportCardComponent,
-    ExamPageComponent
+    ExamPageComponent,
+    SearchStudentsComponent
   ],
   imports: [
     BrowserModule,

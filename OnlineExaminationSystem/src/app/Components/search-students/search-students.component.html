@@ -1,0 +1,93 @@
+<div class="container">
+    <div class="div1"  *ngIf="sf">
+        <table class="searchform">
+            <tr>
+                <th>Technology</th>
+                <td><select name="tech" >
+                    <option value="">iterate testname column</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <th>State</th>
+                <td><select name="state" >
+                    <option value="">iterate state column</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td><select name="city" >
+                    <option value="">iterate city column</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Levels</th>
+                <td><select name="city" >
+                    <option value="0">Level 0</option>
+                    <option value="1">Level 1</option>
+                    <option value="2">Level 2</option>
+                    <option value="3">Level 3</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Marks </th>
+                <td>
+                    <select name="marks" id="">
+                        <option value="">
+                            will iterate marks column
+                        </option>
+                    </select>
+                </td>
+            </tr>
+           
+        </table>
+        <button class="searchbutton" (click)="searchstudent()">Search Student</button>
+    </div>
+
+    <div class="div2" *ngIf="st">
+        <table class="searchtable" border="1" >
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    EmailId
+                </th>
+                <th>
+                    Mobile Number
+                </th>
+                <th>
+                    City
+                </th>
+                <th>
+                    State
+                </th>
+            </tr>
+
+            <!-- will iterate over database -->
+          <tr>
+              <td>
+                  demo name
+              </td>
+              <td>
+                  demo mail
+              </td>
+              <td>
+                  demo mob
+              </td>
+              <td>
+                  demo city
+              </td>
+              <td>
+                  demo state
+              </td>
+          </tr>
+        </table>
+    </div>
+    
+   
+
+</div>
