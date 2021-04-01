@@ -10,6 +10,7 @@ import { RegisterPageComponent } from './Components/register-page/register-page.
 import {LoginComponent} from './Components/login/login.component';
 import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
 import { ReportCardComponent } from './Components/report-card/report-card.component';
+import { ExamPageComponent } from './Components/exam-page/exam-page.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ReportCardComponent } from './Components/report-card/report-card.compon
     RegisterPageComponent,
     LoginComponent,
     ResetPasswordComponent,
-    ReportCardComponent
+    ReportCardComponent,
+    ExamPageComponent
   ],
   imports: [
     BrowserModule,
