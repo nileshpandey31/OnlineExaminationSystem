@@ -16,12 +16,16 @@
             <table>
                 <tr>
                     <td>Email-id:</td>
-                    <td><input type="email" placeholder="Enter Email" required>
+                    <td><input type="email" placeholder="Enter Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  name="Email" required>
+                        <span *ngIf="Email.errors?.required">Email cannot be blank</span>
+                        <span *ngIf="Email.errors?.pattern">invalid format</span>
                     </td>
                 </tr>
                 <tr>
                     <td>Password:</td>
-                    <td><input type="password" placeholder="Enter Password" required>
+                    <td><input type="password" placeholder="Enter Password"  name="pass" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%?&])[A-Za-z0-9@$!%?&]{4,8}$"  required>
+                        <span *ngIf="pass.errors?.required">Passwordcannot be blank</span>
+                        <span *ngIf="pass.errors?.pattern">invalid format</span>
                     </td>
                     <td><a href="#">Forgot Password?</a></td>
                 </tr>
@@ -41,14 +45,18 @@
             <h1>Admin Login</h1>
             <table>
                 <tr>
-                    <td>Email-id:</td>
-                    <td><input type="email" placeholder="Enter Email" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Password:</td>
-                    <td><input type="password" placeholder="Enter Password" required>
-                    </td>
+                <td>Email-id:</td>
+                <td><input type="email" placeholder="Enter Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  name="Email" required>
+                    <span *ngIf="Email.errors?.required">Email cannot be blank</span>
+                    <span *ngIf="Email.errors?.pattern">invalid format</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" placeholder="Enter Password"  name="pass" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%?&])[A-Za-z0-9@$!%?&]{4,8}$"  required>
+                    <span *ngIf="pass.errors?.required">Passwordcannot be blank</span>
+                    <span *ngIf="pass.errors?.pattern">invalid format</span>
+                </td>
                 </tr>
                 <tr>
                     <td></td>
