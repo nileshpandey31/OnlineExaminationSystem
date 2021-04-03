@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule} from '@angular/forms';
+import { Routes, RouterModule } from '@angular/router';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +13,18 @@ import { ResetPasswordComponent } from './Components/reset-password/reset-passwo
 import { ReportCardComponent } from './Components/report-card/report-card.component';
 import { ExamPageComponent } from './Components/exam-page/exam-page.component';
 import { SearchStudentsComponent } from './Components/search-students/search-students.component';
+import { AdminProfileComponent } from './Components/admin-profile/admin-profile.component';
+import { AddQuestionsComponent } from './Components/add-questions/add-questions.component';
+import { RemoveQuestionsComponent } from './Components/remove-questions/remove-questions.component';
+
+
+
+const routes: Routes = [
+  { path: 'AdminHome', component: AdminProfileComponent },
+  { path: 'AddQues', component: AddQuestionsComponent },
+  { path: 'RemoveQues', component: RemoveQuestionsComponent },
+  { path: '', redirectTo: '/AdminHome', pathMatch: 'full' },
+]
 
 @NgModule({
   declarations: [
@@ -22,7 +35,10 @@ import { SearchStudentsComponent } from './Components/search-students/search-stu
     ResetPasswordComponent,
     ReportCardComponent,
     ExamPageComponent,
-    SearchStudentsComponent
+    SearchStudentsComponent,
+    AdminProfileComponent,
+    AddQuestionsComponent,
+    RemoveQuestionsComponent
   ],
   imports: [
     BrowserModule,
