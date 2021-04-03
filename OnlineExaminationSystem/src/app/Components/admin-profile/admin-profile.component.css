@@ -1,0 +1,74 @@
+.container {
+    border-style: solid;
+    border-color: black;
+    text-align: center;
+    display: block;
+    width: 800px;
+    height: 600px;
+    margin-top: 20px;
+    background-color: rgb(243, 242, 242);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    ;
+}
+
+.menulist li {
+    float: left;
+    list-style: none;
+}
+
+.menulist li a {
+    text-decoration: none;
+    margin-left: 20px;
+    color: black;
+    font-weight: bold;
+}
+
+.menubutton {
+    float: right;
+}
+
+.menubutton a {
+    text-decoration: none;
+    margin-left: 20px;
+    height: 30px;
+    width: 50px;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: grey;
+    margin-right: 20px;
+    color: black;
+}
+
+button:hover {
+    transform: scale(1.1, 1.1);
+}
+
+.menu {
+    margin-bottom: 30px;
+}
+
+hr {
+    margin-top: 80px;
+    width: 100%;
+    border-color: Black;
+    border-style: solid;
+}
+
+.report {
+    height: 100px;
+    width: 200px;
+    background-color: lawngreen;
+    border-radius: 5px;
+    margin-top: 30px;
+    ;
+}
+
+.report a {
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+    font-size: 30px;
+}
