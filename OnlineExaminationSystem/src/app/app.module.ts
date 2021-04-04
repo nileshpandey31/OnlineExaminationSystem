@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule} from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+
 import { HomePageComponent } from './Components/home-page/home-page.component';
 import { RegisterPageComponent } from './Components/register-page/register-page.component';
 import {LoginComponent} from './Components/login/login.component';
@@ -16,15 +15,6 @@ import { SearchStudentsComponent } from './Components/search-students/search-stu
 import { AdminProfileComponent } from './Components/admin-profile/admin-profile.component';
 import { AddQuestionsComponent } from './Components/add-questions/add-questions.component';
 import { RemoveQuestionsComponent } from './Components/remove-questions/remove-questions.component';
-
-
-
-const routes: Routes = [
-  { path: 'AdminHome', component: AdminProfileComponent },
-  { path: 'AddQues', component: AddQuestionsComponent },
-  { path: 'RemoveQues', component: RemoveQuestionsComponent },
-  { path: '', redirectTo: '/AdminHome', pathMatch: 'full' },
-]
 
 @NgModule({
   declarations: [
