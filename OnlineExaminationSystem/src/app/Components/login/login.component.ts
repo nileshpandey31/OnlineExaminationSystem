@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormsModule,NgForm,FormGroup} from '@angular/forms'
 
 @Component({
   selector: 'app-login',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  model:any=[];
 
   constructor() { }
 
@@ -24,5 +26,9 @@ export class LoginComponent implements OnInit {
     this.Admin = true;
     this.Student=false;
   }
+  loginData(login:NgForm):void
+{
+  console.log(login.value);
+}
 
 }
