@@ -3,27 +3,23 @@
     <div class="menu">
         <ol class="menulist">
             <li>
-                <a href="#">Home</a>
+                <a [routerLink]="['/Home']">Home</a>
             </li>
             <li>
                 <a href="#">AboutUs</a>
             </li>
         </ol>
         <div class="menubutton">
-            <a href="#">Logout</a>
+            <a [routerLink]="['/Home']">Logout</a>
         </div>
     </div>
 
 
     <hr>
 
-    <button class="report"><a href="#"> ADD Questions</a></button><br><br>
-
-    <button class="report"><a href="#"> Remove Questions</a></button><br><br>
-
-    <button class="report"><a routerLink="/AddQues"> View Reports</a></button>
-
-
-
+    <button class="report" [routerLink]="['/AddQues']"><a> ADD Questions</a></button><br>
+    <button class="report" [routerLink]="['/RemoveQues']"><a> Remove Questions</a></button><br>
+    <button class="report" [routerLink]="['/ReportCard']"><a> View Reports</a></button><br>
+    <button class="report" [routerLink]="['/Search']"><a> Search Student </a></button>
 
 </div>
