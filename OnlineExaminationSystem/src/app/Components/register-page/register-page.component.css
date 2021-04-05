@@ -55,9 +55,22 @@ hr {
 
 .regsec {
     text-align: justify;
-    width: 50%;
+    width: 700px;
     margin: auto;
 }
+
+.rowheadlen {
+    width: 300px;
+}
+
+span {
+    color: red;
+}
+
+
+/* td {
+    width: auto;
+} */
 
 input[type=text],
 input[type=email],
@@ -74,10 +87,18 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
 
-.subbtn {
-    background-color: blue;
+.button {
+    background-color: red;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
     border-radius: 5px;
-    display: block;
-    margin: auto;
-    padding: 10px;
+}
+
+button:hover {
+    background-color: darkred;
+    transform: scale(1.2, 1.2);
 }
