@@ -63,3 +63,60 @@ select * from TestSubject
 select * from TestFile
 select * from Admin
 
+
+--------------Insert in student table--------------
+
+insert into student
+values('nilesh','4865983','n@p.com','10/21/1998','TVM','boisar','maharashtra','BE','2020','123456789','2/4/2020')
+
+insert into student
+values('pandey','4865983','a@b.com','12/10/1998','mhss','mumbai','maharashtra','BE','2010','123456789','2/5/2020')
+
+----------------Insert into subject table-----------------
+
+insert into TestSubject
+values('pyhton','100','35','120','enable')
+
+insert into TestSubject
+values('java','100','35','120','disable')
+
+---------------Insert into TestFile---------------------
+
+insert into TestFile
+values('c\file\file1.xls',1,1)
+
+insert into TestFile
+values('c\file\file2.xls',2,1)
+
+
+///this will throw foreign key exception
+insert into TestFile
+values('c\file\file1.xls',1,3)
+
+
+-----------insert into ReportCard--------------
+
+insert into ReportCard
+values(1,2,1,25,'fail','10/04/2020')
+
+insert into ReportCard
+values(2,2,1,55,'pass','09/04/2020')
+
+
+-----------below queries will throw exception--------------
+insert into ReportCard
+values(3,2,1,25,'fail','10/04/2020')
+
+insert into ReportCard
+values(1,3,1,25,'fail','10/04/2020')
+
+
+
+
+
+
+
+
+
+
+
