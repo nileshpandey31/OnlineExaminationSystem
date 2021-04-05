@@ -1,26 +1,25 @@
-.container
-{
-    border-style: solid;
-    border-color: black;
-    text-align:center;
-    display: block;
-    width: 800px;
-    height:600px;
-    margin-top: 20px;
-    background-color: rgb(243, 242, 242);
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px;;
-
+.container {
+  border-style: solid;
+  border-color: black;
+  text-align: center;
+  display: flex;
+  flex-direction:column;
+  width: 800px;
+  height: 600px;
+  margin-top: 20px;
+  background-color: rgb(243, 242, 242);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
 }
 
 examlist h1
 {
     float:left;
 }
-h2 a{
-    float:right;
-    
+h2 a {
+  float: right;
+  margin-right: 10px;
 }
 
 table{
@@ -28,21 +27,26 @@ table{
 }
 .domain
 {
-    width:100px;
-    height:120px;
+    width:200px;
+    height:50px;
     font-size: larger;
     font-weight: bold;
     border-style: solid;
     margin-right: 30px;
+    margin-left: 10px;
     padding-top: 80px;
-
-   
+    display:grid;
+    justify-items:center;
+    align-items:start;
 }
+  .domain:hover {
+    transform: scale(1.2,1.2);
+  }
 
 .starttest
 {
     margin-top: 150px;
-    width:200px;
+    width:150px;
     height:50px;
     font-size: larger;
     font-weight: bold;
@@ -52,10 +56,54 @@ table{
 
 .instructiontimecounter
 {
-    margin-top: 150px;
-    width:200px;
+    margin-top:10px;
+    width:100px;
     height:50px;
     font-size: larger;
     font-weight: bold;
-   
+    float:left;
+}
+
+.ExamPage {
+  width: 95%;
+  height: 100%;
+  font-size: larger;
+  font-weight: bold;
+  text-align: center;
+  align-content:center;
+  border-style: solid;
+  margin-right: 15%;
+  margin-left: 2%;
+}
+
+.ExamPage h3{
+    float:left;
+}
+
+
+.question {
+  float: left;
+  height:70%;
+  width:100%;
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.quest{
+    float:left;
+}
+
+.questionbutton {
+  margin-top: 150px;
+  font-size: larger;
+  font-weight: bold;
+  border-style: solid;
+  border-color: black;
+  margin-left:20px;
+}
+
+.questionbutton:hover
+{
+      background-color:lawngreen;
+      color:black;
 }

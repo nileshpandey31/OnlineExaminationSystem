@@ -1,36 +1,62 @@
 <div class="container">
 
-   <div class="examlist" *ngIf="examlist" >
+  <div class="examlist" *ngIf="examlist">
 
     <h1>Select Exam</h1>
     <h2><a href="#">logout</a></h2>
     <br><br><br>
     <table>
-        <tr>
-            <td>
-                <div class="domain" (click)="start()">JAVA</div>
-            </td>
-            <td>
-                <div class="domain">SQl</div>
-            </td>
-            <td>
-                <div class="domain">will iterate using for loop</div>
-            </td>
-        </tr>
-    
-    </table>
-    
-   </div> 
+      <tr>
+        <td>
+          <div class="domain" (click)="start()">JAVA</div>
+        </td>
+        <td>
+          <div class="domain">SQl</div>
+        </td>
+        <td>
+          <div class="domain">will iterate using for loop</div>
+        </td>
+      </tr>
 
-<div class="instruction" *ngIf="instruction" >
+    </table>
+
+  </div>
+
+  <div class="instruction" *ngIf="instruction">
 
     <h2><a href="#">logout</a></h2>
     <h1>Instruction For Test</h1>
-    <button class="starttest">Start Test</button>
+    <button class="starttest" (click)="examstarts()">Start Test</button>
     <div class="instructiontimecounter">
-        timer
+      timer
 
     </div>
-</div>
+  </div>
 
+  <div class="ExamPage" *ngIf="ExamStarts">
+
+    <h2><a href="#">Submit</a></h2>
+    <p class="instructiontimecounter">  timer  </p>
+    <h1>
+      Level 1
+    </h1>
+    <hr />
+
+    <div class="question">
+      <h3>Current Question 1/10</h3><br /><br />
+      <p class="quest"> Q.1 What comes after B?</p><br /><br />
+      <div>
+        <br />A. <input type="radio" name="option" value="a" /> C
+        <br />B. <input type="radio" name="option" value="b" /> D
+        <br />C. <input type="radio" name="option" value="c" /> A
+        <br />D. <input type="radio" name="option" value="d" /> B
+      </div>
+
+
+      <button class="questionbutton" name="prev">Prev</button>
+      <button class="questionbutton" name="next">Next</button>
+
+    </div>
+
+  </div>
 </div>

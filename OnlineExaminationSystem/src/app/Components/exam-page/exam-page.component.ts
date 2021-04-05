@@ -6,8 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./exam-page.component.css']
 })
 export class ExamPageComponent implements OnInit {
-examlist:boolean=true;
-instruction:boolean=false;
+
+  examlist: boolean = true;
+  instruction: boolean = false;
+  ExamStarts: boolean = false;
 
   constructor() { }
 
@@ -16,7 +18,19 @@ instruction:boolean=false;
 
   start():void{
     this.examlist=false;
-    this.instruction=true;
+    this.instruction = true;
+    this.ExamStarts = false;
+  }
+
+  startexam(): void {
+    this.examlist = false;
+    this.instruction = false;
+    this.ExamStarts = true;
+  }
+  examstarts(): void {
+    this.examlist = false;
+    this.instruction = false;
+    this.ExamStarts = true;
   }
 
 }
