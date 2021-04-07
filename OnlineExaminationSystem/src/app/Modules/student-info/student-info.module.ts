@@ -18,7 +18,7 @@ export class StudentInfoModule {
   College:string;
   City:string;
   State:string;
-  Qualification:string;
+  Qualifacton:string;
   YearOfCompletion:string;
   Password:string;
    LastLogin:Date;

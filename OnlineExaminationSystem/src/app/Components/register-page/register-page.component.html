@@ -113,6 +113,18 @@
                     </tr>
 
                     <tr>
+                        <td><label><b>College Name : </b></label></td>
+                        <td>
+                            <input type="text" placeholder="Enter College Name" name="clg" [(ngModel)]="model.clg" #clg="ngModel" required>
+                        </td>
+                        <td>
+                            <span *ngIf="clg.errors?.required && clg?.touched">
+                                &nbsp;&nbsp;*College Name cannot be blank
+                            </span>
+                        </td>
+                    </tr>
+
+                    <tr>
                         <td><label><b>Year of Completion : </b></label></td>
                         <td>
                             <input type="month" placeholder="Enter Year Of Completion" name="yoc" [(ngModel)]="model.yoc" #yoc="ngModel" required>
@@ -153,7 +165,7 @@
 
                     <tr>
                         <td> <label><b>Captcha : </b></label></td>
-                        <td><input type="text" placeholder="captcha" name="name"></td>
+                        <td><input type="text" placeholder="captcha" name="cname"></td>
                     </tr>
 
 
