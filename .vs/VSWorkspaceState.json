@@ -1,12 +1,10 @@
 {
   "ExpandedNodes": [
-    "",
     "\\OnlineExaminationSystem",
     "\\OnlineExaminationSystem\\src",
     "\\OnlineExaminationSystem\\src\\app",
     "\\OnlineExaminationSystem\\src\\app\\Components",
     "\\OnlineExaminationSystem\\src\\app\\Components\\exam-page"
   ],
-  "SelectedNode": "\\OnlineExaminationSystem",
   "PreviewInSolutionExplorer": false
 }

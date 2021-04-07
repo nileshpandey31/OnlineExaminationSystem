@@ -1,3 +1,7 @@
+Create database OnlineExam
+
+USE OnlineExam
+
 create table Student
 (
 StudentId int primary key identity,
@@ -12,7 +16,6 @@ Qualifacton varchar(20),
 YearOfCompletion int,
 Password varchar(20),
 LastLogin Datetime
-
 )
 
 
@@ -25,7 +28,6 @@ TotalMark int,
 PassingMark int,
 ExamDuration int,
 TStatus varchar(20)
-
 )
 
 create table ReportCard
@@ -37,7 +39,6 @@ PresentLevel int,
 Marks int,
 RStatus varchar(20),
 ExamDate datetime
-
 )
 
 create table TestFile
@@ -46,7 +47,6 @@ FileId int primary key identity,
 Path varchar(30),
 Level int,
 SubjectId int FOREIGN KEY REFERENCES TestSubject(SubjectId),
-
 )
 
 
@@ -89,7 +89,7 @@ insert into TestFile
 values('c\file\file2.xls',2,1)
 
 
-///this will throw foreign key exception
+--this will throw foreign key exception
 insert into TestFile
 values('c\file\file1.xls',1,3)
 
