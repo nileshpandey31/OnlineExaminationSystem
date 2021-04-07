@@ -10,18 +10,18 @@ import { CommonModule } from '@angular/common';
   ]
 })
 export class StudentInfoModule { 
- StudentId:number;
- Name:string;
- Mobile:string;
- Email:string;
- DOB:Date;
- College:string;
- City:string;
- State:string;
- Qualification:string;
- YearOfCompletion:string;
- Password:string;
-  LastLogin:Date;
+  StudentId:number;
+  Name:string;
+  Mobile:string;
+  Email:string;
+  DOB:Date;
+  College:string;
+  City:string;
+  State:string;
+  Qualification:string;
+  YearOfCompletion:string;
+  Password:string;
+   LastLogin:Date;
 }
 
 //changes done
