@@ -13,11 +13,11 @@
     <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="Qualifacton" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="YearOfCompletion" Type="Int32" />
+    <Property Name="YearOfCompletion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="LastLogin" Type="DateTime" Precision="3" />
   </EntityType>
-  <EntityContainer Name="OnlineExamEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="OnlineExamEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Students" EntityType="Self.Student" />
   </EntityContainer>
 </Schema>
