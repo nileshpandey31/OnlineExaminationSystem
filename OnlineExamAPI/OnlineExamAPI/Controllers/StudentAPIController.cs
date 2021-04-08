@@ -15,7 +15,7 @@ namespace OnlineExamAPI.Controllers
     [Route("api/StudentAPI")]
     public class StudentAPIController : ApiController
     {
-        OnlineExamEntities1 db = new OnlineExamEntities1();
+        OnlineExamEntities2 db = new OnlineExamEntities2();
         [Route("api/StudentAPI/RegisterStudent")]
         [HttpPost]
         public bool Post([FromBody] Student stud)

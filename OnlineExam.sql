@@ -13,11 +13,10 @@ College varchar(20),
 City varchar(20),
 State varchar(20),
 Qualifacton varchar(20),
-YearOfCompletion int,
+YearOfCompletion varchar(20) DEFAULT NULL,
 Password varchar(20),
 LastLogin Datetime
 )
-
 
 
 create table TestSubject

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="OnlineExamModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="OnlineExamModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Student">
           <Key>
             <PropertyRef Name="StudentId" />
@@ -25,8 +25,7 @@
         <EntityContainer Name="OnlineExamModelStoreContainer">
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OnlineExamModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -42,12 +41,12 @@
           <Property Name="College" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Qualifacton" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="YearOfCompletion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="LastLogin" Type="DateTime" Precision="3" />
+          <Property Name="Qualifacton" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityContainer Name="OnlineExamEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="OnlineExamEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Students" EntityType="Self.Student" />
         </EntityContainer>
       </Schema>
@@ -55,10 +54,11 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="OnlineExamModelStoreContainer" CdmEntityContainer="OnlineExamEntities1">
+        <EntityContainerMapping StorageEntityContainer="OnlineExamModelStoreContainer" CdmEntityContainer="OnlineExamEntities2">
           <EntitySetMapping Name="Students">
             <EntityTypeMapping TypeName="OnlineExamModel.Student">
               <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="Qualifacton" ColumnName="Qualifacton" />
                 <ScalarProperty Name="StudentId" ColumnName="StudentId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Mobile" ColumnName="Mobile" />
@@ -67,7 +67,6 @@
                 <ScalarProperty Name="College" ColumnName="College" />
                 <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="Qualifacton" ColumnName="Qualifacton" />
                 <ScalarProperty Name="YearOfCompletion" ColumnName="YearOfCompletion" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
