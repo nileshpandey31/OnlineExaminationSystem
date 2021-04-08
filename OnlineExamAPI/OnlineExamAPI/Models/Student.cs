@@ -25,6 +25,6 @@ namespace OnlineExamAPI.Models
         public string Qualifacton { get; set; }
         public string YearOfCompletion { get; set; }
         public string Password { get; set; }
-        public Nullable<System.DateTime> LastLogin { get; set; }
+        public Nullable<System.DateTime> LastLogin { get; set; }      
     }
 }

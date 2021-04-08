@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="OnlineExamModelStoreContainer" CdmEntityContainer="OnlineExamEntities1">
+  <EntityContainerMapping StorageEntityContainer="OnlineExamModelStoreContainer" CdmEntityContainer="OnlineExamEntities2">
     <EntitySetMapping Name="Students">
       <EntityTypeMapping TypeName="OnlineExamModel.Student">
         <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="Qualifacton" ColumnName="Qualifacton" />
           <ScalarProperty Name="StudentId" ColumnName="StudentId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Mobile" ColumnName="Mobile" />
@@ -12,7 +13,6 @@
           <ScalarProperty Name="College" ColumnName="College" />
           <ScalarProperty Name="City" ColumnName="City" />
           <ScalarProperty Name="State" ColumnName="State" />
-          <ScalarProperty Name="Qualifacton" ColumnName="Qualifacton" />
           <ScalarProperty Name="YearOfCompletion" ColumnName="YearOfCompletion" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
