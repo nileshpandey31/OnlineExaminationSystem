@@ -13,7 +13,7 @@
     <Property Name="City" Type="varchar" MaxLength="20" />
     <Property Name="State" Type="varchar" MaxLength="20" />
     <Property Name="Qualifacton" Type="varchar" MaxLength="20" />
-    <Property Name="YearOfCompletion" Type="int" />
+    <Property Name="YearOfCompletion" Type="varchar" MaxLength="20" />
     <Property Name="Password" Type="varchar" MaxLength="20" />
     <Property Name="LastLogin" Type="datetime" />
   </EntityType>

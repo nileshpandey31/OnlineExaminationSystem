@@ -23,7 +23,7 @@ namespace OnlineExamAPI.Models
         public string City { get; set; }
         public string State { get; set; }
         public string Qualifacton { get; set; }
-        public Nullable<int> YearOfCompletion { get; set; }
+        public string YearOfCompletion { get; set; }
         public string Password { get; set; }
         public Nullable<System.DateTime> LastLogin { get; set; }
     }
