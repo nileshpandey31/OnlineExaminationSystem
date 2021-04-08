@@ -15,7 +15,7 @@ namespace OnlineExamAPI.Controllers
     [Route("api/StudentAPI")]
     public class StudentAPIController : ApiController
     {
-        OnlineExamEntities db = new OnlineExamEntities();
+        OnlineExamEntities1 db = new OnlineExamEntities1();
         [Route("api/StudentAPI/RegisterStudent")]
         [HttpPost]
         public bool Post([FromBody] Student stud)
@@ -34,14 +34,14 @@ namespace OnlineExamAPI.Controllers
             return false;
         }
 
-        [Route("api/StudentAPI/Login/{name}/{pwd}")]
+        [Route("api/StudentAPI/Login/{email}/{pwd}")]
         [HttpGet]
-        public string Get(string name, string pwd)
+        public string Get(string email, string pwd)
         {
             string result = "";
             try
             {
-                var data = db.Students.Where(x => x.Name == name && x.Password == pwd);
+                var data = db.Students.Where(x => x.Email== email && x.Password == pwd);
                 if (data.Count() == 0)
                     result = "Invalid credentials";
                 else
