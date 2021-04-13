@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { QusnInfoService } from 'src/app/Services/qusn-info.service';
+import {AddSubModule} from 'src/app/Modules/add-sub/add-sub.module';
 
 @Component({
   selector: 'app-exam-page',
@@ -10,10 +12,20 @@ export class ExamPageComponent implements OnInit {
   examlist: boolean = true;
   instruction: boolean = false;
   ExamStarts: boolean = false;
+  slist:AddSubModule[];
 
-  constructor() { }
+
+ 
+
+  constructor(private service: QusnInfoService) { }
 
   ngOnInit(): void {
+    this.service.ShowSubject().subscribe((data:AddSubModule[])=>
+    {
+  
+      this.slist=data;
+    });
+    
   }
 
   start():void{
@@ -31,6 +43,8 @@ export class ExamPageComponent implements OnInit {
     this.examlist = false;
     this.instruction = false;
     this.ExamStarts = true;
+  
+
   }
 
 }

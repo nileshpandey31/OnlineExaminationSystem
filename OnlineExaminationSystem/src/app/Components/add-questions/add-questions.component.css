@@ -1,7 +1,7 @@
 .container {
     border-style: solid;
     border-color: black;
-    text-align: center;
+    text-align: left;
     display: block;
     width: 800px;
     height: 600px;
@@ -25,13 +25,43 @@ p {
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 30%;
+    width: 100%;
     border-radius: 5px;
 }
 
 button:hover {
     background-color: darkred;
     transform: scale(1.2, 1.2);
+}
+
+.rowheadlen {
+    width: 150px;
+}
+
+.error {
+    width: 250px;
+}
+
+span {
+    font-size: 15px;
+    color: red;
+}
+
+input[type=text],
+input[type=email],
+input[type=number],
+input[type=date],
+input[type=time]
+input[type=file] 
+{
+    padding: 3px;
+    width: 250px;
+    height: 15px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }
 
 .searchform {
@@ -102,3 +132,32 @@ td select {
     display: block;
     width: 300px;
 }
+
+.filesection
+{
+    margin-left: 250px;
+   margin-top: 100px;
+  
+}
+
+.drop 
+{
+width:300px;
+height:25px;
+margin-top: 2px;
+}
+
+.file
+{
+width:300px;
+height:25px;
+margin-bottom: 10px;
+}
+
+.filesection input[type=submit]{
+    height:35px;
+    margin-top: 10px;
+
+}
+
+

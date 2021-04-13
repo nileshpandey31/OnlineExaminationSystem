@@ -11,7 +11,7 @@ import {HttpHeaders} from '@angular/common/http';
 export class StudentInfoService {
   stud:StudentInfoModule;
   http:HttpClient;
-  url:string='http://localhost:51419/api/StudentAPI';
+  url:string='http://localhost:62603/api/StudentAPI';
   httpOptions = {headers: new HttpHeaders({
     'Content-Type': 'application/json'
   })

@@ -27,20 +27,28 @@ table{
 }
 .domain
 {
-    width:200px;
-    height:50px;
-    font-size: larger;
-    font-weight: bold;
-    border-style: solid;
-    margin-right: 30px;
-    margin-left: 10px;
-    padding-top: 80px;
-    display:grid;
-    justify-items:center;
-    align-items:start;
+  position:relative;
+  float:left;
+  width: 20%;
+  height: 60px;
+  border: 1px solid;
+  text-align:center;
+  vertical-align:middle;
+  background-color: lawngreen;
+    border-radius: 5px;
+    margin:30px; 
+
+    text-decoration: none;
+    color:black;
+    font-weight: bolder;
+    font-size: 30px;
+    padding-top: 40px;
+   
+
 }
   .domain:hover {
     transform: scale(1.2,1.2);
+    background-color: aqua;
   }
 
 .starttest

@@ -11,36 +11,113 @@
         </div>
     </div>
     <hr>
-    <div class="quesoptn">
-        <div>
-            <p>The question to be added from the file</p>
-        </div>
-        <div>
-            <ol type="a">
-                <li>
-                    Option 1
-                </li>
-                <li>
-                    Option 2
-                </li>
-                <li>
-                    Option 3
-                </li>
-                <li>
-                    Option 4
-                </li>
-            </ol>
-        </div>
+    <button (click)="addsub=true ; fileupload=false"> ADD Subject</button>
+    <button (click)="fileupload=true ; addsub=false">Admin Question File</button>
+    <hr>
+   
+    <div *ngIf="fileupload" class="filesection">
+        <form #fileform="ngForm"  name="fileform" (ngSubmit)="uploadFile(fileform)">
+        <div class="col-md-6">  
+            <input class="form-control" type="file" #fileInput required  class="file" />  
+        </div>  
+
+        <div>Subject Name</div>
+    <select type="text" name="subject" #subject="ngModel"  [(ngModel)]="model.subject" required class="drop">
+        
+       <option *ngFor="let item of slist" [value]="item.SubjectId">{{item.Subject}}</option>
+    </select>
+
+        <div class="col-md-6">  
+           <input type="submit" value="ADD" [disabled]="fileform.invalid"> 
+        </div> 
+        <div>  
+            <h4 class="alert-success">{{message}}</h4>  
+        </div>  
+    </form>
     </div>
-    <div class="soln">
-        <table>
-            <tr>
-                <td>
-                    <b>Correct : </b>
-                </td>
-                <td><input type="text" style="width:50px"></td>
-            </tr>
-        </table>
+
+<!-- div tag for add subject -->
+
+    <div *ngIf="addsub">
+
+        <form #Add="ngForm" name="Add" (ngSubmit)="AddSub(Add)">
+            <div style="margin-left: 150px;">
+                <table>
+                    <tr>
+                        <td class="rowheadlen"><label><b>Subject Name : </b></label></td>
+                        <td>
+                            <input type="text" placeholder="Subject Name" name="sname" [(ngModel)]="model.sname" #sname="ngModel" required>
+                        </td>
+                        <td class="error">
+                            <span *ngIf="sname.errors?.required && sname?.touched">
+                        &nbsp;&nbsp;* Subject Name cannot be blank
+                    </span>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td><label><b>Total Marks : </b></label></td>
+                        <td>
+                            <input type="number" placeholder="Total Marks" name="tmks" [(ngModel)]="model.tmks" #tmks="ngModel" required>
+                        </td>
+                        <td>
+                            <span *ngIf="tmks.errors?.required && tmks?.touched">
+                        &nbsp;&nbsp;*Total Marks cannot be blank
+                    </span>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td><label><b>Passing Marks : </b></label></td>
+                        <td>
+                            <input type="number" placeholder="Passing Marks" name="pmks" [(ngModel)]="model.pmks" #pmks="ngModel" required>
+                        </td>
+                        <td>
+                            <span *ngIf="pmks.errors?.required && pmks?.touched">
+                        &nbsp;&nbsp;*Passing Marks cannot be blank
+                    </span>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td><label><b>Exam Duration : </b></label></td>
+                        <td>
+                            <input type="number" placeholder="Exam Duration" name="dur" [(ngModel)]="model.dur" #dur="ngModel" required>
+                        </td>
+                        <td>
+                            <span *ngIf="dur.errors?.required && dur?.touched">
+                        &nbsp;&nbsp;*Exam Duration cannot be blank
+                    </span>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td><label><b>Test status : </b></label></td>
+                        <td>
+                            <input type="text" placeholder="Test status" name="tstatus" [(ngModel)]="model.tstatus" #tstatus="ngModel" required>
+                        </td>
+                        <td>
+                            <span *ngIf="tstatus.errors?.required && tstatus?.touched">
+                        &nbsp;&nbsp;*Test status cannot be blank
+                    </span>
+                        </td>
+                    </tr>
+    
+                    
+    
+    
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" name="Addbtn" value="Add Questions" [disabled]="Add.invalid"></td>
+                    </tr>
+    
+                </table>
+    
+    
+            </div>
+        </form>
+
     </div>
-    <button class="button">Add</button><br>
+   
+  
 </div>

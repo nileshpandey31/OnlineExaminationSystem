@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 
 
+
 import { HomePageComponent } from './Components/home-page/home-page.component';
 import { RegisterPageComponent } from './Components/register-page/register-page.component';
 import {LoginComponent} from './Components/login/login.component';
