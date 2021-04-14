@@ -28,7 +28,8 @@ export class RegisterPageComponent implements OnInit {
     Qualifacton:'string',
     YearOfCompletion:'string',
     Password:'string',
-    LastLogin:new Date("10/12/2020")
+    LastLogin:new Date("10/12/2020"),
+    OTP:'string'
 
   };
 

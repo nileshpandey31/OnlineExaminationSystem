@@ -22,6 +22,7 @@ export class StudentInfoModule {
   YearOfCompletion:string;
   Password:string;
    LastLogin:Date;
+   OTP:string;
 }
 
 //changes done
