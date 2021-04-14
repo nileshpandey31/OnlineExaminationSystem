@@ -131,15 +131,18 @@ SubjectId int FOREIGN KEY REFERENCES TestSubject(SubjectID)
 
 drop table Question
 truncate table Question
+truncate table question
 
-select * from Question
-
+	
+select QID from Question
 select * from testsubject
 truncate table testSubject
 
+select * from student
 
 
-
+delete from testSubject 
+where subjectid=2
 
 
 

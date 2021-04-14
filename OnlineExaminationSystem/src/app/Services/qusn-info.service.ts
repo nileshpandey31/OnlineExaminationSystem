@@ -45,4 +45,9 @@ AddSubId(Sid:number):Observable<boolean>
   return this.http.post<boolean>(this.url + '/' + 'AddSubId',Sid, this.httpOptions);
 }
 
+ShowQst():Observable<QusnInfoModule[]>
+{
+  return this.http.get<QusnInfoModule[]>(this.url + "/"+"ShowQst");
+}
+
 }

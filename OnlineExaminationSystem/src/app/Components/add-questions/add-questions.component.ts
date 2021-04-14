@@ -17,6 +17,7 @@ export class AddQuestionsComponent implements OnInit {
   @ViewChild('fileInput') fileInput;  
   message: string; 
   model: any = [];
+
  
   addsub:boolean=false;
   fileupload:boolean=false;
@@ -54,8 +55,11 @@ export class AddQuestionsComponent implements OnInit {
       {
         if(data)
         {
-          alert("file n subject updated");
-          console.log(this.Qinfo.SubjectId);
+          this.service.UploadExcel(formData,this.Qinfo.SubjectId).subscribe(result => {  
+            this.message = result.toString();  
+            console.log(this.Qinfo.SubjectId);
+      
+          });  
         }
         else{
           alert("file upload failed" + data)
@@ -64,12 +68,10 @@ export class AddQuestionsComponent implements OnInit {
 
     );
    
-    this.service.UploadExcel(formData,this.Qinfo.SubjectId).subscribe(result => {  
-      this.message = result.toString();  
-      console.log(this.Qinfo.SubjectId);
-      
-    });  
+  
     
+    
+   
     
   
   }  
