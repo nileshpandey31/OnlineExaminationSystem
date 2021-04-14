@@ -26,4 +26,21 @@ Login(Email:string,pwd:string):Observable<string>
 {
   return this.http.get<string>(this.url+'/'+'login'+'/'+ Email + '/' + pwd);
 }
+
+ChkEmail(email:string):Observable<string>
+{
+  return this.http.get<string>(this.url+'/CheckEmail/'+ email +'/');
+}
+
+VerifyLinkEmail(stud:StudentInfoModule):Observable<string>
+{
+  console.log(stud);
+  return this.http.post<string>(this.url+'/'+'VerifyLinkEmail',stud,this.httpOptions);
+}
+
+SetNewPassword(stud:StudentInfoModule):Observable<boolean>
+{
+  console.log("Inside SetNewPassword "+stud)
+  return this.http.post<boolean>(this.url+'/'+'SetNewPassword',stud,this.httpOptions);
+}
 }
