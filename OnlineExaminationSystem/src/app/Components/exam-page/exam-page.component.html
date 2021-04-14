@@ -21,7 +21,7 @@
         <h1>Instruction For Test</h1>
         <button class="starttest" (click)="examstarts()">Start Test</button>
         <div class="instructiontimecounter">
-            timer
+      
 
     </div>
   </div>
@@ -29,7 +29,7 @@
   <div class="ExamPage" *ngIf="ExamStarts">
 
     <h2><a href="#">Submit</a></h2>
-    <p class="instructiontimecounter">  timer  </p>
+    <p class="instructiontimecounter">  Timer:<countdown [config]="{leftTime:720}" ></countdown></p>
     <h1>
       Level 1
     </h1>

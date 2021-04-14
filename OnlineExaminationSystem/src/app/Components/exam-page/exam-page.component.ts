@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QusnInfoService } from 'src/app/Services/qusn-info.service';
 import {AddSubModule} from 'src/app/Modules/add-sub/add-sub.module';
-import { QusnInfoModule } from 'src/app/Modules/qusn-info/qusn-info.module';
+import{NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-exam-page',
@@ -14,8 +14,6 @@ export class ExamPageComponent implements OnInit {
   instruction: boolean = false;
   ExamStarts: boolean = false;
   slist:AddSubModule[];
-  qlist:QusnInfoModule[];
-  cqno:number=1;
 
 
  
@@ -23,20 +21,13 @@ export class ExamPageComponent implements OnInit {
   constructor(private service: QusnInfoService) { }
 
   ngOnInit(): void {
+    
     this.service.ShowSubject().subscribe((data:AddSubModule[])=>
     {
   
       this.slist=data;
     });
-
-    this.service.ShowQst().subscribe((data:QusnInfoModule[])=>
-    {
-  
-      this.qlist=data;
-      console.log(this.qlist);
-    });
-
-   
+    
     
   }
 
@@ -55,19 +46,8 @@ export class ExamPageComponent implements OnInit {
     this.examlist = false;
     this.instruction = false;
     this.ExamStarts = true;
-  
+    
+    
   }
-
-  increment():void{
-    this.cqno=this.cqno+1;
-    console.log(this.cqno)
-  }
-  decrement():void{
-    this.cqno=this.cqno-1;
-    console.log(this.cqno)
-  }
-
-
-
 
 }

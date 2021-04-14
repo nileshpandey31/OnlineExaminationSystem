@@ -12,6 +12,7 @@ import { AdminProfileComponent } from './Components/admin-profile/admin-profile.
 import { AddQuestionsComponent } from './Components/add-questions/add-questions.component';
 import { RemoveQuestionsComponent } from './Components/remove-questions/remove-questions.component';
 
+
 const routes: Routes = [
   { path: '', redirectTo: '/Home', pathMatch: 'full' },
   { path: 'Home', component: HomePageComponent },
@@ -29,6 +30,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  
 })
 export class AppRoutingModule { }

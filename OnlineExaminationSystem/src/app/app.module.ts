@@ -5,8 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 
-
-
 import { HomePageComponent } from './Components/home-page/home-page.component';
 import { RegisterPageComponent } from './Components/register-page/register-page.component';
 import {LoginComponent} from './Components/login/login.component';
@@ -17,6 +15,8 @@ import { SearchStudentsComponent } from './Components/search-students/search-stu
 import { AdminProfileComponent } from './Components/admin-profile/admin-profile.component';
 import { AddQuestionsComponent } from './Components/add-questions/add-questions.component';
 import { RemoveQuestionsComponent } from './Components/remove-questions/remove-questions.component';
+import { NgxCaptchaModule } from 'ngx-captcha';
+import{CountdownModule} from 'ngx-countdown';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,9 @@ import { RemoveQuestionsComponent } from './Components/remove-questions/remove-q
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxCaptchaModule,
+    CountdownModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
