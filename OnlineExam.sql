@@ -145,8 +145,14 @@ delete from testSubject
 where subjectid=2
 
 
+	
 
+create or alter proc fetchqusn
+as
+begin
+select * from question
+end
 
-
+select * from student
 
 

@@ -16,7 +16,13 @@ export class ExamPageComponent implements OnInit {
   ExamStarts: boolean = false;
   slist:AddSubModule[];
   qlist:QusnInfoModule[];
-  cqno:number=1;
+  cqno:any=0;
+  getsession:any;
+qusnlistbysub:any;
+qidlist:any;
+cqid:any;;
+
+
 
 
  
@@ -34,16 +40,31 @@ export class ExamPageComponent implements OnInit {
     this.service.ShowQst().subscribe((data:QusnInfoModule[])=>
     {
       this.qlist=data;
+     
     }
     );
+
     
     
   }
 
-  start():void{
+  start(subid:number):void{
     this.examlist=false;
     this.instruction = true;
     this.ExamStarts = false;
+    
+    var setsession = window.sessionStorage.setItem("subid", subid.toString());
+     this.getsession = window.sessionStorage.getItem("subid");
+   console.log(this.getsession);
+   this.qusnlistbysub=this.qlist.filter(x=>x.SubjectId==this.getsession);
+   console.log(this.qusnlistbysub);
+  this.qidlist=this.qusnlistbysub.map(({ QID }) => QID)
+  console.log(this.qidlist);
+  this.cqid=this.qidlist[0];
+  console.log(this.cqid)
+   
+ 
+
   }
 
   startexam(): void {
@@ -59,12 +80,16 @@ export class ExamPageComponent implements OnInit {
   }
 
   increment():void
-  {
-    this.cqno++;
+  { 
+   this.cqno=this.cqno+1;
+    this.cqid=this.qidlist[this.cqno];
+    console.log(this.cqid);
   }
   decrement():void
   {
-    this.cqno--;
+    this.cqno=this.cqno-1;
+    this.cqid=this.qidlist[this.cqno];
+    console.log(this.cqid);
   }
 
 }

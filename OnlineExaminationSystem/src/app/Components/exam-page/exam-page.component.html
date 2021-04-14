@@ -8,7 +8,7 @@
         
             <div *ngFor="let item of slist">
                 
-                    <div class="domain" (click)="start()">{{item.Subject}}</div>
+                    <div class="domain" (click)="start(item.SubjectId)">{{item.Subject}}</div>
             </div>
               
          
@@ -37,11 +37,11 @@
 
     <div class="question">
      
-      <div *ngFor="let item of qlist">
+      <div *ngFor="let item of qusnlistbysub">
       
         
-        <div *ngIf="item.QID==cqno">
-          <h3>Current Question {{item.QID}}</h3><br /><br />
+        <div *ngIf="item.QID==cqid">
+          <h3>Current Question {{cqno+1}}</h3><br /><br />
          
           <p class="quest">{{item.Qsn}}</p><br /><br />
           <br />A. <input type="radio" name="option" value="{{item.Opt1}}" /> {{item.Opt1}}
@@ -49,6 +49,7 @@
           <br />C. <input type="radio" name="option" value="{{item.Opt3}}" /> {{item.Opt3}}
           <br />D. <input type="radio" name="option" value="{{item.Opt4}}" /> {{item.Opt4}}
         </div>
+
 
       </div>
      
