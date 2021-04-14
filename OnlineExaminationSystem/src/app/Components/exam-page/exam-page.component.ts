@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QusnInfoService } from 'src/app/Services/qusn-info.service';
 import {AddSubModule} from 'src/app/Modules/add-sub/add-sub.module';
+import{NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-exam-page',
@@ -20,11 +21,13 @@ export class ExamPageComponent implements OnInit {
   constructor(private service: QusnInfoService) { }
 
   ngOnInit(): void {
+    
     this.service.ShowSubject().subscribe((data:AddSubModule[])=>
     {
   
       this.slist=data;
     });
+    
     
   }
 
@@ -43,8 +46,8 @@ export class ExamPageComponent implements OnInit {
     this.examlist = false;
     this.instruction = false;
     this.ExamStarts = true;
-  
-
+    
+    
   }
 
 }
