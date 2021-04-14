@@ -48,6 +48,7 @@ Level int,
 SubjectId int FOREIGN KEY REFERENCES TestSubject(SubjectId),
 )
 
+drop table TestFile
 
 create table Admin
 (
@@ -108,6 +109,33 @@ values(3,2,1,25,'fail','10/04/2020')
 
 insert into ReportCard
 values(1,3,1,25,'fail','10/04/2020')
+
+
+
+-----------------------------------------------------
+
+create table Question
+(
+QID int primary key identity,
+Qsn varchar(200),
+Opt1 varchar(200),
+Opt2 varchar(200),
+Opt3 varchar(200),
+Opt4 varchar(200),
+Answer varchar(200),
+Level varchar(5),
+FileName varchar(30),
+SubjectId int FOREIGN KEY REFERENCES TestSubject(SubjectID)
+
+)
+
+drop table Question
+truncate table Question
+
+select * from Question
+
+select * from testsubject
+truncate table testSubject
 
 
 
