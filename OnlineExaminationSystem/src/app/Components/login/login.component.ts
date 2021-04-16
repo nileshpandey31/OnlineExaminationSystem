@@ -14,10 +14,21 @@ export class LoginComponent implements OnInit {
   stud=new StudentInfoModule;
   email:string;
   password:string;
+  studlist:StudentInfoModule[];
+ studentidsession:any;   //variable for storing student session
+ presentstudent:any;
+
 
   constructor(svc:StudentInfoService) { this.svc=svc;}
 
   ngOnInit(): void {
+    this.svc.ShowAllStudent().subscribe((data:StudentInfoModule[])=>
+    {
+  
+      this.studlist=data;
+      console.log(this.studlist);
+    });
+   
   }
 
   Student:boolean=false;
@@ -43,6 +54,21 @@ export class LoginComponent implements OnInit {
       if(data=="Login successful")
       {
         alert('Login successful');
+
+        this.presentstudent=this.studlist.filter(x=>x.Email==this.email);
+        console.log(this.presentstudent);
+      //   console.log(this.studlist);
+      //  console.log(this.presentstudent);
+      //  console.log(this.presentstudent[0].StudentId);
+        
+      // localStorage.setItem('studid', this.presentstudent[0].StudentId.toString());
+      // this.studentidsession = localStorage.getItem('studid');
+      
+        var setsession = window.sessionStorage.setItem("studid", this.presentstudent[0].StudentId.toString());
+        this.studentidsession = window.sessionStorage.getItem("studid");
+        console.log(this.studentidsession);
+       
+
       }
       else{
         alert('Invalid credentials');

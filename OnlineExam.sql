@@ -14,11 +14,15 @@ City varchar(20),
 State varchar(20),
 Qualifacton varchar(20),
 YearOfCompletion varchar(20) DEFAULT NULL,
-Password varchar(20),
-LastLogin Datetime
+Password varchar(100),
+LastLogin Datetime,
+OTP nvarchar(20) default NULL,
+ActivetionCode uniqueidentifier default NULL
 )
+alter table Student drop column EmailVerification,OTP,ActivetionCode
 
-
+drop table student
+select * from student
 create table TestSubject
 (
 SubjectId int primary key identity,
@@ -34,7 +38,6 @@ create table ReportCard
 ReportId int primary key identity,
 StudentId int FOREIGN KEY REFERENCES Student(StudentId),
 SubjectID int FOREIGN KEY REFERENCES TestSubject(SubjectID),
-PresentLevel int,
 Marks int,
 RStatus varchar(20),
 ExamDate datetime
@@ -57,7 +60,7 @@ Email varchar(30),
 Password varchar(30)
 )
 
-select * from Student
+select * from student
 select * from ReportCard
 select * from TestSubject
 select * from TestFile
@@ -110,7 +113,7 @@ values(3,2,1,25,'fail','10/04/2020')
 insert into ReportCard
 values(1,3,1,25,'fail','10/04/2020')
 
-
+select * from reportcard
 
 -----------------------------------------------------
 
@@ -130,7 +133,8 @@ SubjectId int FOREIGN KEY REFERENCES TestSubject(SubjectID)
 )
 
 drop table Question
-truncate table Question
+select * from Question
+select * from testsubject
 truncate table question
 
 	
@@ -156,3 +160,26 @@ end
 select * from student
 
 
+-------------sp for updating password-------
+create proc sp_UpdatePassword(@otp varchar(20),@Password varchar(50))
+	as
+	begin 
+	update Student set Password=@Password where OTP=@otp
+	update Student set OTP=NUll where OTP=@otp
+	end
+
+
+	-------------------------
+	
+			select * from ReportCard
+			drop table reportcard
+			select * from TestSubject
+
+
+--------------------------------------
+
+create or alter proc fetchSubject
+as
+begin
+select * from TestSubject
+end

@@ -26,28 +26,119 @@
     </div>
   </div>
 
+  <!-- score card display div -->
+
+<div id="score" *ngIf="Scorediv" >
+
+  
+  <br>
+  <h2 id="pone"><b>Score Card</b><br>
+  Result Status : {{ResultStatus}}</h2>
+  <hr>
+
+  <div *ngFor="let item of studlist">
+ 
+ 
+
+    <div *ngIf="item.StudentId==presentstudid">
+     
+  
+  <div id="divone" *ngIf="pass">
+      <div>
+          <br><br>
+          <p id="pone"><b>Thank You !!!!</b></p>
+          <p id="pone"><b>You have cleared the {{presentlevel + 1}}</b></p>
+          <p id="pone"><b>You can proceed to{{presentlevel + 2}}</b></p>
+      </div>
+      <div style="margin-top: 150px;">
+          <button class="button"> level {{presentlevel + 2}}</button>
+      </div>
+  </div>
+
+  <div id="divone" *ngIf="fail">
+      <div style="margin-top: 100px;">
+          <br><br>
+          <p id="pone"><b> Please Try Again</b></p>
+         
+      </div>
+  </div>
+
+
+  <div id="divtwo">
+      <table id="tableone">
+          <tr>
+              <td>Name : {{item.Name}}</td>
+              <td></td>
+          </tr>
+          <tr>
+              <td>Score : {{Score}}</td>
+              <td></td>
+          </tr>
+          <tr *ngIf="fail">
+              <td>Level : {{presentlevel}}</td>
+              <td></td>
+          </tr>
+          <tr *ngIf="pass">
+            <td>Level : {{presentlevel+1}}</td>
+            <td></td>
+        </tr>
+          <tr>
+              <td>Test :{{subjectname}} </td>
+              <td></td>
+          </tr>
+      </table>
+      <button class="button">Exit</button>
+  </div>
+</div>
+</div>
+</div>
+  
+
+  <!-- score card display end -->
+
+
+
+
+ 
   <div class="ExamPage" *ngIf="ExamStarts">
 
-    <h2><a href="#">Submit</a></h2>
-    <p class="instructiontimecounter">  Timer:<countdown [config]="{leftTime:720}" ></countdown></p>
+    <h2><button (click)="CalculateScore()" class="scorebutton">Submit</button></h2>
+
+
+    <!-- code for counter start -->
+    <div *ngFor="let item of slist">
+    <div *ngIf="item.SubjectId== getsession">
+        
+      <p class="instructiontimecounter">  Timer:<countdown [config]="{leftTime:item.ExamDuration*60}" ></countdown></p>
+    </div>
+  </div>
+    <!-- counter end -->
+
+
+
     <h1>
-      Level 1
+      Level {{presentlevel + 1 }}
     </h1>
-    <hr />
+    <hr/>
+    
+    <div class="gridContainer">
+      <button class="qusngrid"  *ngFor="let item of gridnumber" (click)="switchQsn(item)">{{item}}</button>  
+    </div>
 
     <div class="question">
      
-      <div *ngFor="let item of qusnlistbysub">
+      <div *ngFor="let item of qusnlistbysublevel">
       
         
         <div *ngIf="item.QID==cqid">
-          <h3>Current Question {{cqno+1}}</h3><br /><br />
-         
+          <div class="review"><input type="checkbox" name="review">review</div>
+          <h3>Current Question {{cqno+1}}/{{lastqno}}</h3><br /><br />
+          
           <p class="quest">{{item.Qsn}}</p><br /><br />
-          <br />A. <input type="radio" name="option" value="{{item.Opt1}}" /> {{item.Opt1}}
-          <br />B. <input type="radio" name="option" value="{{item.Opt2}}" /> {{item.Opt2}}
-          <br />C. <input type="radio" name="option" value="{{item.Opt3}}" /> {{item.Opt3}}
-          <br />D. <input type="radio" name="option" value="{{item.Opt4}}" /> {{item.Opt4}}
+          <br />A. <input type="radio" name="option" value="{{item.Opt1}}"  (click)="selectedlist(item.Opt1)" [checked]="item.Opt1==selectoptionlist[cqno]"/> {{item.Opt1}}
+          <br />B. <input type="radio" name="option" value="{{item.Opt2}}" (click)="selectedlist(item.Opt2)" [checked]="item.Opt2==selectoptionlist[cqno]"/> {{item.Opt2}}
+          <br />C. <input type="radio" name="option" value="{{item.Opt3}}" (click)="selectedlist(item.Opt3)" [checked]="item.Opt3==selectoptionlist[cqno]"/> {{item.Opt3}}
+          <br />D. <input type="radio" name="option" value="{{item.Opt4}}" (click)="selectedlist(item.Opt4)" [checked]="item.Opt4==selectoptionlist[cqno]"/> {{item.Opt4}}
         </div>
 
 
@@ -56,10 +147,12 @@
      
 
 
-      <button class="questionbutton" name="prev" (click)= decrement()>Prev</button>
-      <button class="questionbutton" name="next" (click)="increment()">Next</button>
+      <button class="questionbutton" name="prev" (click)= "decrement()" [disabled]="cqno==0">Prev</button>
+      <button class="questionbutton" name="next" (click)="increment()" [disabled]="cqno==lastqno-1">Next</button>
 
     </div>
+    
+
 
   </div>
 </div>

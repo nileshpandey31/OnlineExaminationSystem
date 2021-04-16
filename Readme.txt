@@ -21,3 +21,62 @@ as
 begin
 select * from question
 end
+
+
+-------------------------------------------
+16 april
+
+create store procedure:
+
+create or alter proc sp_UpdateLevel(@Lid int,@Level int)
+	as
+	begin 
+	update LevelTable set Level=@Level where  Lid=@Lid
+	
+	end
+
+---------
+create or alter proc fectchStudent
+	as
+	begin
+	select * from student
+	end
+
+---------
+create or alter proc fetchLevel
+as
+begin
+select * from leveltable		
+end
+---------
+alter datatype of level in quesn table
+
+	ALTER TABLE Question
+ALTER COLUMN Level int;
+
+-------
+create leveltable table
+
+create table LevelTable
+(
+Lid int primary key identity,
+SubjectId int FOREIGN KEY REFERENCES TestSubject(SubjectId),
+StudentId  int Foreign key references Student(StudentId),
+Level int
+)
+
+----------------
+create report table
+create table ReportCard
+(
+ReportId int primary key identity,
+StudentId int FOREIGN KEY REFERENCES Student(StudentId),
+SubjectID int FOREIGN KEY REFERENCES TestSubject(SubjectID),
+Marks int,
+RStatus varchar(20),
+ExamDate datetime
+)
+
+n runnnnnnnnnnnnnnnnnnnnnnn
+
+

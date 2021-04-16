@@ -9,16 +9,11 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ]
 })
-export class QusnInfoModule {
-  QID:number;
-  Qsn:string;
-  Opt1:string;
-  Opt2:string;
-  Opt3:string;
-  Opt4:string;
-  Ans:string;
-  Level:number;
-  FileName:string;
+export class LevelModule {
+  Lid:number;
   SubjectId:number;
+  StudentId:number;
+  Level:number;
+
 
  }

@@ -115,3 +115,30 @@ table{
       background-color:lawngreen;
       color:black;
 }
+
+.questionbutton:disabled:hover
+{
+  background-color:gray;
+      color:black;
+}
+
+.scorebutton{
+  height:50px;
+  width:120px;
+  background-color: red;
+  text-decoration: none;
+  float:right;
+  font-size: large;
+  font-weight: bold;
+}
+
+.gridContainer
+{
+  float: left;
+}
+
+.review
+{
+  float:center;
+  
+}

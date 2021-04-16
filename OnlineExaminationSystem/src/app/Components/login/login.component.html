@@ -6,7 +6,7 @@
     <hr>
     <button (click)="StudentLogin()"> Student Login</button>
     <button (click)="AdminLogin()">Admin Login</button>
-
+  
     <div class="StudenLogin" *ngIf="Student">
         <form #login="ngForm" name="login" (ngSubmit)="loginData(login)">
             <h1>Students Login</h1>

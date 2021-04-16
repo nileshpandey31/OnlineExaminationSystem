@@ -43,4 +43,10 @@ SetNewPassword(stud:StudentInfoModule):Observable<boolean>
   console.log("Inside SetNewPassword "+stud)
   return this.http.post<boolean>(this.url+'/'+'SetNewPassword',stud,this.httpOptions);
 }
+
+ShowAllStudent():Observable<StudentInfoModule[]>
+{
+  return this.http.get<StudentInfoModule[]>(this.url + "/"+"ShowAllStudents");
+}
+
 }
