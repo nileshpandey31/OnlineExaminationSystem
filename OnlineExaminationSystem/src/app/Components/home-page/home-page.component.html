@@ -1,104 +1,125 @@
-<div class="container">
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Online Exam System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" [routerLink]="['/Home']">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="AboutUs=true;buttondiv=false;">About Us</a>
+                    </li>
+                </ul>
+                <div *ngIf="studid==null">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/Login']">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/Register']">Register</a>
+                        </li>
 
-    <div class="menu">
-        <ol class="menulist">
-            <li>
-                <a [routerLink]="['/Home']">Home</a>
-            </li>
-            <li>
-                <a (click)="AboutUs=true;buttondiv=false;">AboutUs</a>
-            </li>
-        </ol>
-        <div class="menubutton" *ngIf="studid==null">
-            <a [routerLink]="['/Login']">Login</a>
-            <a [routerLink]="['/Register']">Register </a>
+                    </ul>
+                </div>
+                <div *ngIf="studid!=null">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="nav-item">
+                            <a class="nav-link" (click)="logout()">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
         </div>
-        <div class="menubutton" *ngIf="studid!=null">
-           <button (click)="logout()">Logout</button>  
-        </div>
-    </div>
+    </nav>
 
 
-    <hr>
 
-    <div *ngIf="buttondiv">
+
+    <div class="btnpostn" *ngIf="buttondiv">
         <button class="report" (click)="MyReport()"><a> Report</a></button><br><br>
 
         <button class="report" (click)="NewExam()"><a> New Exam</a></button>
     </div>
-   
-    
+
 
     <div *ngIf="Report">
         <table class="table table-striped">
             <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Subject</th>
-                <th scope="col">Level</th>
-                <th scope="col">Marks</th>
-              </tr>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Level</th>
+                    <th scope="col">Marks</th>
+                </tr>
             </thead>
             <tbody>
-              <tr  *ngFor="let item of replist | paginate: { itemsPerPage: 3, currentPage: p };let i = index">
-                <th scope="row">{{i+1}}</th>
-                <td>{{item.Subject}}</td>
-                <td>{{item.SLevel}}</td>
-                <td>{{item.Marks}}</td>
-              </tr>
-              
-            </tbody>
-          </table>
-          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                <tr *ngFor="let item of replist | paginate: { itemsPerPage: 3, currentPage: p };let i = index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{item.Subject}}</td>
+                    <td>{{item.SLevel}}</td>
+                    <td>{{item.Marks}}</td>
+                </tr>
 
-          <!-- fetching subject n present level -->
-          <table class="table table-striped">
+            </tbody>
+        </table>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+        <!-- fetching subject n present level -->
+        <table class="table table-striped">
             <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Subject</th>
-                <th scope="col">Present Level</th>
-               
-              </tr>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Present Level</th>
+
+                </tr>
             </thead>
             <tbody>
-              <tr  *ngFor="let item of mylevlist;let i = index">
-                <th scope="row">{{i+1}}</th>
-                <td>{{item.Subject}}</td>
-                <td>{{item.Level}}</td>
-                
-              </tr>
-              
-            </tbody>
-          </table>
+                <tr *ngFor="let item of mylevlist;let i = index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{item.Subject}}</td>
+                    <td>{{item.Level}}</td>
 
-          <button (click)="Report=false;buttondiv=true">Back</button>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <button (click)="Report=false;buttondiv=true">Back</button>
 
 
     </div>
-    
+
     <!-- about us div -->
     <div *ngIf="AboutUs">
-      <hr>
-  <p><b>Wellcome to Easy Exam  System!!!</b></p>
-  <p>
-  This Online Examination System is helpful for students, companies or any organization to conduct any 
-  examinations from this site. In this age of increased competition, various companies, 
-  organization’s face a common problem of conducting online exam by personally visiting to 
-  different colleges (in case of companies) for placement drives. 
-  this platform 
-  will help the deserving candidates to showcase their conceptual skills through an online exam, 
-  based on which, the companies can filter out candidates according to their needs.  Our Exam Management Software provides exams  at the local level to facilitate examination.  During the exam, strict guidelines are followed and the exam date timetable adheres to them. Our examination process is fully automated and no manual intervention is required. Our software allows the proctored exam schedule where a level of exams can be taken. 
-  Exam Creator Software enables local and official exam creation where, teachers, administrators,s or examiners can create exams based on school capacity and standards.
-  
-  The exam management system is best suited for graduate programs. Our exams can be conducted individually or as a group of students like classes.
-  </p>
-  <img [src]="myimg" >
-  <button (click)="buttondiv=true;AboutUs=false;">Back</button>
-  
-  </div>
+        <hr>
+        <p><b>Wellcome to Easy Exam  System!!!</b></p>
+        <p>
+            This Online Examination System is helpful for students, companies or any organization to conduct any examinations from this site. In this age of increased competition, various companies, organization’s face a common problem of conducting online exam by
+            personally visiting to different colleges (in case of companies) for placement drives. this platform will help the deserving candidates to showcase their conceptual skills through an online exam, based on which, the companies can filter out
+            candidates according to their needs. Our Exam Management Software provides exams at the local level to facilitate examination. During the exam, strict guidelines are followed and the exam date timetable adheres to them. Our examination process
+            is fully automated and no manual intervention is required. Our software allows the proctored exam schedule where a level of exams can be taken. Exam Creator Software enables local and official exam creation where, teachers, administrators,s
+            or examiners can create exams based on school capacity and standards. The exam management system is best suited for graduate programs. Our exams can be conducted individually or as a group of students like classes.
+        </p>
+        <img [src]="myimg">
+        <button (click)="buttondiv=true;AboutUs=false;">Back</button>
+
+    </div>
+
+
+</body>
 
 
 
-
-</div>
+<footer>
+    <p>
+        <b>
+      © 2021 Larsen & Toubro Infotech Limited
+    </b>
+    </p>
+</footer>

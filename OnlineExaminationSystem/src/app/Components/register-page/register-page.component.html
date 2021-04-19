@@ -1,4 +1,211 @@
-<div class="container">
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Online Exam System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" [routerLink]="['/Home']">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="AboutUs=true;buttondiv=false;">About Us</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/Login']">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/Register']">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div *ngIf="AboutUs">
+        <hr>
+        <p><b>Wellcome to Easy Exam  System!!!</b></p>
+        <p>
+            This Online Examination System is helpful for students, companies or any organization to conduct any examinations from this site. In this age of increased competition, various companies, organization’s face a common problem of conducting online exam by
+            personally visiting to different colleges (in case of companies) for placement drives. this platform will help the deserving candidates to showcase their conceptual skills through an online exam, based on which, the companies can filter out
+            candidates according to their needs. Our Exam Management Software provides exams at the local level to facilitate examination. During the exam, strict guidelines are followed and the exam date timetable adheres to them. Our examination process
+            is fully automated and no manual intervention is required. Our software allows the proctored exam schedule where a level of exams can be taken. Exam Creator Software enables local and official exam creation where, teachers, administrators,s
+            or examiners can create exams based on school capacity and standards. The exam management system is best suited for graduate programs. Our exams can be conducted individually or as a group of students like classes.
+        </p>
+        <img [src]="myimg">
+        <button (click)="buttondiv=true;AboutUs=false;">Back</button>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-xl-9 mx-auto">
+                <div class="card card-signin flex-row my-5">
+
+                    <div class="card-body">
+
+                        <h5 class="card-title text-center">Register</h5>
+
+                        <form class="form-signin" #Reg="ngForm" name="Reg" (ngSubmit)="RegData(Reg)">
+
+                            <div class="form-label-group">
+                                <label class="inp">&nbsp; Full Name : </label><span *ngIf="name.errors?.required && name?.touched">&nbsp;&nbsp;&nbsp; * Name cannot be blank</span>
+                                <input type="text" class="form-control" placeholder="Enter Your Full Name" name="name" [(ngModel)]="model.name" #name="ngModel" required>
+                            </div>
+
+                            <div class="row row-space">
+                                <div class="col-2">
+                                    <div class="form-label-group">
+                                        <label class="inp">&nbsp; Email :</label>
+                                        <span *ngIf="Email.errors?.required && Email?.touched">&nbsp;&nbsp;*Email cannot be blank </span>
+                                        <span *ngIf="Email.errors?.pattern">&nbsp;&nbsp;*Invalid Format </span>
+                                        <input type="email" class="form-control" placeholder="Enter Email ID" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="model.Email" #Email="ngModel" required>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-2">
+                                    <div class="form-label-group">
+                                        <label class="inp">&nbsp;Mobile Number : </label>
+                                        <span *ngIf="mobno.errors?.required && mobno?.touched">
+                        &nbsp;&nbsp;*Mobile no cannot be blank
+                    </span>
+                                        <span *ngIf="mobno.errors?.pattern">
+                        &nbsp;&nbsp;*Mobile no has to be numeric and of 10 digits
+                    </span>
+                                        <input type="number" class="form-control" placeholder="Enter Mobile Number" name="mobno" [(ngModel)]="model.mobno" #mobno="ngModel" pattern="^[0-9]{10}$" required>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row row-space">
+                                <div class="col-2">
+                                    <div class="form-label-group">
+                                        <label class="inp">&nbsp; City : </label>
+                                        <span *ngIf="city.errors?.required && city?.touched">
+                        &nbsp;&nbsp;*City cannot be blank
+                    </span>
+                                        <input type="text" class="form-control" placeholder="Enter City" name="city" [(ngModel)]="model.city" #city="ngModel" required>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="form-label-group">
+                                        <label class="inp">&nbsp; State :</label>
+                                        <span *ngIf="state.errors?.required && state?.touched">
+                        &nbsp;&nbsp;*State cannot be blank
+                    </span>
+                                        <input type="text" class="form-control" placeholder="Enter State" name="state" [(ngModel)]="model.state" #state="ngModel" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-space">
+                                <div class="col-2">
+                                    <div class="form-label-group">
+                                        <label class="inp">&nbsp;DOB : </label>
+                                        <span *ngIf="dob.errors?.required && dob?.touched">
+                        &nbsp;&nbsp;*Date Of Birth cannot be blank
+                    </span>
+                                        <input type="date" class="form-control" placeholder="Enter Your Date Of Birth" name="dob" [(ngModel)]="model.dob" #dob="ngModel" required>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="form-label-group">
+                                        <label class="inp">&nbsp; Qualification :</label>
+                                        <span *ngIf="qual.errors?.required && qual?.touched">
+                        &nbsp;&nbsp;*Qualification cannot be blank
+                    </span>
+                                        <input type="text" class="form-control" placeholder="Enter Qualification" name="qual" [(ngModel)]="model.qual" #qual="ngModel" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row row-space">
+                                <div class="col-2">
+                                    <div class="form-label-group">
+                                        <label class="inp">&nbsp; College Name :  </label>
+                                        <span *ngIf="clg.errors?.required && clg?.touched">
+                        &nbsp;&nbsp;*College Name cannot be blank
+                    </span>
+                                        <input type="text" class="form-control" placeholder="Enter College Name" name="clg" [(ngModel)]="model.clg" #clg="ngModel" required>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="form-label-group">
+                                        <label class="inp">&nbsp; Year of Completion : </label><span *ngIf="yoc.errors?.required && yoc?.touched">
+                        &nbsp;&nbsp;*Year Of Completion cannot be blank
+                    </span>
+                                        <input type="month" class="form-control" placeholder="Enter Year Of Completion" name="yoc" [(ngModel)]="model.yoc" #yoc="ngModel" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-space">
+                                <div class="col-2">
+                                    <div class="form-label-group ">
+
+                                        <label class="inp">&nbsp;Password : </label><span *ngIf="pass.errors?.required && pass?.touched">
+                        &nbsp;&nbsp;*Password cannot be blank
+                    </span>
+                                        <span *ngIf="pass.errors?.pattern">
+                        &nbsp;&nbsp;*Password should have minimum 1 in all of these uppercase, lowercase, digits and special characters
+                    </span>
+                                        <span *ngIf="pass.errors?.minlength">
+                        &nbsp;&nbsp;*Miinimum password length must be 4 characters
+                    </span>
+                                        <input type="password" class="form-control" data-toggle="tooltip" data-placement="bottom" title="*Password should have minimum  1 in all of these <br> uppercase, <br>lowercase,<br> digits and special characters" placeholder="Enter Password" name="pass"
+                                            [(ngModel)]="model.pass" #pass="ngModel" minlength="4" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%?&])[A-Za-z0-9@$!%?&]{4,8}$" required>
+                                    </div>
+                                </div>
+
+
+
+                                <!-- <tr>
+                                    <td>
+                                        <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" name="cap" [(ngModel)]="model.cap" #cap="ngModel" required>
+                                            <span *ngIf="cap.errors?.required"></span>
+                                        </ngx-recaptcha2>
+                                    </td>
+                                </tr> -->
+
+
+
+
+
+                                <div class="col-2">
+                                    <div class="form-label-group">
+                                        <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" name="cap" [(ngModel)]="model.cap" #cap="ngModel" required>
+                                            <span *ngIf="cap.errors?.required"></span>
+                                        </ngx-recaptcha2>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <button style="width: 134px;" class="btn btn-lg btn-primary btn-block text-uppercase" name="Reg" [disabled]="Reg.invalid">Register</button>
+                            <br>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+<footer>
+    <p>
+        <b>
+      © 2021 Larsen & Toubro Infotech Limited
+    </b>
+    </p>
+</footer>
+
+<!-- <div class="container">
     <div class="menu">
         <ol class="menulist">
             <li>
@@ -164,10 +371,11 @@
                     </tr>
 
                     <tr>
-                        <td> <ngx-recaptcha2 #captchaElem
-                            [siteKey]="siteKey" name="cap"  [(ngModel)]="model.cap"  #cap="ngModel" required>
-                            <span *ngIf="cap.errors?.required"></span>
-                            </ngx-recaptcha2></td>
+                        <td>
+                            <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" name="cap" [(ngModel)]="model.cap" #cap="ngModel" required>
+                                <span *ngIf="cap.errors?.required"></span>
+                            </ngx-recaptcha2>
+                        </td>
                     </tr>
 
 
@@ -184,4 +392,4 @@
 
     </form>
 
-</div>
+</div> -->

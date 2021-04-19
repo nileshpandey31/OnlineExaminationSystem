@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminProfileComponent implements OnInit {
 
+  buttondiv:boolean=true;
+  AboutUs:boolean=false;
   constructor() { }
 
   ngOnInit(): void {

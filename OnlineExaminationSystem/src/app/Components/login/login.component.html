@@ -1,67 +1,120 @@
-<div class="container">
-    <h1>
-        Login
-    </h1>
+<body>
 
-    <hr>
-    <button (click)="StudentLogin()"> Student Login</button>
-    <button (click)="AdminLogin()">Admin Login</button>
-  
-    <div class="StudenLogin" *ngIf="Student">
-        <form #login="ngForm" name="login" (ngSubmit)="loginData(login)">
-            <h1>Students Login</h1>
-            <table>
-                <tr>
-                    <td>Email-id:</td>
-                    <td><input type="email" placeholder="Enter Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="Email" [(ngModel)]="model.Email" #Email="ngModel" required>
-                        <span *ngIf="Email.errors?.required">Email cannot be blank</span>
-                        <span *ngIf="Email.errors?.pattern">Invalid Format</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Password:</td>
-                    <td><input type="password" placeholder="Enter Password" name="pass" [(ngModel)]="model.pass" #pass="ngModel" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%?&])[A-Za-z0-9@$!%?&]{4,8}$" required>
-                        <span *ngIf="pass.errors?.required">Password cannot be blank</span>
-                        <span *ngIf="pass.errors?.pattern">Invalid Format</span>
-                    </td>
-                    <td><a [routerLink]="['/PassReset']">Forgot Password?</a></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><button name="Login" [disabled]="login.invalid" >Login</button></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>Don't have an account <a [routerLink]="['/Register']">Register here.</a></td>
-                </tr>
-            </table>
-
-
-        </form>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Online Exam System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" [routerLink]="['/Home']">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="AboutUs=true;buttondiv=false;">About Us</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/Login']">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/Register']">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div *ngIf="AboutUs">
+        <hr>
+        <p><b>Wellcome to Easy Exam  System!!!</b></p>
+        <p>
+            This Online Examination System is helpful for students, companies or any organization to conduct any examinations from this site. In this age of increased competition, various companies, organization’s face a common problem of conducting online exam by
+            personally visiting to different colleges (in case of companies) for placement drives. this platform will help the deserving candidates to showcase their conceptual skills through an online exam, based on which, the companies can filter out
+            candidates according to their needs. Our Exam Management Software provides exams at the local level to facilitate examination. During the exam, strict guidelines are followed and the exam date timetable adheres to them. Our examination process
+            is fully automated and no manual intervention is required. Our software allows the proctored exam schedule where a level of exams can be taken. Exam Creator Software enables local and official exam creation where, teachers, administrators,s
+            or examiners can create exams based on school capacity and standards. The exam management system is best suited for graduate programs. Our exams can be conducted individually or as a group of students like classes.
+        </p>
+        <img [src]="myimg">
+        <button (click)="buttondiv=true;AboutUs=false;">Back</button>
     </div>
-    <div class="AdminLogin" *ngIf="Admin">
-        <form #login="ngForm" name="login" (ngSubmit)="AdminLog(login)">
-            <h1>Admin Login</h1>
-            <table>
-                <tr>
-                    <td>Email-id:</td>
-                    <td><input type="email" placeholder="Enter Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="Email" [(ngModel)]="model.Email" #Email="ngModel" required>
-                        <span *ngIf="Email.errors?.required">Email cannot be blank</span>
-                        <span *ngIf="Email.errors?.pattern">Invalid Format</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Password:</td>
-                    <td><input type="password" placeholder="Enter Password" name="pass" [(ngModel)]="model.pass" #pass="ngModel" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%?&])[A-Za-z0-9@$!%?&]{4,8}$" required>
-                        <span *ngIf="pass.errors?.required">Password cannot be blank</span>
-                        <span *ngIf="pass.errors?.pattern">Invalid Format</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><button name="Login" [disabled]="login.invalid" [routerLink]="['/AdminHome']">Login</button></td>
-                </tr>
-            </table>
-        </form>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-xl-9 mx-auto">
+                <div class="card card-signin flex-row my-5">
+                    <div class="card-body">
+
+                        <h5 class="card-title text-center">Sign In</h5>
+
+                        <!-- Toggle Switch for student login and admin login -->
+                        <div style="float: right;">Student Login
+                            <mat-slide-toggle color="primary" [(ngModel)]="isChecked">Admin Login</mat-slide-toggle>
+                        </div>
+                        <br><br>
+
+                        <!-- Admin login form -->
+                        <form class="form-signin" *ngIf="isChecked" #login="ngForm" name="login" (ngSubmit)="loginData(login)">
+                            <div class="form-label-group">
+                                <label class="inp">&nbsp; Email address</label>
+                                <span *ngIf="Email.errors?.required"> &nbsp;&nbsp;&nbsp; * Email cannot be blank</span>
+                                <span *ngIf="Email.errors?.pattern">&nbsp;&nbsp;&nbsp; * Invalid Format</span>
+                                <input type="email" id="inputEmail" class="form-control" placeholder="Enter your Email address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="Email" [(ngModel)]="model.Email" #Email="ngModel" required>
+                            </div>
+                            <div>
+                            </div>
+                            <br>
+                            <div class="form-label-group">
+                                <label class="inp">&nbsp; Password</label>
+                                <span *ngIf="pass.errors?.required">&nbsp;&nbsp;&nbsp; * Password cannot be blank</span>
+                                <span *ngIf="pass.errors?.pattern">&nbsp;&nbsp;&nbsp; * Invalid Format</span>
+                                <input type="password" id="inputPassword" class="form-control" placeholder=" Enter your Password" name="pass" [(ngModel)]="model.pass" #pass="ngModel" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%?&])[A-Za-z0-9@$!%?&]{4,8}$" required>
+
+                            </div>
+                            <div>
+                            </div>
+                            <br>
+                            <button style="width: 134px;" class="btn btn-lg btn-primary btn-block text-uppercase" name="Login" [disabled]="login.invalid" [routerLink]="['/AdminHome']">Login</button>
+                        </form>
+
+                        <!-- Student login form -->
+                        <form style="height: 277px;" class="form-signin" *ngIf="isChecked == false" #login="ngForm" name="login" (ngSubmit)="loginData(login)">
+                            <div class="form-label-group">
+                                <label class="inp">&nbsp; Email address</label>
+                                <span *ngIf="Email.errors?.required">&nbsp;&nbsp;&nbsp; * Email cannot be blank</span>
+                                <span *ngIf="Email.errors?.pattern">&nbsp;&nbsp;&nbsp; * Invalid Format</span>
+                                <input type="email" id="inputEmail" class="form-control" placeholder="Enter your Email address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="Email" [(ngModel)]="model.Email" #Email="ngModel" required>
+                            </div>
+
+                            <br>
+                            <div class="form-label-group">
+                                <label class="inp">&nbsp; Password</label>
+                                <span *ngIf="pass.errors?.required">&nbsp;&nbsp;&nbsp; * Password cannot be blank</span>
+                                <span *ngIf="pass.errors?.pattern">&nbsp;&nbsp;&nbsp; * Invalid Format</span>
+                                <input type="password" id="inputPassword" class="form-control" placeholder=" Enter your Password" name="pass" [(ngModel)]="model.pass" #pass="ngModel" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%?&])[A-Za-z0-9@$!%?&]{4,8}$" required>
+                            </div>
+
+                            <br>
+                            <button style="width: 134px;" class="btn btn-lg btn-primary btn-block text-uppercase" name="Login" [disabled]="login.invalid">Login</button>
+                            <a style="float: right; padding: 10px;" [routerLink]="['/PassReset']">Forgot Password?</a>
+                            <p class="d-block text-center mt-2 small">Don't have an account? <a [routerLink]="['/Register']">Click here to Register.</a></p>
+                            <br>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+
+</body>
+
+<footer>
+    <p>
+        <b>
+      © 2021 Larsen & Toubro Infotech Limited
+    </b>
+    </p>
+</footer>

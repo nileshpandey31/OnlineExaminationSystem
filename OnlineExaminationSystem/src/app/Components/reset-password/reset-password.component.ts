@@ -13,6 +13,8 @@ import { Router } from '@angular/router';
 })
 export class ResetPasswordComponent implements OnInit {
   model: any = [];
+  buttondiv:boolean=true;
+  AboutUs:boolean=false;
   svc: StudentInfoService;
   stud1 = new StudentInfoModule;
   email: string;
@@ -67,12 +69,12 @@ export class ResetPasswordComponent implements OnInit {
         if (data == true) {
           alert('Password is Updated');
           this.router.navigate(['/Login']);
-          
+
         }
         else {
           alert('Password Updation failed!!');
         }
-  
+
       });
     }
   }

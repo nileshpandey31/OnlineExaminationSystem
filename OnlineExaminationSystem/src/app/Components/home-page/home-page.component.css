@@ -1,4 +1,4 @@
-.container
+/* .container
 {
     border-style: solid;
     border-color: black;
@@ -14,12 +14,12 @@
 
 }
 
-.menulist li 
+.menulist li
 {
 
     float:left;
     list-style: none;
-   
+
 }
 .menulist  li a{
     text-decoration: none;
@@ -31,7 +31,7 @@
 .menubutton
 {
     float:right;
-    
+
 }
 
 .menubutton a
@@ -69,12 +69,54 @@ hr{
     background-color: lawngreen;
     border-radius: 5px;
     margin-top: 30px;;
-   
+
 }
 .report a{
 
     text-decoration: none;
     color:black;
+    font-weight: bolder;
+    font-size: 30px;
+} */
+
+body {
+    background: #007bff;
+    background: linear-gradient(135deg, #0d6efd, #a0c7e0);
+    height: 90%;
+}
+
+button:hover {
+    transform: scale(1.1, 1.1);
+}
+
+.btnpostn {
+    width: 200px;
+    height: 300px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #3687f5;
+    color: black;
+}
+
+.report {
+    height: 100px;
+    width: 200px;
+    background-color: lawngreen;
+    border-radius: 5px;
+    margin-top: 30px;
+}
+
+.report a {
+    text-decoration: none;
+    color: black;
     font-weight: bolder;
     font-size: 30px;
 }

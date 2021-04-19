@@ -11,6 +11,12 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
   model:any=[];
+
+
+  buttondiv:boolean=true;
+  AboutUs:boolean=false;
+  isChecked = false;
+
   svc:StudentInfoService;
   stud=new StudentInfoModule;
   email:string;
@@ -25,11 +31,11 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.svc.ShowAllStudent().subscribe((data:StudentInfoModule[])=>
     {
-  
+
       this.studlist=data;
       console.log(this.studlist);
     });
-   
+
   }
 
   Student:boolean=false;
@@ -39,7 +45,7 @@ export class LoginComponent implements OnInit {
     this.Student = true;
     this.Admin = false;
   }
-   
+
   AdminLogin(){
     this.Admin = true;
     this.Student=false;
@@ -61,15 +67,15 @@ export class LoginComponent implements OnInit {
       //   console.log(this.studlist);
       //  console.log(this.presentstudent);
       //  console.log(this.presentstudent[0].StudentId);
-        
+
       // localStorage.setItem('studid', this.presentstudent[0].StudentId.toString());
       // this.studentidsession = localStorage.getItem('studid');
-      
+
         var setsession = window.sessionStorage.setItem("studid", this.presentstudent[0].StudentId.toString());
         this.studentidsession = window.sessionStorage.getItem("studid");
         console.log(this.studentidsession);
         this.router.navigate(['/Home']);
-       
+
 
       }
       else{
