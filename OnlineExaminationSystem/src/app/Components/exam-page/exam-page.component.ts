@@ -7,6 +7,7 @@ import { StudentInfoModule } from 'src/app/Modules/student-info/student-info.mod
 import { StudentInfoService } from 'src/app/Services/student-info.service';
 import {ReportCardModule} from 'src/app/Modules/report-card/report-card.module';
 import {LevelModule} from 'src/app/Modules/level/level.module';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-exam-page',
@@ -53,7 +54,7 @@ qusnlistbysublevel:any;
 
 
 
-  constructor(private service: QusnInfoService,private svc:StudentInfoService) { }
+  constructor(private service: QusnInfoService,private svc:StudentInfoService,private router:Router) { }
 
   ngOnInit(): void {
     
@@ -90,9 +91,7 @@ qusnlistbysublevel:any;
   }
 
   start(subid:number):void{
-    this.examlist=false;
-    this.instruction = true;
-    this.ExamStarts = false;
+   
     var setsession = window.sessionStorage.setItem("subid", subid.toString());
     this.getsession = window.sessionStorage.getItem("subid");
    
@@ -129,16 +128,39 @@ this.qusnlistbysublevel=this.qusnlistbysub.filter(x=>x.Level==this.presentlevel+
   this.gridnumber=new Array();
   for (let i = 1; i <= this.lastqno; i++) {
     this.gridnumber.push(i);
+   
 
 
   }
-  console.log(this.gridnumber);
+  //console.log(this.gridnumber);
+  console.log(this.presentsubjectlist[0].TStatus);
+  if(this.presentsubjectlist[0].TStatus=='enable')
+  {
+    this.examlist=false;
+    this.instruction = true;
+    this.ExamStarts = false;
+  }
+
 
     
   });
 
 
 
+  }
+
+  next():void{
+    this.service.ShowLevel().subscribe((data:LevelModule[])=>
+    {
+    
+      this.levellist=data;
+      console.log(this.levellist);
+      
+    });
+    this.Score=0;
+    this.start(this.getsession);
+    this.Scorediv=false;
+    
   }
 
   startexam(): void {
@@ -183,6 +205,7 @@ this.qusnlistbysublevel=this.qusnlistbysub.filter(x=>x.Level==this.presentlevel+
   }
 
   CalculateScore():void{
+    
 
     var individualmarks=this.presentsubjectlist[0].TotalMark/this.lastqno;    
     for(var i=0;i<this.lastqno;i++)
@@ -200,17 +223,21 @@ this.qusnlistbysublevel=this.qusnlistbysub.filter(x=>x.Level==this.presentlevel+
     {
       this.pass=true;
       this.ResultStatus="Pass";
+      this.rc.SLevel=this.presentlevel+1;
 
     }
     else{
       this.fail=true;
       this.ResultStatus="Fail";
+      this.rc.SLevel=this.presentlevel;
     }
     this.rc.StudentId=this.presentstudid;
     this.rc.SubjectId=this.getsession;
     this.rc.Marks=this.Score;
     this.rc.RStatus=this.ResultStatus;
     this.rc.ExamDate=new Date();
+   
+   
 
     this.service.InsertReport(this.rc).subscribe((data:boolean)=>{alert(data);
       if(data==true)
@@ -284,8 +311,19 @@ for(var l of this.levellist)
 
 // method end here
 
+  }
+//method for autosubmit
+  timesUp(event:any) { if (event.action == "done") { this.CalculateScore(); } }
 
-
+  //logout method
+ 
+  logout():void
+  {
+    sessionStorage.removeItem('studid');
+    sessionStorage.removeItem('subid');
+    alert("You are logged out")
+    this.router.navigate(['/Home']);
+    
   }
 
 }

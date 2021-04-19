@@ -6,21 +6,97 @@
                 <a [routerLink]="['/Home']">Home</a>
             </li>
             <li>
-                <a href="#">AboutUs</a>
+                <a (click)="AboutUs=true;buttondiv=false;">AboutUs</a>
             </li>
         </ol>
-        <div class="menubutton">
+        <div class="menubutton" *ngIf="studid==null">
             <a [routerLink]="['/Login']">Login</a>
             <a [routerLink]="['/Register']">Register </a>
+        </div>
+        <div class="menubutton" *ngIf="studid!=null">
+           <button (click)="logout()">Logout</button>  
         </div>
     </div>
 
 
     <hr>
 
-    <button class="report"><a href="#"> Report</a></button><br><br>
+    <div *ngIf="buttondiv">
+        <button class="report" (click)="MyReport()"><a> Report</a></button><br><br>
 
-    <button class="report"><a [routerLink]="['/Exam']"  > New Exam</a></button>
+        <button class="report" (click)="NewExam()"><a> New Exam</a></button>
+    </div>
+   
+    
+
+    <div *ngIf="Report">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Level</th>
+                <th scope="col">Marks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr  *ngFor="let item of replist | paginate: { itemsPerPage: 3, currentPage: p };let i = index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{item.Subject}}</td>
+                <td>{{item.SLevel}}</td>
+                <td>{{item.Marks}}</td>
+              </tr>
+              
+            </tbody>
+          </table>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+          <!-- fetching subject n present level -->
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Present Level</th>
+               
+              </tr>
+            </thead>
+            <tbody>
+              <tr  *ngFor="let item of mylevlist;let i = index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{item.Subject}}</td>
+                <td>{{item.Level}}</td>
+                
+              </tr>
+              
+            </tbody>
+          </table>
+
+          <button (click)="Report=false;buttondiv=true">Back</button>
+
+
+    </div>
+    
+    <!-- about us div -->
+    <div *ngIf="AboutUs">
+      <hr>
+  <p><b>Wellcome to Easy Exam  System!!!</b></p>
+  <p>
+  This Online Examination System is helpful for students, companies or any organization to conduct any 
+  examinations from this site. In this age of increased competition, various companies, 
+  organization’s face a common problem of conducting online exam by personally visiting to 
+  different colleges (in case of companies) for placement drives. 
+  this platform 
+  will help the deserving candidates to showcase their conceptual skills through an online exam, 
+  based on which, the companies can filter out candidates according to their needs.  Our Exam Management Software provides exams  at the local level to facilitate examination.  During the exam, strict guidelines are followed and the exam date timetable adheres to them. Our examination process is fully automated and no manual intervention is required. Our software allows the proctored exam schedule where a level of exams can be taken. 
+  Exam Creator Software enables local and official exam creation where, teachers, administrators,s or examiners can create exams based on school capacity and standards.
+  
+  The exam management system is best suited for graduate programs. Our exams can be conducted individually or as a group of students like classes.
+  </p>
+  <img [src]="myimg" >
+  <button (click)="buttondiv=true;AboutUs=false;">Back</button>
+  
+  </div>
 
 
 

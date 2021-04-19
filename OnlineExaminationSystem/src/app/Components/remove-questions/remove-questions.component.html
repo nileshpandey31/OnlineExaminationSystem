@@ -11,26 +11,29 @@
         </div>
     </div>
     <hr>
+    <form  #Deleteform="ngForm" name="Deleteform" (ngSubmit)="DeleteByName(Deleteform)">
+
+    
     <table class="searchform">
         <tr>
-            <th>Select Test : </th>
+            <td>Select Test : </td>
             <td>
-                <select name="test">
-                <option value=".Net">.Net</option>
-                <option value="Java">Java</option>
-                <option value="Python">Python</option>
-                <option value="C#">C#</option>
-            </select>
-            </td>
-        </tr>
-        <tr>
-            <th>Select File : </th>
-            <td>
-                <select name="file">
-                <option value="file 1">files available in the folder</option>
+                <select type="text" name="fid" [(ngModel)]="model.fid" #fid="ngModel" required>
+                <option *ngFor="let item of plist"  [value]="item.SubjectId">{{item.FileName}}</option>
                 </select>
+    </td>
+    </tr>
+    
+    
+    <tr>
+        <td>
+    
+        <button class="button" type="submit" [disabled]="Deleteform.invalid" >Delete Question</button>
+ 
             </td>
         </tr>
+        
     </table>
-    <button class="button">Remove</button><br>
-</div>
+       
+
+</form>

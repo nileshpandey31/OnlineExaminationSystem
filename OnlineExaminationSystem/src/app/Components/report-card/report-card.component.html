@@ -1,53 +1,66 @@
 <div class="container">
-    <br>
-    <h2 id="pone"><b>Score Card</b></h2>
-    <hr>
-    <div>
-        <input [(ngModel)]="score">
-        <button (click)="scorechange()">Check Result</button>
-    </div>
+    
+<h1>student detail </h1>
 
-    <div id="divone" *ngIf="Pass">
-        <div>
-            <br><br>
-            <p id="pone"><b>Thank You !!!!</b></p>
-            <p id="pone"><b>You have cleared the level 1</b></p>
-            <p id="pone"><b>You can proceed to level 2</b></p>
-        </div>
-        <div style="margin-top: 150px;">
-            <button class="button"> Level 2</button>
-        </div>
-    </div>
+<div >
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            
+            <th scope="col">Student Id</th>
+            <th scope="col">Student Name</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Level</th>
+            <th scope="col">Marks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr  *ngFor="let l of allreplist | paginate: { itemsPerPage: 3, currentPage: p };let i = index">
+           
+            <th scope="row">{{i+1}}</th>
+           
+            <td>{{l.studentid}}</td>
+            <td>{{l.name}}</td>
+            <td>{{l.subject}}</td>
+            <td>{{l.slevel}}</td>
+            <td>{{l.marks}}</td>
+          </tr>
+          
+        </tbody>
+      </table>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
 
-    <div id="divone" *ngIf="Fail">
-        <div style="margin-top: 100px;">
-            <br><br>
-            <p id="pone"><b> Please Try Again</b></p>
-        </div>
-    </div>
+      <!-- fetching subject n present level -->
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Student Id</th>
+            <th scope="col">Student Name</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Present Level</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+          <tr  *ngFor="let item of levellist;let i = index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{item.studentid}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.subject}}</td>
+            <td>{{item.level}}</td>
+            
+          </tr>
+          
+        </tbody>
+      </table>
+      
+
+      <button (click)="back()">Back</button>
 
 
-    <div id="divtwo">
-        <table id="tableone">
-            <tr>
-                <td>Name : </td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Score : </td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Level : </td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Test : </td>
-                <td></td>
-            </tr>
-        </table>
-        <button class="button">Exit</button>
-    </div>
+</div>
 
 
 </div>

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm, FormGroup, Validators } from '@angular/forms'
 import { StudentInfoModule } from 'src/app/Modules/student-info/student-info.module';
 import { StudentInfoService } from 'src/app/Services/student-info.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class ResetPasswordComponent implements OnInit {
   password: string;
   flag: boolean = false;
 
-  constructor(svc: StudentInfoService,) { this.svc = svc; }
+  constructor(svc: StudentInfoService,private router:Router) { this.svc = svc; }
 
   ngOnInit(): void {
   }
@@ -65,6 +66,8 @@ export class ResetPasswordComponent implements OnInit {
       this.svc.SetNewPassword(this.stud1).subscribe((data:boolean)=>{
         if (data == true) {
           alert('Password is Updated');
+          this.router.navigate(['/Login']);
+          
         }
         else {
           alert('Password Updation failed!!');

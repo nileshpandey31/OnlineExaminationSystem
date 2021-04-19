@@ -46,6 +46,10 @@ table{
    
 
 }
+.disable
+{
+  background-color: grey;
+}
   .domain:hover {
     transform: scale(1.2,1.2);
     background-color: aqua;

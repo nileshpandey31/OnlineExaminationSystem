@@ -22,7 +22,12 @@ export class AddQuestionsComponent implements OnInit {
  
   addsub:boolean=false;
   fileupload:boolean=false;
+  viewsubj:boolean=false;
+  tablevisible:boolean = true;
+  updateformvisible:boolean = false;
   slist:AddSubModule[];
+  update: any = [];
+  subjinfo = new AddSubModule();
   ts: AddSubModule =
   {
     SubjectId: 1,
@@ -97,8 +102,41 @@ export class AddQuestionsComponent implements OnInit {
       }
     });
 
-
   }
+
+  //function for updating subject
+  Update(subj,index){
+    console.log(subj,index);
+    this.tablevisible = false;
+    this.updateformvisible = true;
+    this.update.SubjectId = subj.SubjectId;
+    this.update.sname = subj.Subject;
+    this.update.tmks = subj.TotalMark;
+    this.update.pmks = subj.PassingMark;
+    this.update.dur = subj.ExamDuration;
+    this.update.tstatus = subj.TStatus;
+    console.log(this.update);
+  }
+
+  UpdateSubmit(UpdateForm: NgForm) : void {
+    console.log(UpdateForm.value);
+    this.tablevisible = true;
+    this.updateformvisible = false;
+    this.subjinfo.SubjectId = this.update.SubjectId;
+    this.subjinfo.Subject = this.update.sname;
+    this.subjinfo.TotalMark = this.update.tmks;
+    this.subjinfo.PassingMark = this.update.pmks;
+    this.subjinfo.ExamDuration = this.update.dur;
+    this.subjinfo.TStatus = this.update.tstatus;
+    this.service.UpdateSubject(this.update.SubjectId, this.subjinfo).subscribe((data: boolean) => {
+      if (data == true) {
+        alert('Update successful');
+        location.reload();
+      }
+      else
+        alert('Update successful');
+    })
+  };
 
  
 

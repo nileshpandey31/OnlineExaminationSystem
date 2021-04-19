@@ -3,22 +3,33 @@
     <div class="examlist" *ngIf="examlist">
 
         <h1>Select Exam</h1>
-        <h2><a [routerLink]="['/Home']">logout</a></h2>
+        <h2><a [routerLink]="['/Home']" (click)=logout()>logout</a></h2>
         <br><br><br>
         
             <div *ngFor="let item of slist">
-                
-                    <div class="domain" (click)="start(item.SubjectId)">{{item.Subject}}</div>
+                    
+                    <div class="domain" (click)="start(item.SubjectId)" [ngClass]="{disable: item.TStatus=='disable'}">{{item.Subject}}</div>
             </div>
               
          
 
     </div>
 
-    <div class="instruction" *ngIf="instruction">
+    <div class="instruction" *ngIf="instruction && presentlevel!=3">
 
         <h2><a [routerLink]="['/Home']">logout</a></h2>
         <h1>Instruction For Test</h1>
+        <ul >
+        <li style="float: left;">The examination will comprise of Objective type Multiple Choice Questions (MCQs).</li>
+        <li style="float: left;">All questions are compulsory and each carries  mark according to level.</li>
+        <li style="float: left;">The examination will comprise of Three levels,complition of one level will redirect student to another level.</li>
+        <li style="float: left;">Every student will take the examination on a Laptop/Desktop.</li>
+        <li style="float: left;">The total number of questions, duration of examination, will be different based on level, the detail is available on your screen.</li>
+        <li style="float: left;">For Multiple Choice Questions, each question has four options, and the candidate has to click the appropriate option.</li>
+        <li style="float: left;">There will be NO NEGATIVE MARKING for the wrong answers.</li>
+        <li style="float: left;">The students just need to click on the Right Choice/Correct option from the multiple choices /options given with each question.</li>
+
+    </ul>
         <button class="starttest" (click)="examstarts()">Start Test</button>
         <div class="instructiontimecounter">
       
@@ -44,16 +55,24 @@
      
   
   <div id="divone" *ngIf="pass">
-      <div>
-          <br><br>
-          <p id="pone"><b>Thank You !!!!</b></p>
-          <p id="pone"><b>You have cleared the {{presentlevel + 1}}</b></p>
-          <p id="pone"><b>You can proceed to{{presentlevel + 2}}</b></p>
+  
+      <div *ngIf="(presentlevel+1)!=3 && ResultStatus!='Fail'">
+        <br><br>
+        <p id="pone"><b>Thank You !!!!</b></p>
+        <p id="pone"><b>You have cleared the {{presentlevel + 1}}</b></p>
+        <p id="pone"><b>You can proceed to{{presentlevel + 2}}</b></p>
+    </div>
+    <div style="margin-top: 150px;">
+        <button class="button"  *ngIf="(presentlevel+1)!=3" (click)="next()"> level {{presentlevel + 2}}</button>
+    </div> 
+    <div *ngIf="(presentlevel+1)==3">
+      <h1>Congrats for clearing all level</h1>
+    </div>
+ 
+ 
       </div>
-      <div style="margin-top: 150px;">
-          <button class="button"> level {{presentlevel + 2}}</button>
-      </div>
-  </div>
+
+  
 
   <div id="divone" *ngIf="fail">
       <div style="margin-top: 100px;">
@@ -87,7 +106,7 @@
               <td></td>
           </tr>
       </table>
-      <button class="button">Exit</button>
+      <button class="button" (click)="logout()">Exit</button>
   </div>
 </div>
 </div>
@@ -100,7 +119,7 @@
 
 
  
-  <div class="ExamPage" *ngIf="ExamStarts">
+  <div class="ExamPage" *ngIf="ExamStarts && presentlevel!=3">
 
     <h2><button (click)="CalculateScore()" class="scorebutton">Submit</button></h2>
 
@@ -109,7 +128,7 @@
     <div *ngFor="let item of slist">
     <div *ngIf="item.SubjectId== getsession">
         
-      <p class="instructiontimecounter">  Timer:<countdown [config]="{leftTime:item.ExamDuration*60}" ></countdown></p>
+      <p class="instructiontimecounter">  Timer:<countdown [config]="{leftTime:item.ExamDuration*60}" (event)="timesUp($event)"></countdown></p>
     </div>
   </div>
     <!-- counter end -->
@@ -155,4 +174,15 @@
 
 
   </div>
+
+    <div *ngIf="presentlevel==3">
+      <div *ngIf="examlist!=true">
+      <h1>You Have cleared all the level of this Subject !! Pls Explore Other Subject</h1>
+      <button (click)="examlist=true">Back</button>
+    </div>
+      </div>
+
+
+  
+  
 </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormsModule,NgForm,FormGroup} from '@angular/forms'
 import{StudentInfoModule} from 'src/app/Modules/student-info/student-info.module';
 import{StudentInfoService} from 'src/app/Services/student-info.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
  presentstudent:any;
 
 
-  constructor(svc:StudentInfoService) { this.svc=svc;}
+  constructor(svc:StudentInfoService,private router: Router) { this.svc=svc;}
 
   ngOnInit(): void {
     this.svc.ShowAllStudent().subscribe((data:StudentInfoModule[])=>
@@ -67,6 +68,7 @@ export class LoginComponent implements OnInit {
         var setsession = window.sessionStorage.setItem("studid", this.presentstudent[0].StudentId.toString());
         this.studentidsession = window.sessionStorage.getItem("studid");
         console.log(this.studentidsession);
+        this.router.navigate(['/Home']);
        
 
       }
@@ -74,6 +76,18 @@ export class LoginComponent implements OnInit {
         alert('Invalid credentials');
       }
     });
+}
+
+//method for admin login
+
+AdminLog(login:NgForm)
+{
+if(login.value.Email=="admin1@g.com" && login.value.pass=="Aa@1")
+{
+  alert("Admin Login Successfull!!!!");
+  this.router.navigate(['/AdminHome']);
+}
+
 }
 
 }

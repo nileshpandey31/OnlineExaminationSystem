@@ -11,32 +11,34 @@
         </div>
     </div>
     <hr>
-    <button (click)="addsub=true ; fileupload=false"> ADD Subject</button>
-    <button (click)="fileupload=true ; addsub=false">Admin Question File</button>
+    <button (click)="addsub=true ; fileupload=false; viewsubj= false"> ADD Subject</button>
+    <button (click)="fileupload=true ; addsub=false; viewsubj= false">Admin Question File</button>
+    <button (click)="viewsubj= true; fileupload=false ; addsub=false">View Subjects</button>
     <hr>
-   
-    <div *ngIf="fileupload" class="filesection">
-        <form #fileform="ngForm"  name="fileform" (ngSubmit)="uploadFile(fileform)">
-        <div class="col-md-6">  
-            <input class="form-control" type="file" #fileInput required  class="file" />  
-        </div>  
 
-        <div>Subject Name</div>
-    <select type="text" name="subject" #subject="ngModel"  [(ngModel)]="model.subject" required class="drop">
-        
+
+    <div *ngIf="fileupload" class="filesection">
+        <form #fileform="ngForm" name="fileform" (ngSubmit)="uploadFile(fileform)">
+            <div class="col-md-6">
+                <input class="form-control" type="file" #fileInput required class="file" />
+            </div>
+
+            <div>Subject Name</div>
+            <select type="text" name="subject" #subject="ngModel" [(ngModel)]="model.subject" required class="drop">
+
        <option *ngFor="let item of slist" [value]="item.SubjectId">{{item.Subject}}</option>
     </select>
 
-        <div class="col-md-6">  
-           <input type="submit" value="ADD" [disabled]="fileform.invalid"> 
-        </div> 
-        <div>  
-            <h4 class="alert-success">{{message}}</h4>  
-        </div>  
-    </form>
+            <div class="col-md-6">
+                <input type="submit" value="ADD" [disabled]="fileform.invalid">
+            </div>
+            <div>
+                <h4 class="alert-success">{{message}}</h4>
+            </div>
+        </form>
     </div>
 
-<!-- div tag for add subject -->
+    <!-- div tag for add subject -->
 
     <div *ngIf="addsub">
 
@@ -54,7 +56,7 @@
                     </span>
                         </td>
                     </tr>
-    
+
                     <tr>
                         <td><label><b>Total Marks : </b></label></td>
                         <td>
@@ -66,7 +68,7 @@
                     </span>
                         </td>
                     </tr>
-    
+
                     <tr>
                         <td><label><b>Passing Marks : </b></label></td>
                         <td>
@@ -78,7 +80,7 @@
                     </span>
                         </td>
                     </tr>
-    
+
                     <tr>
                         <td><label><b>Exam Duration : </b></label></td>
                         <td>
@@ -90,7 +92,7 @@
                     </span>
                         </td>
                     </tr>
-    
+
                     <tr>
                         <td><label><b>Test status : </b></label></td>
                         <td>
@@ -102,22 +104,99 @@
                     </span>
                         </td>
                     </tr>
-    
-                    
-    
-    
+
+
+
+
                     <tr>
                         <td></td>
                         <td><input type="submit" name="Addbtn" value="Add Questions" [disabled]="Add.invalid"></td>
                     </tr>
-    
+
                 </table>
-    
-    
+
+
+
+
+
             </div>
         </form>
 
     </div>
-   
-  
+
+    <div *ngIf="viewsubj">
+        <div *ngIf="tablevisible">
+            <table border="1">
+                <tr>
+                    <th>SubjID</th>
+                    <th>Subject</th>
+                    <th>Total mark</th>
+                    <th>Passing mark</th>
+                    <th>Exam Duration</th>
+                    <th>Tstatus</th>
+                    <th>Actions</th>
+                </tr>
+                <tr *ngFor="let subj of slist; let j=index">
+                    <td>{{subj.SubjectId}}</td>
+                    <td>{{subj.Subject}}</td>
+                    <td>{{subj.TotalMark}}</td>
+                    <td>{{subj.PassingMark}}</td>
+                    <td>{{subj.ExamDuration}}</td>
+                    <td>{{subj.TStatus}}</td>
+                    <td><button (click)="Update(subj,j)">Update</button></td>
+                    <!-- | <button (click)="delete(subj.SubjectId)">Delete</button> -->
+                </tr>
+            </table>
+        </div>
+        <br><br>
+
+
+        <div *ngIf="updateformvisible">
+            <form #UpdateForm="ngForm" name="UpdateForm" (ngSubmit)="UpdateSubmit(UpdateForm)">
+                <div style="margin-left: 150px;">
+                    <table>
+                        <tr>
+                            <td class="rowheadlen"><label><b>Subject Name : </b></label></td>
+                            <td>
+                                <input type="text" placeholder="Subject Name" name="sname" [(ngModel)]="update.sname" #sname="ngModel" readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label><b>Total Marks : </b></label></td>
+                            <td>
+                                <input type="number" placeholder="Total Marks" name="tmks" [(ngModel)]="update.tmks" #tmks="ngModel">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label><b>Passing Marks : </b></label></td>
+                            <td>
+                                <input type="number" placeholder="Passing Marks" name="pmks" [(ngModel)]="update.pmks" #pmks="ngModel">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label><b>Exam Duration : </b></label></td>
+                            <td>
+                                <input type="number" placeholder="Exam Duration" name="dur" [(ngModel)]="update.dur" #dur="ngModel">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label><b>Test status : </b></label></td>
+                            <td>
+                                <select name="tstatus" [(ngModel)]="update.tstatus" #tstatus="ngModel">
+                                <option value="enable">Enable</option>
+                                <option value="disable">Disable</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><input type="submit" name="Update" value="Update"></td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+          </div>
+    </div>
+
+
 </div>

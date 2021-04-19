@@ -9,13 +9,10 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ]
 })
-export class ReportCardModule { 
-  ReportId:number;
+export class AllreportModule {
   StudentId:number;
-  SubjectId:number;
+  Name:string;
+  Subject:string;
+  SLevel:number
   Marks:number;
-  SLevel:number;
-  RStatus:string;
-  ExamDate:Date;
-
-}
+ }

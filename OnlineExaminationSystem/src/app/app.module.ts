@@ -17,6 +17,7 @@ import { AddQuestionsComponent } from './Components/add-questions/add-questions.
 import { RemoveQuestionsComponent } from './Components/remove-questions/remove-questions.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import{CountdownModule} from 'ngx-countdown';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import{CountdownModule} from 'ngx-countdown';
     HttpClientModule,
     NgxCaptchaModule,
     CountdownModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

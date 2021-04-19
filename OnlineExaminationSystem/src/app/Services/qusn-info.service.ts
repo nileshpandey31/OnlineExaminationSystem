@@ -76,5 +76,22 @@ PresentLevel(sid:number,subid:number):Observable<number>
 {
   return this.http.get<number>(this.url+'/'+'PresentLevel'+'/'+ sid + '/' + subid);
 }
+
+DeleteQuestion(id:number):Observable<boolean>
+{
+  return this.http.delete<boolean>(this.url+'/'+'DeleteQuestion'+'/'+id);
+}
+ShowUQst():Observable<QusnInfoModule[]>
+{
+  return this.http.get<QusnInfoModule[]>(this.url + "/"+"ShowUQst");
+}
+
+DeleteSubject(id: number): Observable<boolean>{
+  return this.http.delete<boolean>(this.url + '/' + 'DeleteSubject' + '/' + id);
+}
+
+UpdateSubject(SubjectId:number,subinfo:AddSubModule):Observable<boolean>{
+  return this.http.put<boolean>(this.url+'/UpdateSubject/'+SubjectId,subinfo,this.httpOptions);
+}
 }
 
