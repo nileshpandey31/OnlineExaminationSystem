@@ -8,6 +8,7 @@ import {AddSubModule} from '../Modules/add-sub/add-sub.module';
 import {ReportCardModule} from '../Modules/report-card/report-card.module';
 import {LevelModule} from '../Modules/level/level.module';
   
+import { SelectStudentModule} from '../Modules/select-student/select-student.module';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,8 @@ export class QusnInfoService {
 
   constructor(private http: HttpClient) { }
   url:string='http://localhost:62603/api/StudentAPI';
+  url1 :string = "https://raw.githubusercontent.com/sagarshirbhate/Country-State-City-Database/master/Contries.json";
+  
   httpOptions = {headers: new HttpHeaders({
     'Content-Type': 'application/json'
   })
@@ -93,5 +96,17 @@ DeleteSubject(id: number): Observable<boolean>{
 UpdateSubject(SubjectId:number,subinfo:AddSubModule):Observable<boolean>{
   return this.http.put<boolean>(this.url+'/UpdateSubject/'+SubjectId,subinfo,this.httpOptions);
 }
+
+SearchStudent(stud:SelectStudentModule) : Observable<SelectStudentModule[]>
+{
+  return this.http.post<SelectStudentModule[]>(this.url+'/SelectStudent',stud,this.httpOptions);
+}
+
+allCountries(): Observable<any>{
+  return this.http.get(this.url1);
+}
+
+
+
 }
 

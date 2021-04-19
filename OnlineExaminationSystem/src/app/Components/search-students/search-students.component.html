@@ -1,93 +1,85 @@
 <div class="container">
-    <div class="div1"  *ngIf="sf">
-        <table class="searchform">
-            <tr>
-                <th>Technology</th>
-                <td><select name="tech" >
-                    <option value="">iterate testname column</option>
-                </select>
-                </td>
-            </tr>
-            <tr>
-                <th>State</th>
-                <td><select name="state" >
-                    <option value="">iterate state column</option>
-                </select>
-                </td>
-            </tr>
-            <tr>
-                <th>City</th>
-                <td><select name="city" >
-                    <option value="">iterate city column</option>
-                </select>
-                </td>
-            </tr>
-            <tr>
-                <th>Levels</th>
-                <td><select name="city" >
-                    <option value="0">Level 0</option>
-                    <option value="1">Level 1</option>
-                    <option value="2">Level 2</option>
-                    <option value="3">Level 3</option>
-                </select>
-                </td>
-            </tr>
-            <tr>
-                <th>Marks </th>
-                <td>
-                    <select name="marks" id="">
-                        <option value="">
-                            will iterate marks column
-                        </option>
+    <div class="div1" *ngIf="sf">
+        <form #searchform="ngForm"  name="searchform" (ngSubmit)="searchstudent(searchform)">
+            <table class="searchform">
+                <tr>
+                    <th>Technology</th>
+                    <td>
+                        
+                        <select name="tech" #tech="ngModel"  [(ngModel)]="model.tech" (click)="onChangeCountry()" required >
+                            <option value="{{item.Subject}}" *ngFor="let item of Techlist">{{item.Subject}}</option>
+                        </select>
+                    </td>
+                </tr>
+    
+    
+               
+    
+    
+                <tr>
+    
+                    <th>State</th>
+                    <td><select class="form-control" name="state" (change)="onChangeState($event.target.value)" #state="ngModel"  [(ngModel)]="model.state" required >
+                      <option value="" disabled selected>--Select State--</option>
+                      <option *ngFor="let state of stateInfo; let j = index" value="{{j}}">{{state.StateName}}</option>
                     </select>
-                </td>
-            </tr>
-           
-        </table>
-        <button class="searchbutton" (click)="searchstudent()">Search Student</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th>City</th>
+                    <td><select class="form-control" name="city" #city="ngModel"  [(ngModel)]="model.city">
+                      <option value="" disabled selected>--Select CIty--</option>
+                    <option *ngFor="let city of cityInfo; let k = index" value="{{city}}">{{city}}</option>
+                  </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Levels</th>
+                    <td><select  name="level" #level="ngModel"  [(ngModel)]="model.level">
+                        <option value="1">Level 1</option>
+                        <option value="2">Level 2</option>
+                        <option value="3">Level 3</option>
+                    </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Marks </th>
+                    <td>
+                        <input  type="number" name="marks" placeholder="Marks" #marks="ngModel"  [(ngModel)]="model.marks">
+                    </td>
+                </tr>
+    
+            </table>
+            <button class="searchbutton" >Search Student</button>
+        </form>
     </div>
 
     <div class="div2" *ngIf="st">
-        <table class="searchtable" border="1" >
+        <table class="searchtable" border="1">
             <tr>
-                <th>
-                    Name
-                </th>
-                <th>
-                    EmailId
-                </th>
-                <th>
-                    Mobile Number
-                </th>
-                <th>
-                    City
-                </th>
-                <th>
-                    State
-                </th>
+                <th>Student Id</th>
+                <th>Name</th>
+                <th>EmailId</th>
+                <th>Technology</th>
+               
+                <td>Present Level</td>
+                <td>Marks</td>
+               
+             
             </tr>
 
             <!-- will iterate over database -->
-          <tr>
-              <td>
-                  demo name
-              </td>
-              <td>
-                  demo mail
-              </td>
-              <td>
-                  demo mob
-              </td>
-              <td>
-                  demo city
-              </td>
-              <td>
-                  demo state
-              </td>
-          </tr>
+            <tr *ngFor="let item of finalSlist">
+                <td>{{item.StudentId}}</td>
+                <td>{{item.Name}}</td>
+                <td>{{item.Email}}</td>
+                <td>{{item.Subject}}</td>
+                <td>{{item.Level}}</td>
+                <td>{{item.Marks}}</td>
+                
+            </tr>
         </table>
     </div>
     
-   
 
 </div>
