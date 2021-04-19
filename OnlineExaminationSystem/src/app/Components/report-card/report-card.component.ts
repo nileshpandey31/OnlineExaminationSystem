@@ -9,6 +9,10 @@ import {Router} from'@angular/router';
   styleUrls: ['./report-card.component.css']
 })
 export class ReportCardComponent implements OnInit {
+
+
+  buttondiv:boolean=true;
+  AboutUs:boolean=false;
   levellist:AllevelModule[];
   allreplist:AllreportModule[];
   p: number = 1;
@@ -25,7 +29,7 @@ export class ReportCardComponent implements OnInit {
         this.svc.Allevel().subscribe((data:AllevelModule[])=>
         {
           this.levellist=data;
-          
+
         });
 
       });
@@ -37,6 +41,6 @@ export class ReportCardComponent implements OnInit {
 
   }
 
- 
-  
+
+
 }

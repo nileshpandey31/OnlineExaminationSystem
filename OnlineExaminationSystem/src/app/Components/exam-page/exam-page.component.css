@@ -1,4 +1,4 @@
-.container {
+/* .container {
   border-style: solid;
   border-color: black;
   text-align: center;
@@ -36,14 +36,14 @@ table{
   vertical-align:middle;
   background-color: lawngreen;
     border-radius: 5px;
-    margin:30px; 
+    margin:30px;
 
     text-decoration: none;
     color:black;
     font-weight: bolder;
     font-size: 30px;
     padding-top: 40px;
-   
+
 
 }
 .disable
@@ -66,15 +66,7 @@ table{
     border-color: black;
 }
 
-.instructiontimecounter
-{
-    margin-top:10px;
-    width:100px;
-    height:50px;
-    font-size: larger;
-    font-weight: bold;
-    float:left;
-}
+
 
 .ExamPage {
   width: 95%;
@@ -136,13 +128,161 @@ table{
   font-weight: bold;
 }
 
-.gridContainer
-{
-  float: left;
+
+
+ */
+
+.review {
+    float: right;
+    font-size: larger;
+    padding: 10px;
 }
 
-.review
-{
-  float:center;
-  
+.gridContainer {
+    padding-left: 120px;
+    padding-right: 120px;
+}
+
+.quesbtn {
+    margin: 10px;
+    background-color: #8fd9a8;
+    color: black;
+}
+
+.ckbox {
+    width: 20px;
+    height: 20px;
+}
+
+examlist h1 {
+    float: left;
+}
+
+h2 a {
+    float: right;
+    margin-right: 10px;
+}
+
+.domain {
+    position: relative;
+    float: left;
+    width: 20%;
+    /* height: 60px; */
+    border: 1px solid;
+    /* text-align: center; */
+    /* vertical-align: middle; */
+    background-color: #289672;
+    border-radius: 5px;
+    margin: 30px;
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+    font-size: 30px;
+    padding: 10px;
+}
+
+.disable {
+    background-color: #798777;
+}
+
+.domain:hover {
+    transform: scale(1.2, 1.2);
+    background-color: #c6ebc9;
+}
+
+.instructiontimecounter {
+    margin-top: 10px;
+    /* width: 100px; */
+    /* height: 50px; */
+    font-size: larger;
+    font-weight: bold;
+    text-align: center;
+    padding-left: 240px;
+    padding-right: 250px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+:root {
+    --input-padding-x: 1.5rem;
+    --input-padding-y: .75rem;
+}
+
+.col-2 {
+    width: 50%;
+}
+
+body {
+    background: #007bff;
+    background: linear-gradient(135deg, #0d6efd, #a0c7e0);
+    height: auto;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #3687f5;
+    color: black;
+}
+
+.card-signin .card-img-left {
+    width: 45%;
+    /* Link to your background image using in the property below! */
+    background: scroll center url('https://source.unsplash.com/WEQbe2jBg40/414x512');
+    background-size: cover;
+}
+
+span {
+    color: red;
+    float: right;
+}
+
+.card-signin {
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.card-signin .card-title {
+    margin-bottom: 2rem;
+    font-weight: 300;
+    font-size: 1.5rem;
+}
+
+.card-signin {
+    padding: 2rem;
+}
+
+.card-body {
+    width: 100%;
+}
+
+.form-signin .btn {
+    font-size: 80%;
+    border-radius: 5rem;
+    letter-spacing: .1rem;
+    font-weight: bold;
+    padding: 1rem;
+    transition: all 0.2s;
+}
+
+.form-label-group {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.form-label-group input {
+    height: auto;
+    border-radius: 2rem;
+}
+
+.inp {
+    padding-bottom: 10px;
 }

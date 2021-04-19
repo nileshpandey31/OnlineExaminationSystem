@@ -18,6 +18,9 @@ export class ExamPageComponent implements OnInit {
 
 // VAriable declaration section
 
+
+buttondiv:boolean=true;
+AboutUs:boolean=false;
   rc=new ReportCardModule();
   examlist: boolean = true;
   instruction: boolean = false;
@@ -30,7 +33,7 @@ export class ExamPageComponent implements OnInit {
 qusnlistbysub:any;  //list of qusn of given subject
 qidlist:any;  //list of qid in qusn by subject
 cqid:any;  // current question id
-lastqno:number;  // last qusn 
+lastqno:number;  // last qusn
 selectoptionlist:string[];
 anslist:string[];
 Score:number=0;
@@ -57,24 +60,24 @@ qusnlistbysublevel:any;
   constructor(private service: QusnInfoService,private svc:StudentInfoService,private router:Router) { }
 
   ngOnInit(): void {
-    
+
     this.service.ShowSubject().subscribe((data:AddSubModule[])=>
     {
-  
+
       this.slist=data;
-      console.log(this.slist);  
+      console.log(this.slist);
     });
 
     this.service.ShowQst().subscribe((data:QusnInfoModule[])=>
     {
       this.qlist=data;
-     
+
     }
     );
 
     this.svc.ShowAllStudent().subscribe((data:StudentInfoModule[])=>
     {
-  
+
       this.studlist=data;
     });
 
@@ -83,36 +86,36 @@ qusnlistbysublevel:any;
 
   this.levellist=data;
   console.log(this.levellist);
-  
+
 });
 
-    
-    
+
+
   }
 
   start(subid:number):void{
-   
+
     var setsession = window.sessionStorage.setItem("subid", subid.toString());
     this.getsession = window.sessionStorage.getItem("subid");
-   
+
   this.service.PresentLevel(this.presentstudid,this.getsession).subscribe((data:number)=>
   {
-  
+
     this.presentlevel=data;
     console.log(this.presentlevel);
-   
+
   //console.log(this.getsession);
   this.qusnlistbysub=this.qlist.filter(x=>x.SubjectId==this.getsession);
   console.log(this.qusnlistbysub);
-  
+
 
  this.presentsubjectlist=this.slist.filter(x=>x.SubjectId==this.getsession);
  this.subjectname=this.presentsubjectlist[0].Subject;
 
  console.log(this.presentlevel);
 this.qusnlistbysublevel=this.qusnlistbysub.filter(x=>x.Level==this.presentlevel+1);
-   console.log(this.qusnlistbysublevel);  
-  
+   console.log(this.qusnlistbysublevel);
+
    //console.log(this.qusnlistbysub);
   this.qidlist=this.qusnlistbysublevel.map(({ QID }) => QID)
   //console.log(this.qidlist);
@@ -122,13 +125,13 @@ this.qusnlistbysublevel=this.qusnlistbysub.filter(x=>x.Level==this.presentlevel+
   this.selectoptionlist= new Array(this.lastqno);
   this.anslist=this.qusnlistbysublevel.map(({ Answer }) => Answer);
 
-  
+
   //console.log(this.subjectname);
 
   this.gridnumber=new Array();
   for (let i = 1; i <= this.lastqno; i++) {
     this.gridnumber.push(i);
-   
+
 
 
   }
@@ -142,7 +145,7 @@ this.qusnlistbysublevel=this.qusnlistbysub.filter(x=>x.Level==this.presentlevel+
   }
 
 
-    
+
   });
 
 
@@ -152,15 +155,15 @@ this.qusnlistbysublevel=this.qusnlistbysub.filter(x=>x.Level==this.presentlevel+
   next():void{
     this.service.ShowLevel().subscribe((data:LevelModule[])=>
     {
-    
+
       this.levellist=data;
       console.log(this.levellist);
-      
+
     });
     this.Score=0;
     this.start(this.getsession);
     this.Scorediv=false;
-    
+
   }
 
   startexam(): void {
@@ -172,15 +175,15 @@ this.qusnlistbysublevel=this.qusnlistbysub.filter(x=>x.Level==this.presentlevel+
     this.examlist = false;
     this.instruction = false;
     this.ExamStarts = true;
-    
+
   }
 
   increment():void
-  { 
+  {
    this.cqno=this.cqno+1;
     this.cqid=this.qidlist[this.cqno];
     console.log(this.cqid);
-  
+
   }
   decrement():void
   {
@@ -205,14 +208,14 @@ this.qusnlistbysublevel=this.qusnlistbysub.filter(x=>x.Level==this.presentlevel+
   }
 
   CalculateScore():void{
-    
 
-    var individualmarks=this.presentsubjectlist[0].TotalMark/this.lastqno;    
+
+    var individualmarks=this.presentsubjectlist[0].TotalMark/this.lastqno;
     for(var i=0;i<this.lastqno;i++)
     {
       if(this.selectoptionlist[i]==this.anslist[i])
       this.Score=this.Score+individualmarks;
-     
+
     }
     //console.log(this.Score);
     this.examlist = false;
@@ -236,14 +239,14 @@ this.qusnlistbysublevel=this.qusnlistbysub.filter(x=>x.Level==this.presentlevel+
     this.rc.Marks=this.Score;
     this.rc.RStatus=this.ResultStatus;
     this.rc.ExamDate=new Date();
-   
-   
+
+
 
     this.service.InsertReport(this.rc).subscribe((data:boolean)=>{alert(data);
       if(data==true)
       {
         alert('Report Card Table updated!!');
-       
+
       }
       else
       {
@@ -289,7 +292,7 @@ for(var l of this.levellist)
     {
        this.mylevel=1;
       this.lev.Level=this.mylevel;
-      
+
       this.service.InsertLevel(this.lev).subscribe((data:boolean)=>
       {
         if(data)
@@ -316,14 +319,14 @@ for(var l of this.levellist)
   timesUp(event:any) { if (event.action == "done") { this.CalculateScore(); } }
 
   //logout method
- 
+
   logout():void
   {
     sessionStorage.removeItem('studid');
     sessionStorage.removeItem('subid');
     alert("You are logged out")
     this.router.navigate(['/Home']);
-    
+
   }
 
 }

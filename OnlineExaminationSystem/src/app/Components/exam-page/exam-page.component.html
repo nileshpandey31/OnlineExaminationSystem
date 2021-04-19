@@ -1,188 +1,293 @@
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Online Exam System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" [routerLink]="['/Home']">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="AboutUs=true;buttondiv=false;">About Us</a>
+                    </li>
+                </ul>
+
+                <div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/Home']" (click)=logout()>Logout</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+    <div *ngIf="AboutUs">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-xl-9 mx-auto">
+                    <div class="card card-signin flex-row my-5">
+
+                        <div class="card-body">
+                            <p><b>Wellcome to Easy Exam  System!!!</b></p>
+                            <p>
+                                This Online Examination System is helpful for students, companies or any organization to conduct any examinations from this site. In this age of increased competition, various companies, organization’s face a common problem of conducting online exam by
+                                personally visiting to different colleges (in case of companies) for placement drives. this platform will help the deserving candidates to showcase their conceptual skills through an online exam, based on which, the companies
+                                can filter out candidates according to their needs. Our Exam Management Software provides exams at the local level to facilitate examination. During the exam, strict guidelines are followed and the exam date timetable adheres
+                                to them. Our examination process is fully automated and no manual intervention is required. Our software allows the proctored exam schedule where a level of exams can be taken. Exam Creator Software enables local and official
+                                exam creation where, teachers, administrators,s or examiners can create exams based on school capacity and standards. The exam management system is best suited for graduate programs. Our exams can be conducted individually
+                                or as a group of students like classes.
+                            </p>
+                            <img [src]="myimg">
+                            <button (click)="buttondiv=true;AboutUs=false;">Back</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-xl-9 mx-auto">
+                <div class="card card-signin flex-row my-5">
+                    <div class="card-body">
+
+                        <div>
+                            <div class="examlist" *ngIf="examlist">
+
+                                <h1 style="text-align: center;">Select Exam</h1>
+                                <!-- <h2><a [routerLink]="['/Home']" (click)=logout()>logout</a></h2> -->
+                                <br>
+
+                                <div *ngFor="let item of slist">
+                                    <button type="button" class="domain" (click)="start(item.SubjectId)" [ngClass]="{disable: item.TStatus=='disable'}">{{item.Subject}}</button>
+                                </div>
+
+                            </div>
+
+                            <div class="instruction" *ngIf="instruction && presentlevel!=3">
+
+                                <!-- <h2><a [routerLink]="['/Home']">logout</a></h2> -->
+                                <h1 style="text-align: center;">Instruction For Test</h1>
+                                <div>
+                                    <ul>
+                                        <li style="float: left;">The examination will comprise of Objective type Multiple Choice Questions (MCQs).</li>
+                                        <li style="float: left;">All questions are compulsory and each carries mark according to level.</li>
+                                        <li style="float: left;">The examination will comprise of Three levels,complition of one level will redirect student to another level.</li>
+                                        <li style="float: left;">Every student will take the examination on a Laptop/Desktop.</li>
+                                        <li style="float: left;">The total number of questions, duration of examination, will be different based on level, the detail is available on your screen.</li>
+                                        <li style="float: left;">For Multiple Choice Questions, each question has four options, and the candidate has to click the appropriate option.</li>
+                                        <li style="float: left;">There will be NO NEGATIVE MARKING for the wrong answers.</li>
+                                        <li style="float: left;">The students just need to click on the Right Choice/Correct option from the multiple choices /options given with each question.</li>
+
+                                    </ul>
+                                </div>
+                                <div>
+                                    <br><br><br>
+                                    <button style="width: 180px;border-radius: 5rem;" class="btn btn-lg btn-primary btn-block text-uppercase" (click)="examstarts()">Start Test</button>
+
+                                </div>
+
+                            </div>
+
+                            <div class="instructiontimecounter">
+                            </div>
+
+                            <!-- score card display end -->
+
+                            <div class="ExamPage" *ngIf="ExamStarts && presentlevel!=3">
+
+                                <div>
+                                    <h1 style="width:200px; float: left;">Level {{presentlevel + 1 }}</h1>
+                                    <button style="float: right;width: 150px;border-radius: 5rem;" class="btn btn-lg btn-primary btn-block text-uppercase" (click)="CalculateScore()">Submit</button>
+                                </div>
+
+                                <!-- code for counter start -->
+                                <div *ngFor="let item of slist">
+                                    <div *ngIf="item.SubjectId== getsession">
+
+                                        <p class="instructiontimecounter"> Timer:
+                                            <countdown [config]="{leftTime:item.ExamDuration*60}" (event)="timesUp($event)"></countdown>
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- counter end -->
+
+                                <div class="gridContainer">
+                                    <div class="btn-group">
+                                        <button type="button" class="quesbtn" *ngFor="let item of gridnumber" (click)="switchQsn(item)">{{item}} </button> &nbsp;
+                                    </div>
+                                </div>
+                                <br>
+
+                                <div class="question">
+
+
+                                    <div *ngFor="let item of qusnlistbysublevel">
+
+
+                                        <div *ngIf="item.QID==cqid">
+
+                                            <div>
+                                                <h3 style="float: left;">Current Question {{cqno+1}}/{{lastqno}}</h3>
+                                                <div style="float: right;" class="review">
+                                                    <input type="checkbox" name="review" class="ckbox">&nbsp; Review
+                                                </div>
+
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <br>
+
+
+                                            <div style="padding-left: 80px;padding-right: 80ox;">
+                                                <p class="quest">{{cqno+1}} . {{item.Qsn}}</p>
+                                                <div style="padding-left: 50px;padding-right: 50ox;">
+                                                    <p> A. <input type="radio" name="option" value="{{item.Opt1}}" (click)="selectedlist(item.Opt1)" [checked]="item.Opt1==selectoptionlist[cqno]" /> {{item.Opt1}}</p>
+                                                    <p> B. <input type="radio" name="option" value="{{item.Opt2}}" (click)="selectedlist(item.Opt2)" [checked]="item.Opt2==selectoptionlist[cqno]" /> {{item.Opt2}}</p>
+                                                    <p> C. <input type="radio" name="option" value="{{item.Opt3}}" (click)="selectedlist(item.Opt3)" [checked]="item.Opt3==selectoptionlist[cqno]" /> {{item.Opt3}}</p>
+                                                    <p> D. <input type="radio" name="option" value="{{item.Opt4}}" (click)="selectedlist(item.Opt4)" [checked]="item.Opt4==selectoptionlist[cqno]" /> {{item.Opt4}}</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <br>
+                                    <br>
+                                    <br>
+
+                                    <button style="float: left ;width: 100px;border-radius: 5rem;" class="btn btn-lg btn-primary btn-block text-uppercase" name="prev" (click)="decrement()" [disabled]="cqno==0">Prev</button>
+                                    <button style="float: right;width: 100px;border-radius: 5rem;" class="btn btn-lg btn-primary btn-block text-uppercase" name="next" (click)="increment()" [disabled]="cqno==lastqno-1">Next</button>
+
+                                </div>
+                            </div>
+
+                            <!-- score card display div -->
+
+                            <div id="score" *ngIf="Scorediv">
+
+
+                                <br>
+                                <h2 style="text-align: center;" id="pone"><b>Score Card</b></h2>
+                                <hr>
+                                <h4 style="text-align: center;"><br> Result Status : {{ResultStatus}}</h4>
+
+
+                                <div *ngFor="let item of studlist">
+
+
+
+                                    <div *ngIf="item.StudentId==presentstudid">
+
+
+                                        <div id="divone" *ngIf="pass">
+
+                                            <div style="margin: 10px; text-align: center;" *ngIf="(presentlevel+1)!=3 && ResultStatus!='Fail'">
+                                                <br><br>
+                                                <p id="pone"><b>Thank You !!!!</b></p>
+                                                <p id="pone"><b>You have cleared the level {{presentlevel + 1}}</b></p>
+                                                <p id="pone"><b>You can proceed to level {{presentlevel + 2}}</b></p>
+                                            </div>
+                                            <div style="margin-top: 10px; margin-left: 270px; margin-right: 270px;">
+                                                <button style="width: 200px;border-radius: 5rem;" class="btn btn-lg btn-success btn-block text-uppercase" *ngIf="(presentlevel+1)!=3" (click)="next()"> level {{presentlevel + 2}}</button>
+                                            </div>
+                                            <div *ngIf="(presentlevel+1)==3">
+                                                <h1 style="text-align: center;">Congrats for clearing all level</h1>
+                                            </div>
+
+
+                                        </div>
+
+
+
+                                        <div id="divone" *ngIf="fail">
+                                            <div>
+                                                <br>
+                                                <p style="margin: 10px; text-align: center;"><b> Please Try Again</b></p>
+                                            </div>
+                                        </div>
+
+                                        <br>
+                                        <div id="divtwo" style=" margin-left: 320px; margin-right: 300px; margin-bottom: 30px; font-weight: bold;">
+                                            <table id="tableone">
+
+                                                <tr>
+                                                    <td>Name : {{item.Name}}</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Score : {{Score}}</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr *ngIf="fail">
+                                                    <td>Level : {{presentlevel}}</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr *ngIf="pass">
+                                                    <td>Level : {{presentlevel+1}}</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Test :{{subjectname}} </td>
+                                                    <td></td>
+                                                </tr>
+                                            </table>
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <button style="width: 100px;border-radius: 5rem;" class="btn btn-lg btn-danger btn-block text-uppercase" (click)="logout()">Exit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div *ngIf="presentlevel==3">
+                                <div *ngIf="examlist!=true">
+                                    <h1>You Have cleared all the level of this Subject !! Pls Explore Other Subject</h1>
+                                    <button (click)="examlist=true">Back</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<footer>
+    <p>
+        <b>
+  © 2021 Larsen & Toubro Infotech Limited
+</b>
+    </p>
+</footer>
+
+
+
+
+
+
+
 <div class="container">
 
-    <div class="examlist" *ngIf="examlist">
-
-        <h1>Select Exam</h1>
-        <h2><a [routerLink]="['/Home']" (click)=logout()>logout</a></h2>
-        <br><br><br>
-        
-            <div *ngFor="let item of slist">
-                    
-                    <div class="domain" (click)="start(item.SubjectId)" [ngClass]="{disable: item.TStatus=='disable'}">{{item.Subject}}</div>
-            </div>
-              
-         
-
-    </div>
-
-    <div class="instruction" *ngIf="instruction && presentlevel!=3">
-
-        <h2><a [routerLink]="['/Home']">logout</a></h2>
-        <h1>Instruction For Test</h1>
-        <ul >
-        <li style="float: left;">The examination will comprise of Objective type Multiple Choice Questions (MCQs).</li>
-        <li style="float: left;">All questions are compulsory and each carries  mark according to level.</li>
-        <li style="float: left;">The examination will comprise of Three levels,complition of one level will redirect student to another level.</li>
-        <li style="float: left;">Every student will take the examination on a Laptop/Desktop.</li>
-        <li style="float: left;">The total number of questions, duration of examination, will be different based on level, the detail is available on your screen.</li>
-        <li style="float: left;">For Multiple Choice Questions, each question has four options, and the candidate has to click the appropriate option.</li>
-        <li style="float: left;">There will be NO NEGATIVE MARKING for the wrong answers.</li>
-        <li style="float: left;">The students just need to click on the Right Choice/Correct option from the multiple choices /options given with each question.</li>
-
-    </ul>
-        <button class="starttest" (click)="examstarts()">Start Test</button>
-        <div class="instructiontimecounter">
-      
-
-    </div>
-  </div>
-
-  <!-- score card display div -->
-
-<div id="score" *ngIf="Scorediv" >
-
-  
-  <br>
-  <h2 id="pone"><b>Score Card</b><br>
-  Result Status : {{ResultStatus}}</h2>
-  <hr>
-
-  <div *ngFor="let item of studlist">
- 
- 
-
-    <div *ngIf="item.StudentId==presentstudid">
-     
-  
-  <div id="divone" *ngIf="pass">
-  
-      <div *ngIf="(presentlevel+1)!=3 && ResultStatus!='Fail'">
-        <br><br>
-        <p id="pone"><b>Thank You !!!!</b></p>
-        <p id="pone"><b>You have cleared the {{presentlevel + 1}}</b></p>
-        <p id="pone"><b>You can proceed to{{presentlevel + 2}}</b></p>
-    </div>
-    <div style="margin-top: 150px;">
-        <button class="button"  *ngIf="(presentlevel+1)!=3" (click)="next()"> level {{presentlevel + 2}}</button>
-    </div> 
-    <div *ngIf="(presentlevel+1)==3">
-      <h1>Congrats for clearing all level</h1>
-    </div>
- 
- 
-      </div>
-
-  
-
-  <div id="divone" *ngIf="fail">
-      <div style="margin-top: 100px;">
-          <br><br>
-          <p id="pone"><b> Please Try Again</b></p>
-         
-      </div>
-  </div>
-
-
-  <div id="divtwo">
-      <table id="tableone">
-          <tr>
-              <td>Name : {{item.Name}}</td>
-              <td></td>
-          </tr>
-          <tr>
-              <td>Score : {{Score}}</td>
-              <td></td>
-          </tr>
-          <tr *ngIf="fail">
-              <td>Level : {{presentlevel}}</td>
-              <td></td>
-          </tr>
-          <tr *ngIf="pass">
-            <td>Level : {{presentlevel+1}}</td>
-            <td></td>
-        </tr>
-          <tr>
-              <td>Test :{{subjectname}} </td>
-              <td></td>
-          </tr>
-      </table>
-      <button class="button" (click)="logout()">Exit</button>
-  </div>
-</div>
-</div>
-</div>
-  
-
-  <!-- score card display end -->
 
 
 
 
- 
-  <div class="ExamPage" *ngIf="ExamStarts && presentlevel!=3">
 
-    <h2><button (click)="CalculateScore()" class="scorebutton">Submit</button></h2>
-
-
-    <!-- code for counter start -->
-    <div *ngFor="let item of slist">
-    <div *ngIf="item.SubjectId== getsession">
-        
-      <p class="instructiontimecounter">  Timer:<countdown [config]="{leftTime:item.ExamDuration*60}" (event)="timesUp($event)"></countdown></p>
-    </div>
-  </div>
-    <!-- counter end -->
-
-
-
-    <h1>
-      Level {{presentlevel + 1 }}
-    </h1>
-    <hr/>
-    
-    <div class="gridContainer">
-      <button class="qusngrid"  *ngFor="let item of gridnumber" (click)="switchQsn(item)">{{item}}</button>  
-    </div>
-
-    <div class="question">
-     
-      <div *ngFor="let item of qusnlistbysublevel">
-      
-        
-        <div *ngIf="item.QID==cqid">
-          <div class="review"><input type="checkbox" name="review">review</div>
-          <h3>Current Question {{cqno+1}}/{{lastqno}}</h3><br /><br />
-          
-          <p class="quest">{{item.Qsn}}</p><br /><br />
-          <br />A. <input type="radio" name="option" value="{{item.Opt1}}"  (click)="selectedlist(item.Opt1)" [checked]="item.Opt1==selectoptionlist[cqno]"/> {{item.Opt1}}
-          <br />B. <input type="radio" name="option" value="{{item.Opt2}}" (click)="selectedlist(item.Opt2)" [checked]="item.Opt2==selectoptionlist[cqno]"/> {{item.Opt2}}
-          <br />C. <input type="radio" name="option" value="{{item.Opt3}}" (click)="selectedlist(item.Opt3)" [checked]="item.Opt3==selectoptionlist[cqno]"/> {{item.Opt3}}
-          <br />D. <input type="radio" name="option" value="{{item.Opt4}}" (click)="selectedlist(item.Opt4)" [checked]="item.Opt4==selectoptionlist[cqno]"/> {{item.Opt4}}
-        </div>
-
-
-      </div>
-     
-     
-
-
-      <button class="questionbutton" name="prev" (click)= "decrement()" [disabled]="cqno==0">Prev</button>
-      <button class="questionbutton" name="next" (click)="increment()" [disabled]="cqno==lastqno-1">Next</button>
-
-    </div>
-    
-
-
-  </div>
-
-    <div *ngIf="presentlevel==3">
-      <div *ngIf="examlist!=true">
-      <h1>You Have cleared all the level of this Subject !! Pls Explore Other Subject</h1>
-      <button (click)="examlist=true">Back</button>
-    </div>
-      </div>
-
-
-  
-  
 </div>

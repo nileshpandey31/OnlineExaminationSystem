@@ -1,85 +1,187 @@
-<div class="container">
-    <div class="div1" *ngIf="sf">
-        <form #searchform="ngForm"  name="searchform" (ngSubmit)="searchstudent(searchform)">
-            <table class="searchform">
-                <tr>
-                    <th>Technology</th>
-                    <td>
-                        
-                        <select name="tech" #tech="ngModel"  [(ngModel)]="model.tech" (click)="onChangeCountry()" required >
-                            <option value="{{item.Subject}}" *ngFor="let item of Techlist">{{item.Subject}}</option>
-                        </select>
-                    </td>
-                </tr>
-    
-    
-               
-    
-    
-                <tr>
-    
-                    <th>State</th>
-                    <td><select class="form-control" name="state" (change)="onChangeState($event.target.value)" #state="ngModel"  [(ngModel)]="model.state" required >
-                      <option value="" disabled selected>--Select State--</option>
-                      <option *ngFor="let state of stateInfo; let j = index" value="{{j}}">{{state.StateName}}</option>
-                    </select>
-                    </td>
-                </tr>
-                <tr>
-                    <th>City</th>
-                    <td><select class="form-control" name="city" #city="ngModel"  [(ngModel)]="model.city">
-                      <option value="" disabled selected>--Select CIty--</option>
-                    <option *ngFor="let city of cityInfo; let k = index" value="{{city}}">{{city}}</option>
-                  </select>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Levels</th>
-                    <td><select  name="level" #level="ngModel"  [(ngModel)]="model.level">
-                        <option value="1">Level 1</option>
-                        <option value="2">Level 2</option>
-                        <option value="3">Level 3</option>
-                    </select>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Marks </th>
-                    <td>
-                        <input  type="number" name="marks" placeholder="Marks" #marks="ngModel"  [(ngModel)]="model.marks">
-                    </td>
-                </tr>
-    
-            </table>
-            <button class="searchbutton" >Search Student</button>
-        </form>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #153461;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <div class="logo-image"> <img src="../../../assets/logo.jpeg " class="img-fluid"></div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" style="color: black" aria-current="page" [routerLink]="['/Home']">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="AboutUs=true;buttondiv=false;">About Us</a>
+                    </li>
+                </ul>
+
+                <div>
+                    <div style="text-align: center; float: left; margin-right: 550px; color: white;">
+                        <h3>Welcome Admin !</h3>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-danger" [routerLink]="['/Home']">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <div *ngIf="AboutUs">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-xl-9 mx-auto">
+                    <div class="card card-signin flex-row my-5">
+
+                        <div class="card-body">
+                            <p><b>Wellcome to Easy Exam  System!!!</b></p>
+                            <p>
+                                This Online Examination System is helpful for students, companies or any organization to conduct any examinations from this site. In this age of increased competition, various companies, organization’s face a common problem of conducting online exam by
+                                personally visiting to different colleges (in case of companies) for placement drives. this platform will help the deserving candidates to showcase their conceptual skills through an online exam, based on which, the companies
+                                can filter out candidates according to their needs. Our Exam Management Software provides exams at the local level to facilitate examination. During the exam, strict guidelines are followed and the exam date timetable adheres
+                                to them. Our examination process is fully automated and no manual intervention is required. Our software allows the proctored exam schedule where a level of exams can be taken. Exam Creator Software enables local and official
+                                exam creation where, teachers, administrators,s or examiners can create exams based on school capacity and standards. The exam management system is best suited for graduate programs. Our exams can be conducted individually
+                                or as a group of students like classes.
+                            </p>
+                            <img [src]="myimg">
+                            <button style="width: 180px;border-radius: 5rem;" class="btn btn-lg btn-primary btn-block text-uppercase" (click)="buttondiv=true;AboutUs=false;">Back</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="div2" *ngIf="st">
-        <table class="searchtable" border="1">
-            <tr>
-                <th>Student Id</th>
-                <th>Name</th>
-                <th>EmailId</th>
-                <th>Technology</th>
-               
-                <td>Present Level</td>
-                <td>Marks</td>
-               
-             
-            </tr>
 
-            <!-- will iterate over database -->
-            <tr *ngFor="let item of finalSlist">
-                <td>{{item.StudentId}}</td>
-                <td>{{item.Name}}</td>
-                <td>{{item.Email}}</td>
-                <td>{{item.Subject}}</td>
-                <td>{{item.Level}}</td>
-                <td>{{item.Marks}}</td>
-                
-            </tr>
-        </table>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-xl-9 mx-auto">
+                <div class="card card-signin flex-row my-5">
+                    <div class="card-body">
+                        <div class="div1" *ngIf="sf">
+                            <form #searchform="ngForm" name="searchform" (ngSubmit)="searchstudent(searchform)">
+
+                                <div class="form-label-group">
+                                    <label class="inp">&nbsp; Technology :   </label>
+                                    <select class="form-control" style="border-radius:20px" name="tech" #tech="ngModel" [(ngModel)]="model.tech" (click)="onChangeCountry()" required>
+                                <option value="{{item.Subject}}" *ngFor="let item of Techlist">{{item.Subject}}</option>
+                                </select>
+                                </div>
+
+
+
+                                <div class="row row-space">
+                                    <div class="col-2">
+                                        <div class="form-label-group">
+                                            <label class="inp">&nbsp; State :   </label>
+                                            <select class="form-control" style="border-radius:20px" name="state" (change)="onChangeState($event.target.value)" #state="ngModel" [(ngModel)]="model.state" required>
+                                        <option value="" disabled selected>--Select State--</option>
+                                        <option *ngFor="let state of stateInfo; let j = index" value="{{j}}">{{state.StateName}}</option>
+                            </select>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="form-label-group">
+                                            <label class="inp">&nbsp; City :   </label>
+                                            <select class="form-control" style="border-radius:20px" name="city" #city="ngModel" [(ngModel)]="model.city">
+                                        <option value="" disabled selected>--Select CIty--</option>
+                                        <option *ngFor="let city of cityInfo; let k = index" value="{{city}}">{{city}}</option>
+                            </select>
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div>
+
+
+
+                                <div class="row row-space">
+                                    <div class="col-2">
+                                        <div class="form-label-group">
+                                            <label class="inp">&nbsp; Levels :   </label>
+                                            <select class="form-control" style="border-radius:20px" name="level" #level="ngModel" [(ngModel)]="model.level">
+                                        <option value="1">Level 1</option>
+                                        <option value="2">Level 2</option>
+                                        <option value="3">Level 3</option>
+                            </select>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="col-2">
+                                        <div class="form-label-group">
+                                            <label class="inp">&nbsp;  Marks : </label>
+                                            <input type="number" class="form-control" name="marks" placeholder="Marks" #marks="ngModel" [(ngModel)]="model.marks">
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <br>
+                                <button style="width: 210px;border-radius: 5rem;" class="btn btn-lg btn-primary btn-block text-uppercase">Search Student</button>
+                            </form>
+                        </div>
+
+
+
+                        <div class="table-responsive" *ngIf="st">
+
+
+                            <table class="table table-striped" style="text-align: center;">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Student Id</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Email Id</th>
+                                        <th scope="col">Technology</th>
+                                        <th scope="col">Present Level</th>
+                                        <th scope="col">Marks</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of finalSlist">
+                                        <td>{{item.StudentId}}</td>
+                                        <td>{{item.Name}}</td>
+                                        <td>{{item.Email}}</td>
+                                        <td>{{item.Subject}}</td>
+                                        <td>{{item.Level}}</td>
+                                        <td>{{item.Marks}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    
 
-</div>
+
+
+
+
+
+</body>
+
+<footer>
+    <p>
+        <b>
+  © 2021 Larsen & Toubro Infotech Limited
+</b>
+    </p>
+</footer>

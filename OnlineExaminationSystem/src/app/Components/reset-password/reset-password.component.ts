@@ -68,11 +68,9 @@ export class ResetPasswordComponent implements OnInit {
       this.svc.SetNewPassword(this.stud1).subscribe((data:boolean)=>{
         if (data == true) {
           alert('Password is Updated');
-          this.router.navigate(['/Login']);
-
         }
         else {
-          alert('Password Updation failed!!');
+          alert('Enter correct OTP. Password Updation failed!!');
         }
 
       });

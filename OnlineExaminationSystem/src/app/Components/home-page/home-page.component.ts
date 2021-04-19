@@ -12,7 +12,7 @@ import {MylevelModule} from 'src/app/Modules/mylevel/mylevel.module';
 export class HomePageComponent implements OnInit {
   Report:boolean=false;
   i:number=1;
-  p:number=2;
+  p:number=1;
   buttondiv:boolean=true;
   AboutUs:boolean=false;
 
@@ -24,12 +24,12 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(sessionStorage.getItem('studid'));
-   
-    
+
+
   }
 logout():void
 {
-  
+
   //sessionStorage.setItem('studid',null);
   sessionStorage.removeItem('studid');
   console.log(sessionStorage.getItem('studid'));
@@ -53,20 +53,20 @@ logout():void
     this.studid=sessionStorage.getItem('studid');
     if(sessionStorage.getItem('studid')!=null)
     {
-     
+
     this.svc.MyReport(this.studid).subscribe((data:MyreportModule[])=>
     {
       //console.log(this.studid);
       this.replist=data;
       //console.log(this.replist);
       this.Report=true;
-      this.buttondiv=false;  
+      this.buttondiv=false;
       this.svc.MyLevel(this.studid).subscribe((data:MylevelModule[])=>
       {
         this.mylevlist=data;
       });
     });
-   
+
 }  else{
   alert("You are not loged In!!")
   this.router.navigate(['/Login']);

@@ -1,4 +1,4 @@
-.container {
+/* .container {
     border-style: solid;
     border-color: black;
     text-align: center;
@@ -22,11 +22,6 @@
     text-align: center;
 }
 
-
-/* #divone button {
-    position: absolute;
-    bottom: 0;
-} */
 
 #divtwo {
     margin-top: 10%;
@@ -58,4 +53,203 @@
 button:hover {
     background-color: darkred;
     transform: scale(1.2, 1.2);
+} */
+
+
+/* .container {
+    border-style: solid;
+    border-color: black;
+    text-align: center;
+    display: block;
+    width: 800px;
+    height: 600px;
+    margin-top: 20px;
+    background-color: rgb(243, 242, 242);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    ;
+}
+
+.menulist li {
+    float: left;
+    list-style: none;
+}
+
+.menulist li a {
+    text-decoration: none;
+    margin-left: 20px;
+    color: black;
+    font-weight: bold;
+}
+
+.menubutton {
+    float: right;
+}
+
+.menubutton a {
+    text-decoration: none;
+    margin-left: 20px;
+    height: 30px;
+    width: 50px;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: grey;
+    margin-right: 20px;
+    color: black;
+}
+
+.menu {
+    margin-bottom: 30px;
+}
+
+hr {
+    margin-top: 80px;
+    width: 100%;
+    border-color: Black;
+    border-style: solid;
+}
+
+.regsec {
+    text-align: justify;
+    width: 700px;
+    margin: auto;
+}
+
+.rowheadlen {
+    width: 300px;
+}
+
+span {
+    color: red;
+}
+
+
+/* td {
+    width: auto;
+} */
+
+
+/*
+input[type=text],
+input[type=email],
+input[type=number],
+input[type=date],
+input[type=month] {
+    padding: 3px;
+    width: 169px;
+    height: 15px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.button {
+    background-color: red;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: darkred;
+    transform: scale(1.2, 1.2);
+} */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.logo-image {
+    width: 120px;
+    height: 50px;
+    overflow: hidden;
+    margin-top: -6px;
+}
+
+:root {
+    --input-padding-x: 1.5rem;
+    --input-padding-y: .75rem;
+}
+
+.col-2 {
+    width: 50%;
+}
+
+body {
+    background: #007bff;
+    background: linear-gradient(135deg, #0d6efd, #a0c7e0);
+    height: auto;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #3687f5;
+    color: black;
+}
+
+.card-signin .card-img-left {
+    width: 45%;
+    /* Link to your background image using in the property below! */
+    background: scroll center url('https://source.unsplash.com/WEQbe2jBg40/414x512');
+    background-size: cover;
+}
+
+span {
+    color: red;
+    float: right;
+}
+
+.card-signin {
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.card-signin .card-title {
+    margin-bottom: 2rem;
+    font-weight: 300;
+    font-size: 1.5rem;
+}
+
+.card-signin {
+    padding: 2rem;
+}
+
+.card-body {
+    width: 100%;
+}
+
+.form-signin .btn {
+    font-size: 80%;
+    border-radius: 5rem;
+    letter-spacing: .1rem;
+    font-weight: bold;
+    padding: 1rem;
+    transition: all 0.2s;
+}
+
+.form-label-group {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.form-label-group input {
+    height: auto;
+    border-radius: 2rem;
+}
+
+.inp {
+    padding-bottom: 10px;
 }

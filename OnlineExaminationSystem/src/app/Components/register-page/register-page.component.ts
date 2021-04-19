@@ -32,7 +32,7 @@ export class RegisterPageComponent implements OnInit {
     YearOfCompletion:'string',
     Password:'string',
     LastLogin:new Date("10/12/2020"),
-    OTP:'string'
+    OTP:null
 
   };
 
