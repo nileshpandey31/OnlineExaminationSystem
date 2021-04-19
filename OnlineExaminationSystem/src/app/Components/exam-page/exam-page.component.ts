@@ -48,6 +48,8 @@ mylevel:number;
 flag:number=0;
 presentlevel:number;
 qusnlistbysublevel:any;
+revlist:any[];
+
 
 
 //Variable dclaration section end
@@ -192,6 +194,7 @@ this.qusnlistbysublevel=this.qusnlistbysub.filter(x=>x.Level==this.presentlevel+
   switchQsn(q:number):void
   {  this.cqno=q-1;
     this.cqid=this.qidlist[q-1];
+   
   }
 
   selectedlist(Opt:string):void
@@ -326,4 +329,5 @@ for(var l of this.levellist)
     
   }
 
+  
 }

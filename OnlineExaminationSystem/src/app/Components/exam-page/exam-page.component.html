@@ -140,8 +140,8 @@
     </h1>
     <hr/>
     
-    <div class="gridContainer">
-      <button class="qusngrid"  *ngFor="let item of gridnumber" (click)="switchQsn(item)">{{item}}</button>  
+    <div class="gridContainer" *ngFor="let item of gridnumber">
+      <button class="qusngrid"   (click)="switchQsn(item)" [ngClass]="{marked: selectoptionlist[this.cqno]}"> <span>{{item}}</span></button>  
     </div>
 
     <div class="question">
@@ -150,7 +150,7 @@
       
         
         <div *ngIf="item.QID==cqid">
-          <div class="review"><input type="checkbox" name="review">review</div>
+          <div class="review"><input type="checkbox" name="review" >review</div>
           <h3>Current Question {{cqno+1}}/{{lastqno}}</h3><br /><br />
           
           <p class="quest">{{item.Qsn}}</p><br /><br />
