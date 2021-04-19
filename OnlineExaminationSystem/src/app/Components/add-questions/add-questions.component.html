@@ -1,4 +1,306 @@
-<div class="container">
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Online Exam System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" [routerLink]="['/Home']">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="AboutUs=true;buttondiv=false;">About Us</a>
+                    </li>
+                </ul>
+
+                <div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/Home']">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+    <div *ngIf="AboutUs">
+        <hr>
+        <p><b>Wellcome to Easy Exam  System!!!</b></p>
+        <p>
+            This Online Examination System is helpful for students, companies or any organization to conduct any examinations from this site. In this age of increased competition, various companies, organization’s face a common problem of conducting online exam by
+            personally visiting to different colleges (in case of companies) for placement drives. this platform will help the deserving candidates to showcase their conceptual skills through an online exam, based on which, the companies can filter out
+            candidates according to their needs. Our Exam Management Software provides exams at the local level to facilitate examination. During the exam, strict guidelines are followed and the exam date timetable adheres to them. Our examination process
+            is fully automated and no manual intervention is required. Our software allows the proctored exam schedule where a level of exams can be taken. Exam Creator Software enables local and official exam creation where, teachers, administrators,s
+            or examiners can create exams based on school capacity and standards. The exam management system is best suited for graduate programs. Our exams can be conducted individually or as a group of students like classes.
+        </p>
+        <img [src]="myimg">
+        <button (click)="buttondiv=true;AboutUs=false;">Back</button>
+    </div>
+    <div style="padding-left: 100px;">
+
+        <button class="report" (click)="addsub=true ; fileupload=false; viewsubj= false"> ADD Subject</button>
+        <button class="report" (click)="fileupload=true ; addsub=false; viewsubj= false">Admin Question File</button>
+        <button class="report" (click)="viewsubj= true; fileupload=false ; addsub=false">View Subjects</button>
+
+    </div>
+
+
+
+    <!-- <div class="row row-space" style="padding: 100px;width: 100%;">
+        <div class="btnpostn1" style="margin-left: 300px;">
+
+        </div>
+
+        <div class="btnpostn2">
+        </div>
+    </div> -->
+
+
+
+    <div *ngIf="addsub">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-xl-9 mx-auto">
+                    <div class="card card-signin flex-row my-5">
+
+                        <div class="card-body">
+
+                            <form #Add="ngForm" name="Add" (ngSubmit)="AddSub(Add)">
+                                <div>
+
+                                    <div class="row row-space">
+                                        <div class="col-2">
+                                            <div class="form-label-group">
+                                                <label class="inp">&nbsp; Subject Name : </label><span *ngIf="sname.errors?.required && sname?.touched">&nbsp;&nbsp;&nbsp; * Subject Name cannot be blank</span>
+                                                <input type="text" class="form-control" placeholder="Subject Name" name="sname" [(ngModel)]="model.sname" #sname="ngModel" required>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-label-group">
+                                                <label class="inp">&nbsp; Total Marks : </label><span *ngIf="tmks.errors?.required && tmks?.touched">&nbsp;&nbsp;&nbsp; * Total Marks cannot be blank</span>
+                                                <input type="number" class="form-control" placeholder="Total Marks" name="tmks" [(ngModel)]="model.tmks" #tmks="ngModel" required>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row row-space">
+                                        <div class="col-2">
+                                            <div class="form-label-group">
+                                                <label class="inp">&nbsp; Passing Marks :  </label><span *ngIf="pmks.errors?.required && pmks?.touched">&nbsp;&nbsp;&nbsp; * Passing Marks cannot be blank</span>
+                                                <input type="number" class="form-control" placeholder="Passing Marks" name="pmks" [(ngModel)]="model.pmks" #pmks="ngModel" required>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-label-group">
+                                                <label class="inp">&nbsp; Exam Duration (in minutes) : </label><span *ngIf="dur.errors?.required && dur?.touched">&nbsp;&nbsp;&nbsp; * Exam Duration cannot be blank</span>
+                                                <input type="number" class="form-control" placeholder="Exam Duration" name="dur" [(ngModel)]="model.dur" #dur="ngModel" required>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-label-group">
+                                        <label class="inp">&nbsp; Test status : </label><span *ngIf="tstatus.errors?.required && tstatus?.touched">&nbsp;&nbsp;&nbsp; * Test status cannot be blank</span>
+
+                                        <select class="form-control" style="border-radius:20px" name="tstatus" [(ngModel)]="model.tstatus" #tstatus="ngModel" required>
+                                          <option value="enable">Enable</option>
+                                          <option value="disable">Disable</option>
+                                          </select>
+
+                                    </div>
+
+                                    <br>
+                                    <button style="width: 200px;border-radius: 5rem;" class="btn btn-lg btn-primary btn-block text-uppercase" name="Addbtn" value="Add Subject" [disabled]="Add.invalid">Add Subject</button>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div *ngIf="fileupload">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-xl-9 mx-auto">
+                    <div class="card card-signin flex-row my-5">
+
+                        <div class="card-body">
+                            <form #fileform="ngForm" name="fileform" (ngSubmit)="uploadFile(fileform)">
+
+                                <div class="form-label-group">
+
+                                    <label class="form-label">&nbsp; Question Set Excel File :</label>
+                                    <input type="file" class="form-control" #fileInput required />
+                                    <!-- <input class="form-control" type="file" #fileInput required class="file" /> -->
+
+                                </div>
+
+                                <div class="form-label-group">
+                                    <label class="inp">&nbsp; Subject Name :  </label>
+
+                                    <select class="form-control" style="border-radius:20px" name="subject" #subject="ngModel" [(ngModel)]="model.subject" required>
+                                        <option *ngFor="let item of slist" [value]="item.SubjectId">{{item.Subject}}</option>
+                                        </select>
+                                </div>
+
+                                <button style="width: 200px;border-radius: 5rem;" class="btn btn-lg btn-primary btn-block text-uppercase" name="Addbtn" value="Add Excel File" [disabled]="fileform.invalid">Add Excel File</button>
+
+                                <div>
+                                    <h4 class="alert-success">{{message}}</h4>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div *ngIf="viewsubj">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-xl-9 mx-auto">
+                    <div class="card card-signin flex-row my-5">
+
+                        <div class="card-body">
+
+                            <div class="table-responsive" *ngIf="tablevisible">
+
+                                <table class="table table-striped" style="text-align: center;">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Subject ID</th>
+                                            <th scope="col">Subject</th>
+                                            <th scope="col">Total mark</th>
+                                            <th scope="col">Passing mark</th>
+                                            <th scope="col">Exam Duration</th>
+                                            <th scope="col">Tstatus</th>
+                                            <th scope="col">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let subj of slist; let j=index">
+                                            <td>{{subj.SubjectId}}</td>
+                                            <td>{{subj.Subject}}</td>
+                                            <td>{{subj.TotalMark}}</td>
+                                            <td>{{subj.PassingMark}}</td>
+                                            <td>{{subj.ExamDuration}}</td>
+                                            <td>{{subj.TStatus}}</td>
+                                            <td><button class="updatebtn" (click)="Update(subj,j)">Update</button> | <button class="deletebtn text-uppercase" (click)="Update(subj,j)">Delete</button>
+                                            </td>
+                                            <!-- | <button (click)="delete(subj.SubjectId)">Delete</button> -->
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <br><br>
+
+                            <div *ngIf="updateformvisible">
+                                <form #UpdateForm="ngForm" name="UpdateForm" (ngSubmit)="UpdateSubmit(UpdateForm)">
+                                    <div style="margin-left: 150px;">
+                                        <table>
+                                            <tr>
+                                                <td class="rowheadlen"><label><b>Subject Name : </b></label></td>
+                                                <td>
+                                                    <input type="text" placeholder="Subject Name" name="sname" [(ngModel)]="update.sname" #sname="ngModel" readonly>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><label><b>Total Marks : </b></label></td>
+                                                <td>
+                                                    <input type="number" placeholder="Total Marks" name="tmks" [(ngModel)]="update.tmks" #tmks="ngModel">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><label><b>Passing Marks : </b></label></td>
+                                                <td>
+                                                    <input type="number" placeholder="Passing Marks" name="pmks" [(ngModel)]="update.pmks" #pmks="ngModel">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><label><b>Exam Duration : </b></label></td>
+                                                <td>
+                                                    <input type="number" placeholder="Exam Duration" name="dur" [(ngModel)]="update.dur" #dur="ngModel">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><label><b>Test status : </b></label></td>
+                                                <td>
+                                                    <select name="tstatus" [(ngModel)]="update.tstatus" #tstatus="ngModel">
+                                        <option value="enable">Enable</option>
+                                        <option value="disable">Disable</option>
+                                        </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td><input type="submit" name="Update" value="Update"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </form>
+                            </div>
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+<footer>
+    <p>
+        <b>
+  © 2021 Larsen & Toubro Infotech Limited
+</b>
+    </p>
+</footer>
+
+
+<!-- <div class="container">
 
     <div class="menu">
         <ol class="menulist">
@@ -38,7 +340,7 @@
         </form>
     </div>
 
-    <!-- div tag for add subject -->
+
 
     <div *ngIf="addsub">
 
@@ -144,7 +446,7 @@
                     <td>{{subj.ExamDuration}}</td>
                     <td>{{subj.TStatus}}</td>
                     <td><button (click)="Update(subj,j)">Update</button></td>
-                    <!-- | <button (click)="delete(subj.SubjectId)">Delete</button> -->
+                    | <button (click)="delete(subj.SubjectId)">Delete</button>
                 </tr>
             </table>
         </div>
@@ -199,4 +501,4 @@
     </div>
 
 
-</div>
+</div>  -->

@@ -8,6 +8,8 @@ import{QusnInfoService} from 'src/app/Services/qusn-info.service';
   styleUrls: ['./remove-questions.component.css']
 })
 export class RemoveQuestionsComponent implements OnInit {
+  buttondiv:boolean=true;
+  AboutUs:boolean=false;
   model:any=[];
   svc:QusnInfoService;
   qm=new QusnInfoModule;
@@ -17,43 +19,43 @@ export class RemoveQuestionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.qm.SubjectId;
-    
+
     this.svc.ShowQst().subscribe((data:QusnInfoModule[])=>
     {
-  
+
       this.qlist=data;
-     
-      
+
+
     });
-    
+
     this.svc.ShowUQst().subscribe((data:QusnInfoModule[])=>
     {
-  
+
       this.plist=data;
       console.log(this.plist)
-      
-      
+
+
     });
-   
+
 
   }
   DeleteByName(Deleteform: NgForm):void
   {
     console.log(Deleteform.value);
-    
-    
-   
+
+
+
     this.qm.SubjectId=Deleteform.value.fid;
-    
+
     this.svc.DeleteQuestion(this.qm.SubjectId).subscribe((data:boolean)=>
     {
       if(data==true)
 {
-      
+
       alert( this.qm.SubjectId+"deleted successfully");
       location.reload();
 }
-      else 
+      else
       {
       alert( this.qm.SubjectId+"invalid credential ");
       location.reload();location.reload();

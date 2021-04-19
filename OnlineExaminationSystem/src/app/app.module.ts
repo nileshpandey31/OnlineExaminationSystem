@@ -4,6 +4,9 @@ import { FormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
+
 
 import { HomePageComponent } from './Components/home-page/home-page.component';
 import { RegisterPageComponent } from './Components/register-page/register-page.component';
@@ -18,6 +21,7 @@ import { RemoveQuestionsComponent } from './Components/remove-questions/remove-q
 import { NgxCaptchaModule } from 'ngx-captcha';
 import{CountdownModule} from 'ngx-countdown';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
     HttpClientModule,
     NgxCaptchaModule,
     CountdownModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    BrowserAnimationsModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

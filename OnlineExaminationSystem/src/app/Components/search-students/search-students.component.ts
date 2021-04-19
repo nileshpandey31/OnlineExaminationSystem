@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import {StudentInfoService} from '../../Services/student-info.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';  
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {NgForm} from '@angular/forms';
 import { QusnInfoService } from 'src/app/Services/qusn-info.service';
 import {AddSubModule} from 'src/app/Modules/add-sub/add-sub.module';
@@ -14,6 +14,10 @@ import {SelectStudentModule} from '../../Modules/select-student/select-student.m
   styleUrls: ['./search-students.component.css']
 })
 export class SearchStudentsComponent implements OnInit {
+
+
+  buttondiv:boolean=true;
+  AboutUs:boolean=false;
 
   model:any=[];
   slist = new SelectStudentModule();
@@ -29,7 +33,7 @@ export class SearchStudentsComponent implements OnInit {
   countryInfo: any[] = [];
   cityInfo: any[] = [];
 
-  constructor(private http: HttpClient, private service: QusnInfoService ) 
+  constructor(private http: HttpClient, private service: QusnInfoService )
   {  }
 
   ngOnInit(): void {
@@ -38,7 +42,7 @@ export class SearchStudentsComponent implements OnInit {
     {
       this.Techlist=data;
     });
-   
+
   }
   getCountries(){
     this.service.allCountries().
@@ -82,7 +86,7 @@ export class SearchStudentsComponent implements OnInit {
      else
        alert("Match found ");
    });
-   
+
    this.st=true;
    this.sf=false;
  }
