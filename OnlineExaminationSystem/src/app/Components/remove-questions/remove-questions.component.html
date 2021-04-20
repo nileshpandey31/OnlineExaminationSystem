@@ -10,11 +10,9 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" style="color: black" aria-current="page" [routerLink]="['/Home']">Home</a>
+                        <a class="nav-link active" aria-current="page" [routerLink]="['/AdminHome']">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" (click)="AboutUs=true;buttondiv=false;">About Us</a>
-                    </li>
+
                 </ul>
 
                 <div>
@@ -31,32 +29,6 @@
             </div>
         </div>
     </nav>
-
-    <div *ngIf="AboutUs">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 col-xl-9 mx-auto">
-                    <div class="card card-signin flex-row my-5">
-
-                        <div class="card-body">
-                            <p><b>Wellcome to Easy Exam  System!!!</b></p>
-                            <p>
-                                This Online Examination System is helpful for students, companies or any organization to conduct any examinations from this site. In this age of increased competition, various companies, organization’s face a common problem of conducting online exam by
-                                personally visiting to different colleges (in case of companies) for placement drives. this platform will help the deserving candidates to showcase their conceptual skills through an online exam, based on which, the companies
-                                can filter out candidates according to their needs. Our Exam Management Software provides exams at the local level to facilitate examination. During the exam, strict guidelines are followed and the exam date timetable adheres
-                                to them. Our examination process is fully automated and no manual intervention is required. Our software allows the proctored exam schedule where a level of exams can be taken. Exam Creator Software enables local and official
-                                exam creation where, teachers, administrators,s or examiners can create exams based on school capacity and standards. The exam management system is best suited for graduate programs. Our exams can be conducted individually
-                                or as a group of students like classes.
-                            </p>
-                            <img [src]="myimg">
-                            <button style="width: 180px;border-radius: 5rem;" class="btn btn-lg btn-primary btn-block text-uppercase" (click)="buttondiv=true;AboutUs=false;">Back</button>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 
@@ -89,33 +61,10 @@
 
 </body>
 
-<footer>
+<footer style="background-color: #153461;">
     <p>
         <b>
-  © 2021 Larsen & Toubro Infotech Limited
-</b>
+    © 2021 Larsen & Toubro Infotech Limited
+  </b>
     </p>
 </footer>
-
-
-
-
-
-
-
-
-<!-- <div class="container">
-
-    <div class="menu">
-        <ol class="menulist">
-            <li>
-                <a [routerLink]="['/Home']">Home</a>
-            </li>
-        </ol>
-        <div class="menubutton">
-            <a [routerLink]="['/Home']">Logout</a>
-        </div>
-    </div>
-    <hr>
-
-</div> -->

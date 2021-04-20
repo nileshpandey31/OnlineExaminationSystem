@@ -1,57 +1,24 @@
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #153461;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Online Exam System</a>
+            <a class="navbar-brand" href="#">
+                <div class="logo-image"> <img src="../../../assets/logo.jpeg " class="img-fluid"></div>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span>
 </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <div>
+
+                <ul class="nav navbar-nav navbar-right">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" [routerLink]="['/Home']">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" (click)="AboutUs=true;buttondiv=false;">About Us</a>
+                        <a class="nav-link btn btn-danger" (click)="logout()">Logout</a>
                     </li>
                 </ul>
 
-                <div>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/Home']" (click)=logout()>Logout</a>
-                        </li>
-                    </ul>
-                </div>
 
             </div>
         </div>
     </nav>
-    <div *ngIf="AboutUs">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 col-xl-9 mx-auto">
-                    <div class="card card-signin flex-row my-5">
-
-                        <div class="card-body">
-                            <p><b>Wellcome to Easy Exam  System!!!</b></p>
-                            <p>
-                                This Online Examination System is helpful for students, companies or any organization to conduct any examinations from this site. In this age of increased competition, various companies, organization’s face a common problem of conducting online exam by
-                                personally visiting to different colleges (in case of companies) for placement drives. this platform will help the deserving candidates to showcase their conceptual skills through an online exam, based on which, the companies
-                                can filter out candidates according to their needs. Our Exam Management Software provides exams at the local level to facilitate examination. During the exam, strict guidelines are followed and the exam date timetable adheres
-                                to them. Our examination process is fully automated and no manual intervention is required. Our software allows the proctored exam schedule where a level of exams can be taken. Exam Creator Software enables local and official
-                                exam creation where, teachers, administrators,s or examiners can create exams based on school capacity and standards. The exam management system is best suited for graduate programs. Our exams can be conducted individually
-                                or as a group of students like classes.
-                            </p>
-                            <img [src]="myimg">
-                            <button (click)="buttondiv=true;AboutUs=false;">Back</button>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
 
     <div class="container">
@@ -63,8 +30,13 @@
                         <div>
                             <div class="examlist" *ngIf="examlist">
 
+                                <a>
+                                    <div [routerLink]="['/Home']"> <img style="width: 40px;float: left;" src="../../../assets/left-arrow.png "></div>
+                                </a>
+
+
                                 <h1 style="text-align: center;">Select Exam</h1>
-                                <!-- <h2><a [routerLink]="['/Home']" (click)=logout()>logout</a></h2> -->
+                                <!-- <h2><a [routerLink]="['/Home']" (click)=logout()>logout</a></h2>  -->
                                 <br>
 
                                 <div *ngFor="let item of slist">
@@ -76,6 +48,10 @@
                             <div class="instruction" *ngIf="instruction && presentlevel!=3">
 
                                 <!-- <h2><a [routerLink]="['/Home']">logout</a></h2> -->
+                                <a>
+                                    <div (click)="examlist=true;instruction=false;"> <img style="width: 40px;float: left;" src="../../../assets/left-arrow.png "></div>
+                                </a>
+
                                 <h1 style="text-align: center;">Instruction For Test</h1>
                                 <div>
                                     <ul>
@@ -209,7 +185,7 @@
                                             <div *ngIf="(presentlevel+1)==3">
                                                 <h1 style="text-align: center;">Congrats for clearing all level</h1>
                                             </div>
-                                            
+
 
 
                                         </div>
@@ -257,12 +233,10 @@
                                 </div>
                             </div>
 
-
-
                             <div *ngIf="presentlevel==3">
                                 <div *ngIf="examlist!=true">
                                     <h1>You Have cleared all the level of this Subject !! Pls Explore Other Subject</h1>
-                                    <button (click)="examlist=true">Back</button>
+                                    <button style="width: 200px;border-radius: 5rem;" class="btn btn-lg btn-primary btn-block text-uppercase" (click)="examlist=true">Back</button>
                                 </div>
                             </div>
 
@@ -274,25 +248,10 @@
     </div>
 </body>
 
-<footer>
+<footer style="background-color: #153461;">
     <p>
         <b>
-  © 2021 Larsen & Toubro Infotech Limited
-</b>
+    © 2021 Larsen & Toubro Infotech Limited
+  </b>
     </p>
 </footer>
-
-
-
-
-
-
-
-<div class="container">
-
-
-
-
-
-
-</div>

@@ -103,7 +103,7 @@ export class RegisterPageComponent implements OnInit {
   var encryptedPassword = window.btoa(rsa.encrypt(Reg.value.pass));
   this.stud.Password=encryptedPassword;
 
-  
+
   this.svc.RegisterStudent(this.stud).subscribe((data:boolean)=>{alert(data);
     if(data==true)
     {

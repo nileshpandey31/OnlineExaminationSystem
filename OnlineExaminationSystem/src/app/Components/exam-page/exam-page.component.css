@@ -132,6 +132,13 @@ table{
 
  */
 
+.logo-image {
+    width: 120px;
+    height: 50px;
+    overflow: hidden;
+    margin-top: -6px;
+}
+
 .review {
     float: right;
     font-size: larger;
@@ -221,7 +228,7 @@ input::-webkit-inner-spin-button {
 body {
     background: #007bff;
     background: linear-gradient(135deg, #0d6efd, #a0c7e0);
-    height: auto;
+    height: 150%;
 }
 
 footer {
