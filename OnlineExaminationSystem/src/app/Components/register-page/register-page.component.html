@@ -1,14 +1,16 @@
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #153461;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Online Exam System</a>
+            <a class="navbar-brand" href="#">
+                <div class="logo-image"> <img src="../../../assets/logo.jpeg " class="img-fluid"></div>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
+<span class="navbar-toggler-icon"></span>
 </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" [routerLink]="['/Home']">Home</a>
+                        <a class="nav-link active" aria-current="page" (click)="buttondiv=true;AboutUs=false;" [routerLink]="['/Home']">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" (click)="AboutUs=true;buttondiv=false;">About Us</a>
@@ -16,29 +18,43 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/Login']">Login</a>
-                    </li>
+                        <a class="nav-link btn btn-success" [routerLink]="['/Login']">Login</a>
+                    </li>&nbsp;&nbsp;
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/Register']">Register</a>
+                        <a class="nav-link btn btn-success" (click)="buttondiv=true;AboutUs=false;" [routerLink]="['/Register']">Register</a>
                     </li>
+
                 </ul>
+
             </div>
         </div>
     </nav>
-    <div *ngIf="AboutUs">
-        <hr>
-        <p><b>Wellcome to Easy Exam  System!!!</b></p>
-        <p>
-            This Online Examination System is helpful for students, companies or any organization to conduct any examinations from this site. In this age of increased competition, various companies, organization’s face a common problem of conducting online exam by
-            personally visiting to different colleges (in case of companies) for placement drives. this platform will help the deserving candidates to showcase their conceptual skills through an online exam, based on which, the companies can filter out
-            candidates according to their needs. Our Exam Management Software provides exams at the local level to facilitate examination. During the exam, strict guidelines are followed and the exam date timetable adheres to them. Our examination process
-            is fully automated and no manual intervention is required. Our software allows the proctored exam schedule where a level of exams can be taken. Exam Creator Software enables local and official exam creation where, teachers, administrators,s
-            or examiners can create exams based on school capacity and standards. The exam management system is best suited for graduate programs. Our exams can be conducted individually or as a group of students like classes.
-        </p>
-        <img [src]="myimg">
-        <button (click)="buttondiv=true;AboutUs=false;">Back</button>
-    </div>
 
+    <div *ngIf="AboutUs">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-xl-9 mx-auto">
+                    <div class="card card-signin flex-row my-5">
+
+                        <div class="card-body">
+                            <p><b>Wellcome to Easy Exam  System!!!</b></p>
+                            <p>
+                                This Online Examination System is helpful for students, companies or any organization to conduct any examinations from this site. In this age of increased competition, various companies, organization’s face a common problem of conducting online exam by
+                                personally visiting to different colleges (in case of companies) for placement drives. this platform will help the deserving candidates to showcase their conceptual skills through an online exam, based on which, the companies
+                                can filter out candidates according to their needs. Our Exam Management Software provides exams at the local level to facilitate examination. During the exam, strict guidelines are followed and the exam date timetable adheres
+                                to them. Our examination process is fully automated and no manual intervention is required. Our software allows the proctored exam schedule where a level of exams can be taken. Exam Creator Software enables local and official
+                                exam creation where, teachers, administrators,s or examiners can create exams based on school capacity and standards. The exam management system is best suited for graduate programs. Our exams can be conducted individually
+                                or as a group of students like classes.
+                            </p>
+
+                            <button style="width: 180px;border-radius: 5rem;" class="btn btn-lg btn-primary btn-block text-uppercase" (click)="buttondiv=true;AboutUs=false;">Back</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="container">
         <div class="row">
@@ -81,28 +97,39 @@
 
                                 </div>
                             </div>
+
+                            <!-- <div class="form-label-group">
+                              <label class="inp">&nbsp; State :   </label>
+                              <select class="form-control" style="border-radius:20px" name="state" (change)="onChangeState($event.target.value)" #state="ngModel" [(ngModel)]="model.state" required>
+                          <option value="" disabled selected>--Select State--</option>
+                          <option *ngFor="let state of stateInfo; let j = index" value="{{j}}">{{state.StateName}}</option>
+              </select>
+                          </div> -->
+
                             <div class="row row-space">
                                 <div class="col-2">
                                     <div class="form-label-group">
                                         <label class="inp">&nbsp; State : </label>
                                         <span *ngIf="state.errors?.required && state?.touched">
-                        &nbsp;&nbsp;*State cannot be blank
+                      &nbsp;&nbsp;*State cannot be blank
                     </span>
-                    <select class="form-control" name="state" (change)="onChangeState($event.target.value)" #state="ngModel"  [(ngModel)]="model.state" required >
-                        <option value="" disabled selected>--Select State--</option>
-                        <option *ngFor="let state of stateInfo; let j = index" value="{{j}}">{{state.StateName}}</option>
-                      </select></div>
+                                        <select class="form-control" style="border-radius:20px" name="state" (change)="onChangeState($event.target.value)" #state="ngModel" [(ngModel)]="model.state" required>
+                      <option value="" disabled selected>--Select State--</option>
+                      <option *ngFor="let state of stateInfo; let j = index" value="{{j}}">{{state.StateName}}</option>
+                    </select>
+                                    </div>
                                 </div>
                                 <div class="col-2">
                                     <div class="form-label-group">
                                         <label class="inp">&nbsp; City :</label>
                                         <span *ngIf="city.errors?.required && city?.touched">
-                        &nbsp;&nbsp;*City cannot be blank
+                      &nbsp;&nbsp;*City cannot be blank
                     </span>
-                    <select class="form-control" name="city" #city="ngModel"  [(ngModel)]="model.city">
-                        <option value="" disabled selected>--Select CIty--</option>
-                      <option *ngFor="let city of cityInfo; let k = index" value="{{city}}">{{city}}</option>
-                    </select></div>
+                                        <select class="form-control" class="form-control" style="border-radius:20px" name="city" #city="ngModel" [(ngModel)]="model.city">
+                                          <option value="" disabled selected>--Select CIty--</option>
+                                        <option *ngFor="let city of cityInfo; let k = index" value="{{city}}">{{city}}</option>
+                                      </select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row row-space">
@@ -121,20 +148,21 @@
                                         <span *ngIf="qual.errors?.required && qual?.touched">
                         &nbsp;&nbsp;*Qualification cannot be blank
                     </span>
-                    <select name="qual" name="qual" [(ngModel)]="model.qual" #qual="ngModel" required>
-                        <option value="BE CE">BE CE</option>
-                        <option value="BE IT" >BE IT</option>
-                        <option value="BE EXTC">BE EXTC</option>
-                        <option value="BTech CS">BTech CS</option>
-                        <option value="BTech IT">BTech IT</option>
-                        <option value="BTech EXTC">BTech EXTC</option>
-                        <option value="Diploma CS">Diploma CS</option>
-                        <option value="Diploma IT">Diploma IT</option>
-                        <option value="Diploma EXTC">Diploma EXTC</option>
-                        <option value="B.Sc CS">B.Sc CS</option>
-                        <option value="B.Sc IT">B.Sc IT</option>
-                      </select>
-                     </div>
+                                        <select class="form-control" style="border-radius:20px" name="qual" name="qual" [(ngModel)]="model.qual" #qual="ngModel" required>
+                                          <option value="" disabled selected >--Select your Qualification--</option>
+                                          <option value="BE CE">BE CE</option>
+                      <option value="BE IT" >BE IT</option>
+                      <option value="BE EXTC">BE EXTC</option>
+                      <option value="BTech CS">BTech CS</option>
+                      <option value="BTech IT">BTech IT</option>
+                      <option value="BTech EXTC">BTech EXTC</option>
+                      <option value="Diploma CS">Diploma CS</option>
+                      <option value="Diploma IT">Diploma IT</option>
+                      <option value="Diploma EXTC">Diploma EXTC</option>
+                      <option value="B.Sc CS">B.Sc CS</option>
+                      <option value="B.Sc IT">B.Sc IT</option>
+                    </select>
+                                    </div>
                                 </div>
                             </div>
 
@@ -213,199 +241,10 @@
 
 </body>
 
-<footer>
+<footer style="background-color: #153461;">
     <p>
         <b>
-      © 2021 Larsen & Toubro Infotech Limited
-    </b>
+    © 2021 Larsen & Toubro Infotech Limited
+  </b>
     </p>
 </footer>
-
-<!-- <div class="container">
-    <div class="menu">
-        <ol class="menulist">
-            <li>
-                <a [routerLink]="['/Home']">Home</a>
-            </li>
-            <li>
-                <a href="#">AboutUs</a>
-            </li>
-        </ol>
-        <div class="menubutton">
-            <a [routerLink]="['/Login']">Login</a>
-        </div>
-    </div>
-
-    <hr>
-
-    <form #Reg="ngForm" name="Reg" (ngSubmit)="RegData(Reg)">
-        <div class="regsec">
-            <br>
-            <fieldset>
-                <legend>Register</legend>
-                <table>
-                    <tr>
-                        <td class="rowheadlen"><label><b>Full Name : </b></label></td>
-                        <td>
-                            <input type="text" placeholder="Enter Your Full Name" name="name" [(ngModel)]="model.name" #name="ngModel" required>
-                        </td>
-                        <td>
-                            <span *ngIf="name.errors?.required && name?.touched">
-                                &nbsp;&nbsp;*Name cannot be blank
-                            </span>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td><label><b>Email : </b></label></td>
-                        <td class="iplen">
-                            <input type="email" placeholder="Enter Email ID" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="model.Email" #Email="ngModel" required>
-                        </td>
-                        <td>
-                            <span *ngIf="Email.errors?.required && Email?.touched">
-                                &nbsp;&nbsp;*Email cannot be blank
-                            </span>
-                            <span *ngIf="Email.errors?.pattern">
-                                &nbsp;&nbsp;*Invalid Format
-                            </span>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td><label><b>Mobile Number : </b></label></td>
-                        <td>
-                            <input type="number" placeholder="Enter Mobile Number" name="mobno" [(ngModel)]="model.mobno" #mobno="ngModel" pattern="^[0-9]{10}$" required>
-                        </td>
-                        <td>
-                            <span *ngIf="mobno.errors?.required && mobno?.touched">
-                                &nbsp;&nbsp;*Mobile no cannot be blank
-                            </span>
-                            <span *ngIf="mobno.errors?.pattern">
-                                &nbsp;&nbsp;*Mobile no has to be numeric and of 10 digits
-                            </span>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td><label><b>City : </b></label></td>
-                        <td>
-                            <input type="text" placeholder="Enter City" name="city" [(ngModel)]="model.city" #city="ngModel" required>
-                        </td>
-                        <td>
-                            <span *ngIf="city.errors?.required && city?.touched">
-                                &nbsp;&nbsp;*City cannot be blank
-                            </span>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td><label><b>State : </b></label></td>
-                        <td>
-                            <input type="text" placeholder="Enter State" name="state" [(ngModel)]="model.state" #state="ngModel" required>
-                        </td>
-                        <td>
-                            <span *ngIf="state.errors?.required && state?.touched">
-                                &nbsp;&nbsp;*State cannot be blank
-                            </span>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td><label><b>DOB : </b></label></td>
-                        <td>
-                            <input type="date" placeholder="Enter Your Date Of Birth" name="dob" [(ngModel)]="model.dob" #dob="ngModel" required>
-
-                        </td>
-                        <td>
-                            <span *ngIf="dob.errors?.required && dob?.touched">
-                                &nbsp;&nbsp;*Date Of Birth cannot be blank
-                            </span>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td><label><b>Qualification : </b></label></td>
-                        <td>
-                            <input type="text" placeholder="Enter Qualification" name="qual" [(ngModel)]="model.qual" #qual="ngModel" required>
-                        </td>
-                        <td>
-                            <span *ngIf="qual.errors?.required && qual?.touched">
-                                &nbsp;&nbsp;*Qualification cannot be blank
-                            </span>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td><label><b>College Name : </b></label></td>
-                        <td>
-                            <input type="text" placeholder="Enter College Name" name="clg" [(ngModel)]="model.clg" #clg="ngModel" required>
-                        </td>
-                        <td>
-                            <span *ngIf="clg.errors?.required && clg?.touched">
-                                &nbsp;&nbsp;*College Name cannot be blank
-                            </span>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td><label><b>Year of Completion : </b></label></td>
-                        <td>
-                            <input type="month" placeholder="Enter Year Of Completion" name="yoc" [(ngModel)]="model.yoc" #yoc="ngModel" required>
-                        </td>
-                        <td>
-                            <span *ngIf="yoc.errors?.required && yoc?.touched">
-                                &nbsp;&nbsp;*Year Of Completion cannot be blank
-                            </span>
-
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td><label><b>Password : </b></label></td>
-                        <td>
-
-                            <input type="password" placeholder="Enter Password" name="pass" [(ngModel)]="model.pass" #pass="ngModel" minlength="4" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%?&])[A-Za-z0-9@$!%?&]{4,8}$" required>
-
-                        </td>
-                        <td style="width: 500px;">
-
-                            <span *ngIf="pass.errors?.required && pass?.touched">
-                                &nbsp;&nbsp;*Password cannot be blank
-                            </span>
-
-                            <span *ngIf="pass.errors?.pattern">
-                                &nbsp;&nbsp;*Password should have minimum 1 in all of these uppercase, lowercase, digits and special characters
-                            </span>
-
-                            <br>
-
-                            <span *ngIf="pass.errors?.minlength">
-                                &nbsp;&nbsp;*Miinimum password length must be 4 characters
-                            </span>
-
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" name="cap" [(ngModel)]="model.cap" #cap="ngModel" required>
-                                <span *ngIf="cap.errors?.required"></span>
-                            </ngx-recaptcha2>
-                        </td>
-                    </tr>
-
-
-                    <tr>
-                        <td></td>
-                        <td><input type="submit" class="button" name="Reg" [disabled]="Reg.invalid"></td>
-                    </tr>
-
-                </table>
-
-            </fieldset>
-
-        </div>
-
-    </form>
-
-</div> -->

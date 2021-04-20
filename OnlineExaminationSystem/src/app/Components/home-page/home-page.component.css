@@ -111,7 +111,7 @@ input::-webkit-inner-spin-button {
 body {
     background: #007bff;
     background: linear-gradient(135deg, #0d6efd, #a0c7e0);
-    height: 150%;
+    height: 100%;
 }
 
 footer {
