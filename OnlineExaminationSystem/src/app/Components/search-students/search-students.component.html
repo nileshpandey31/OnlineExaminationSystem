@@ -71,7 +71,7 @@
 
                                 <div class="form-label-group">
                                     <label class="inp">&nbsp; Technology :   </label>
-                                    <select class="form-control" style="border-radius:20px" name="tech" #tech="ngModel" [(ngModel)]="model.tech" (click)="onChangeCountry()" required>
+                                    <select class="form-control" style="border-radius:20px" name="tech" #tech="ngModel" [(ngModel)]="model.tech" required>
                                 <option value="{{item.Subject}}" *ngFor="let item of Techlist">{{item.Subject}}</option>
                                 </select>
                                 </div>
@@ -82,7 +82,7 @@
                                     <div class="col-2">
                                         <div class="form-label-group">
                                             <label class="inp">&nbsp; State :   </label>
-                                            <select class="form-control" style="border-radius:20px" name="state" (change)="onChangeState($event.target.value)" #state="ngModel" [(ngModel)]="model.state" required>
+                                            <select class="form-control" style="border-radius:20px" name="state"  (focus)="onChangeCountry()" (change)="onChangeState($event.target.value)" #state="ngModel" [(ngModel)]="model.state" required>
                                         <option value="" disabled selected>--Select State--</option>
                                         <option *ngFor="let state of stateInfo; let j = index" value="{{j}}">{{state.StateName}}</option>
                             </select>

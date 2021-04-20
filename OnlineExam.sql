@@ -361,23 +361,91 @@ create or alter proc sp_UpdateSubject(@SubjectId int,@Subject varchar(20),@Total
 
 	--------------
 
-	CREATE OR ALTER PROC sp_searchStudent(@subject varchar(30) = 'java',
-							 @state varchar(30) = 'maharashtra', 
-							 @city varchar(30) = 'mumbai',
-							 @Level int = 1, 
+	CREATE OR ALTER PROC sp_searchStudent(@subject varchar(30) = null,
+							 @state varchar(30) = null, 
+							 @city varchar(30) = null,
+							 @Level int = 0, 
 							 @marks int = 0)
 AS
 BEGIN
+
+	--condition 1
+
+	if @subject is not null and @state is not null and @city is not null
+	begin
 	SELECT DISTINCT s.StudentId,s.Name, s.Email,t.Subject,l.Level ,r.Marks
 	FROM 
 	Student s inner join 
 	LevelTable l on s.StudentId=l.Studentid and l.Level>=@level and s.State=@state and s.city=@city inner join 
 	TestSubject t on t.SubjectId=l.SubjectId and t.Subject=@subject inner join 
 	ReportCard r on r.Subjectid=t.Subjectid and r.Marks>=@marks and r.StudentId=s.StudentId
+	end
+
+	---condition 2
+
+	if @state is null and @city is null
+	begin
+	SELECT DISTINCT s.StudentId,s.Name, s.Email,t.Subject,l.Level ,r.Marks
+	FROM 
+	Student s inner join 
+	LevelTable l on s.StudentId=l.Studentid and l.Level>=@level   inner join 
+	TestSubject t on t.SubjectId=l.SubjectId and t.Subject=@subject inner join 
+	ReportCard r on r.Subjectid=t.Subjectid and r.Marks>=@marks and r.StudentId=s.StudentId
+	end
+
+
+
+
+
+-------condition 5
+	if @city is null and  @state is null and @subject is null
+	begin
+	SELECT DISTINCT s.StudentId,s.Name, s.Email,t.Subject,l.Level ,r.Marks
+	FROM 
+	Student s inner join 
+	LevelTable l on s.StudentId=l.Studentid and l.Level>=@level inner join 
+	TestSubject t on t.SubjectId=l.SubjectId inner join 
+	ReportCard r on r.Subjectid=t.Subjectid and r.Marks>=@marks and r.StudentId=s.StudentId
+	end
+
+--- condition 3
+	if @subject is null and @city is null
+	begin
+	SELECT DISTINCT s.StudentId,s.Name, s.Email,t.Subject,l.Level ,r.Marks
+	FROM 
+	Student s inner join 
+	LevelTable l on s.StudentId=l.Studentid and l.Level>=@level and s.State=@state inner join 
+	TestSubject t on t.SubjectId=l.SubjectId  inner join 
+	ReportCard r on r.Subjectid=t.Subjectid and r.Marks>=@marks and r.StudentId=s.StudentId
+	end
+
+----- condition 4
+	if @city is null
+	begin
+	SELECT DISTINCT s.StudentId,s.Name, s.Email,t.Subject,l.Level ,r.Marks
+	FROM 
+	Student s inner join 
+	LevelTable l on s.StudentId=l.Studentid and l.Level>=@level and s.State=@state inner join 
+	TestSubject t on t.SubjectId=l.SubjectId and t.Subject=@subject inner join 
+	ReportCard r on r.Subjectid=t.Subjectid and r.Marks>=@marks and r.StudentId=s.StudentId
+	end
+
+
+
+------- condition 6
+	if @subject is null
+	begin
+	SELECT DISTINCT s.StudentId,s.Name, s.Email,t.Subject,l.Level ,r.Marks
+	FROM 
+	Student s inner join 
+	LevelTable l on s.StudentId=l.Studentid and l.Level>=@level and s.State=@state and s.city=@city inner join 
+	TestSubject t on t.SubjectId=l.SubjectId inner join 
+	ReportCard r on r.Subjectid=t.Subjectid and r.Marks>=@marks and r.StudentId=s.StudentId
+	end
 END
 
 
-exec sp_searchStudent
+exec sp_searchStudent @level=1,@subject='java';
 
 -----------------------------							 
 	

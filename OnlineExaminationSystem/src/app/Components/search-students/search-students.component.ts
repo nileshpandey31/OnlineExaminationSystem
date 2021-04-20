@@ -8,6 +8,7 @@ import {AddSubModule} from 'src/app/Modules/add-sub/add-sub.module';
 import {SelectStudentModule} from '../../Modules/select-student/select-student.module';
 
 
+
 @Component({
   selector: 'app-search-students',
   templateUrl: './search-students.component.html',
@@ -15,12 +16,26 @@ import {SelectStudentModule} from '../../Modules/select-student/select-student.m
 })
 export class SearchStudentsComponent implements OnInit {
 
-
+  tempstate:any;
   buttondiv:boolean=true;
   AboutUs:boolean=false;
 
   model:any=[];
-  slist = new SelectStudentModule();
+  slist : SelectStudentModule={
+    StudentId: null,
+    Name: null,
+    Email: null,
+    Subject: null,
+    Level: 0,
+    Marks: 0,
+    
+    //Id :number;
+   //Id :number;
+    Technology: null,
+   state: null,
+   city: null
+
+  };
   finalSlist : SelectStudentModule[];
   Techlist:AddSubModule[];
   st:boolean=false;
@@ -62,6 +77,7 @@ export class SearchStudentsComponent implements OnInit {
   }
 
   onChangeState(stateValue) {
+   
     this.cityInfo=this.stateInfo[stateValue].Cities;
     console.log(this.cityInfo);
   }
@@ -69,14 +85,49 @@ export class SearchStudentsComponent implements OnInit {
   searchstudent(searchform:NgForm):void
   {
 
-    console.log('subject :',searchform.value.tech);
-    var state = this.stateInfo[searchform.value.state].StateName;
-    console.log("State name : "+ state);
-   this.slist.Technology = searchform.value.tech;
-   this.slist.state = state;
-   this.slist.city = searchform.value.city;
-   this.slist.Level = searchform.value.level;
-   this.slist.Marks = searchform.value.marks;
+  
+    if(searchform.value.state!=undefined)
+    {
+     this.tempstate = this.stateInfo[searchform.value.state].StateName;
+      console.log("State name : "+this.tempstate);
+    }
+    else
+    {
+     this.tempstate =this.slist.state;
+     //console.log(this.tempstate );
+    }
+    if(searchform.value.tech!=undefined)
+    {
+      this.slist.Technology = searchform.value.tech;
+      console.log(this.slist.Technology);
+    }
+
+    if(this.tempstate!=null)
+    {
+      this.slist.state = this.tempstate;
+      console.log(this.slist.state);
+    }
+    
+
+    if(searchform.value.city!=undefined)
+    {
+      this.slist.city = searchform.value.city;
+      console.log( this.slist.city);
+    }
+   
+    if(searchform.value.level!=undefined)
+    {
+      this.slist.Level = searchform.value.level;
+      console.log(this.slist.Level);
+    }
+
+    if(searchform.value.marks!=undefined)
+    {
+      this.slist.Marks = searchform.value.marks;
+      console.log(this.slist.Marks);
+    }
+
+ console.log(this.slist.Marks + ' '+this.slist.city + '' + this.slist.state + '' +  this.slist.Technology + '' + this.slist.Level);
    console.log("Inside student list :"+this.slist);
    this.service.SearchStudent(this.slist).subscribe((data:SelectStudentModule[])=>{
    this.finalSlist=data;
