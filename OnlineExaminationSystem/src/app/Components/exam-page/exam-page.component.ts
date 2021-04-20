@@ -8,6 +8,9 @@ import { StudentInfoService } from 'src/app/Services/student-info.service';
 import {ReportCardModule} from 'src/app/Modules/report-card/report-card.module';
 import {LevelModule} from 'src/app/Modules/level/level.module';
 import {Router} from '@angular/router';
+import pdfMake from "pdfmake/build/pdfmake";  
+import pdfFonts from "pdfmake/build/vfs_fonts";  
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-exam-page',
@@ -330,6 +333,100 @@ for(var l of this.levellist)
     alert("You are logged out")
     this.router.navigate(['/Home']);
 
+  }
+
+  // function for pdf
+
+  generatePDF(action="open") 
+    {
+    let docDefinition = {  
+      header: 'iAssess',  
+      content: [  
+        {  
+          text: 'iAssess Report',  
+          fontSize: 16,  
+          alignment: 'center',  
+          color: '#047886'  
+        },  
+        {  
+          text: 'Performance Matrix',  
+          fontSize: 20,  
+          bold: true,  
+          alignment: 'center',  
+          decoration: 'underline',  
+          color: 'skyblue',  
+          style: 'sectionHeader'   
+        },
+        {
+          columns: [  
+            [  
+                {  
+                    text: sessionStorage.getItem('presentstudent'),  
+                    bold: true  
+                },  
+                ///{ text: this.result.ID },  
+                //{ text: this.result.SubID },  
+                //{ text: this.result.Level }  
+            ],  
+            [  
+                {  
+                    text: `Date: ${new Date().toLocaleString()}`,  
+                    alignment: 'right'  
+                },  
+                {  
+                    text: `Report ID : ${((Math.random() * 1000).toFixed(0))}`,  
+                    alignment: 'right'  
+                }  
+            ]  
+        ]  
+        },
+        {  
+          text: 'Exam Details',  
+          style: 'sectionHeader'  
+      },  
+      {  
+          table: {  
+              headerRows: 1,  
+              widths: ['auto', '*','auto','auto', 'auto', 'auto'],  
+              body: [  
+                  ['SID', 'Name','Level', 'Subject Name', 'Score','Status'],  
+                  [sessionStorage.getItem('studid'),
+                  sessionStorage.getItem('presentstudent')
+                  ,this.presentlevel+1,this.subjectname,this.Score,this.ResultStatus]
+                  ]  
+          }  
+      },
+      {  
+        columns: [  
+            [{ qr: `${sessionStorage.getItem('presentstudent')}`, fit: '50' }],  
+            [{ text: 'Signature', alignment: 'right', italics: true }],  
+        ]  
+    },
+    {  
+      ul: [  
+        'Report is valid upto 1 year.', 
+        'This is system generated Report.',  
+        'For any reprot related issue contact at helpme@ez.com.'  
+      ],  
+  }    
+      ],
+      styles: {  
+        sectionHeader: {  
+            bold: true,  
+            decoration: 'underline',  
+            fontSize: 14,  
+            margin: [0, 15, 0, 15]  
+        }  
+    }  
+    };  
+
+    if(action==='download'){    
+      pdfMake.createPdf(docDefinition).download();    
+    }else if(action === 'print'){    
+      pdfMake.createPdf(docDefinition).print();          
+    }else{    
+      pdfMake.createPdf(docDefinition).open();          
+    } 
   }
 
   

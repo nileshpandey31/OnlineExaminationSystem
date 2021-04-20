@@ -361,14 +361,14 @@ create or alter proc sp_UpdateSubject(@SubjectId int,@Subject varchar(20),@Total
 
 	--------------
 
-	CREATE OR ALTER PROC sp_searchStudent(@subject varchar(30) = 'python',
+	CREATE OR ALTER PROC sp_searchStudent(@subject varchar(30) = 'java',
 							 @state varchar(30) = 'maharashtra', 
 							 @city varchar(30) = 'mumbai',
 							 @Level int = 1, 
 							 @marks int = 0)
 AS
 BEGIN
-	SELECT s.StudentId,s.Name, s.Email,t.Subject,l.Level ,r.Marks
+	SELECT DISTINCT s.StudentId,s.Name, s.Email,t.Subject,l.Level ,r.Marks
 	FROM 
 	Student s inner join 
 	LevelTable l on s.StudentId=l.Studentid and l.Level>=@level and s.State=@state and s.city=@city inner join 

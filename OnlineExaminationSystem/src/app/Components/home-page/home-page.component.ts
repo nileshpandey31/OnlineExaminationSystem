@@ -3,6 +3,10 @@ import {Router} from '@angular/router';
 import {ReportService} from 'src/app/Services/report.service';
 import {MyreportModule} from 'src/app/Modules/myreport/myreport.module';
 import {MylevelModule} from 'src/app/Modules/mylevel/mylevel.module';
+import { StudentInfoModule } from 'src/app/Modules/student-info/student-info.module';
+import { StudentInfoService } from 'src/app/Services/student-info.service';
+
+
 
 @Component({
   selector: 'app-home-page',
@@ -17,13 +21,25 @@ export class HomePageComponent implements OnInit {
   AboutUs:boolean=false;
 
   studid:any=sessionStorage.getItem('studid');
+  
   replist:MyreportModule[];
   mylevlist:MylevelModule[];
+  studlist:StudentInfoModule[];
+  presentstudent:string;
 
-  constructor(private router:Router,private svc:ReportService) { }
+  constructor(private router:Router,private svc:ReportService,private service:StudentInfoService) { }
 
   ngOnInit(): void {
     console.log(sessionStorage.getItem('studid'));
+
+    this.service.ShowAllStudent().subscribe((data:StudentInfoModule[])=>
+    {
+
+      this.studlist=data;
+      var presentstudentlist=this.studlist.filter(x=>x.StudentId==this.studid);
+      this.presentstudent= presentstudentlist[0].Name;
+      sessionStorage.setItem('presentstudent',this.presentstudent);
+    });
 
 
   }
@@ -32,6 +48,7 @@ logout():void
 
   //sessionStorage.setItem('studid',null);
   sessionStorage.removeItem('studid');
+  sessionStorage.removeItem('presentstudent');
   console.log(sessionStorage.getItem('studid'));
   this.studid=sessionStorage.getItem('studid');
   this.Report=false;

@@ -22,9 +22,9 @@ export class StudentInfoService {
   return this.http.post<boolean>(this.url+'/'+'RegisterStudent',stud,this.httpOptions);
 }
 
-Login(Email:string,pwd:string):Observable<string>
+Login(stud:StudentInfoModule):Observable<string>
 {
-  return this.http.get<string>(this.url+'/'+'login'+'/'+ Email + '/' + pwd);
+  return this.http.post<string>(this.url+'/Login',stud,this.httpOptions);
 }
 
 ChkEmail(email:string):Observable<string>

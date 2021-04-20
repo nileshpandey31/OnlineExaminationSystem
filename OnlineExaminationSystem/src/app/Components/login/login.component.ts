@@ -4,6 +4,8 @@ import{StudentInfoModule} from 'src/app/Modules/student-info/student-info.module
 import{StudentInfoService} from 'src/app/Services/student-info.service';
 import {Router} from "@angular/router";
 
+import * as forge from 'node-forge';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,6 +26,13 @@ export class LoginComponent implements OnInit {
   studlist:StudentInfoModule[];
  studentidsession:any;   //variable for storing student session
  presentstudent:any;
+
+ publicKey: string = `-----BEGIN PUBLIC KEY-----
+ MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDYtmHLSiliYtZQb1yvBeqqE01T
+ hUYiuV3Qex2ril2hL9AEG3oI7b1R8IAoppcojjX0wnccKUeSryiuD/I8LC5jAErx
+ RKXklxgZ2LxLoVwVczTfrev1noRsFS6J2dPSw183C3UVd7WQTxpcxjVf1j2rxAvS
+ SUgxQwlCJiDU9M6CTQIDAQAB
+ -----END PUBLIC KEY-----`;
 
 
   constructor(svc:StudentInfoService,private router: Router) { this.svc=svc;}
@@ -52,17 +61,19 @@ export class LoginComponent implements OnInit {
   }
   loginData(login:NgForm):void
 {
-  console.log(login.value);
-  this.email=login.value.Email;
-    this.password=login.value.pass;
+  var rsa = forge.pki.publicKeyFromPem(this.publicKey);
+  this.stud.Email=login.value.Email;
+  this.password=login.value.pass;
+  var encryptedPassword = window.btoa(rsa.encrypt(this.password));
+  this.stud.Password=encryptedPassword;
 
-    this.svc.Login(this.email,this.password).subscribe((data:string)=> {
+  this.svc.Login(this.stud).subscribe((data:string)=> {
       console.log(data);
       if(data=="Login successful")
       {
         alert('Login successful');
 
-        this.presentstudent=this.studlist.filter(x=>x.Email==this.email);
+        this.presentstudent=this.studlist.filter(x=>x.Email==this.stud.Email);
         console.log(this.presentstudent);
       //   console.log(this.studlist);
       //  console.log(this.presentstudent);
@@ -75,6 +86,7 @@ export class LoginComponent implements OnInit {
         this.studentidsession = window.sessionStorage.getItem("studid");
         console.log(this.studentidsession);
         this.router.navigate(['/Home']);
+
 
 
       }

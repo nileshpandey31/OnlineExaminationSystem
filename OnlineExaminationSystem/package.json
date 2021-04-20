@@ -25,6 +25,8 @@
     "ngx-captcha": "^9.0.1",
     "ngx-countdown": "^11.0.3",
     "ngx-pagination": "^5.0.0",
+    "node-forge": "^0.10.0",
+    "pdfmake": "^0.1.71",
     "read-excel-file": "^5.1.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

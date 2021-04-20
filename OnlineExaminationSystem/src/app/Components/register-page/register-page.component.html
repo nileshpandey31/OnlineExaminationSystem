@@ -76,7 +76,7 @@
                                         <span *ngIf="mobno.errors?.pattern">
                         &nbsp;&nbsp;*Mobile no has to be numeric and of 10 digits
                     </span>
-                                        <input type="number" class="form-control" placeholder="Enter Mobile Number" name="mobno" [(ngModel)]="model.mobno" #mobno="ngModel" pattern="^[0-9]{10}$" required>
+                                        <input type="number" class="form-control" placeholder="Enter Mobile Number" (click)="onChangeCountry()" name="mobno" [(ngModel)]="model.mobno" #mobno="ngModel" pattern="^[0-9]{10}$" required>
                                     </div>
 
                                 </div>
@@ -84,21 +84,25 @@
                             <div class="row row-space">
                                 <div class="col-2">
                                     <div class="form-label-group">
-                                        <label class="inp">&nbsp; City : </label>
-                                        <span *ngIf="city.errors?.required && city?.touched">
-                        &nbsp;&nbsp;*City cannot be blank
-                    </span>
-                                        <input type="text" class="form-control" placeholder="Enter City" name="city" [(ngModel)]="model.city" #city="ngModel" required>
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="form-label-group">
-                                        <label class="inp">&nbsp; State :</label>
+                                        <label class="inp">&nbsp; State : </label>
                                         <span *ngIf="state.errors?.required && state?.touched">
                         &nbsp;&nbsp;*State cannot be blank
                     </span>
-                                        <input type="text" class="form-control" placeholder="Enter State" name="state" [(ngModel)]="model.state" #state="ngModel" required>
-                                    </div>
+                    <select class="form-control" name="state" (change)="onChangeState($event.target.value)" #state="ngModel"  [(ngModel)]="model.state" required >
+                        <option value="" disabled selected>--Select State--</option>
+                        <option *ngFor="let state of stateInfo; let j = index" value="{{j}}">{{state.StateName}}</option>
+                      </select></div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="form-label-group">
+                                        <label class="inp">&nbsp; City :</label>
+                                        <span *ngIf="city.errors?.required && city?.touched">
+                        &nbsp;&nbsp;*City cannot be blank
+                    </span>
+                    <select class="form-control" name="city" #city="ngModel"  [(ngModel)]="model.city">
+                        <option value="" disabled selected>--Select CIty--</option>
+                      <option *ngFor="let city of cityInfo; let k = index" value="{{city}}">{{city}}</option>
+                    </select></div>
                                 </div>
                             </div>
                             <div class="row row-space">
@@ -117,8 +121,20 @@
                                         <span *ngIf="qual.errors?.required && qual?.touched">
                         &nbsp;&nbsp;*Qualification cannot be blank
                     </span>
-                                        <input type="text" class="form-control" placeholder="Enter Qualification" name="qual" [(ngModel)]="model.qual" #qual="ngModel" required>
-                                    </div>
+                    <select name="qual" name="qual" [(ngModel)]="model.qual" #qual="ngModel" required>
+                        <option value="BE CE">BE CE</option>
+                        <option value="BE IT" >BE IT</option>
+                        <option value="BE EXTC">BE EXTC</option>
+                        <option value="BTech CS">BTech CS</option>
+                        <option value="BTech IT">BTech IT</option>
+                        <option value="BTech EXTC">BTech EXTC</option>
+                        <option value="Diploma CS">Diploma CS</option>
+                        <option value="Diploma IT">Diploma IT</option>
+                        <option value="Diploma EXTC">Diploma EXTC</option>
+                        <option value="B.Sc CS">B.Sc CS</option>
+                        <option value="B.Sc IT">B.Sc IT</option>
+                      </select>
+                     </div>
                                 </div>
                             </div>
 
