@@ -73,7 +73,7 @@
                         <br><br>
 
                         <!-- Admin login form -->
-                        <form class="form-signin" *ngIf="isChecked" #login="ngForm" name="login" (ngSubmit)="loginData(login)">
+                        <form class="form-signin" *ngIf="isChecked" #login="ngForm" name="login" (ngSubmit)="AdminLog(login)">
                             <div class="form-label-group">
                                 <label class="inp">&nbsp; Email address</label>
                                 <span *ngIf="Email.errors?.required"> &nbsp;&nbsp;&nbsp; * Email cannot be blank</span>
@@ -93,7 +93,7 @@
                             <div>
                             </div>
                             <br>
-                            <button style="width: 134px;" class="btn btn-lg btn-primary btn-block text-uppercase" name="Login" [disabled]="login.invalid" [routerLink]="['/AdminHome']">Login</button>
+                            <button style="width: 134px;" class="btn btn-lg btn-primary btn-block text-uppercase" name="Login" [disabled]="login.invalid" >Login</button>
                         </form>
 
                         <!-- Student login form -->

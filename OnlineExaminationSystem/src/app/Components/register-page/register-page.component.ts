@@ -103,18 +103,23 @@ export class RegisterPageComponent implements OnInit {
   var encryptedPassword = window.btoa(rsa.encrypt(Reg.value.pass));
   this.stud.Password=encryptedPassword;
 
-
-  this.svc.RegisterStudent(this.stud).subscribe((data:boolean)=>{alert(data);
-    if(data==true)
-    {
-      alert('new Student added');
-      this.router.navigate(['/Login']);
-
+  this.svc.ChkEmail(this.stud.Email).subscribe((data:string)=>{
+    if(data == "success") {
+      alert("Email ID already in use. Please use another ID");
     }
     else{
-      alert('Registration Failed Try Again!!');
+      this.svc.RegisterStudent(this.stud).subscribe((data:boolean)=>{alert(data);
+        if(data==true)
+        {
+          alert('Registration Successful');
+        }
+      });
     }
   });
+
+
+
+ 
 
 
 }

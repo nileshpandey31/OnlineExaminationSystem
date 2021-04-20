@@ -383,7 +383,7 @@ BEGIN
 
 	---condition 2
 
-	if @state is null and @city is null
+	else if @state is null and @city is null
 	begin
 	SELECT DISTINCT s.StudentId,s.Name, s.Email,t.Subject,l.Level ,r.Marks
 	FROM 
@@ -398,7 +398,7 @@ BEGIN
 
 
 -------condition 5
-	if @city is null and  @state is null and @subject is null
+	else if @city is null and  @state is null and @subject is null
 	begin
 	SELECT DISTINCT s.StudentId,s.Name, s.Email,t.Subject,l.Level ,r.Marks
 	FROM 
@@ -409,7 +409,7 @@ BEGIN
 	end
 
 --- condition 3
-	if @subject is null and @city is null
+	else if @subject is null and @city is null
 	begin
 	SELECT DISTINCT s.StudentId,s.Name, s.Email,t.Subject,l.Level ,r.Marks
 	FROM 
@@ -420,7 +420,7 @@ BEGIN
 	end
 
 ----- condition 4
-	if @city is null
+	else if @city is null
 	begin
 	SELECT DISTINCT s.StudentId,s.Name, s.Email,t.Subject,l.Level ,r.Marks
 	FROM 
@@ -433,7 +433,7 @@ BEGIN
 
 
 ------- condition 6
-	if @subject is null
+	else if @subject is null 
 	begin
 	SELECT DISTINCT s.StudentId,s.Name, s.Email,t.Subject,l.Level ,r.Marks
 	FROM 
